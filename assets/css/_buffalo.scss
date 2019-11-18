@@ -1,10 +1,53 @@
+@font-face {
+  font-family: "Cascadia Code";
+  src: url("https://github.com/microsoft/cascadia-code/releases/download/v1910.04/Cascadia.ttf");
+}
+
+:root {
+  --lavender: #b877db;
+  --cranberry: #e95678;
+  --turquoise: #25b0bc;
+  --apricot: #f09483;
+  --rosebud: #fab795;
+  --tacao: #fac29a;
+
+  --gray: #bbbbbb;
+  --shadow: #16161c;
+  --border: #1a1c23;
+  --background: #1c1e26;
+  --backgroundAlt: #232530;
+  --accent: #2e303e;
+  --accentAlt: #6c6f93;
+  --secondaryAccent: #e9436d;
+  --secondaryAccentAlt: #e95378;
+  --tertiaryAccent: #fab38e;
+  --positive: #09f7a0;
+  --negative: #f43e5c;
+  --warning: #27d797;
+  --modified: #21bfc2;
+  --lightText: #d5d8da;
+  --darkText: #06060c;
+
+  --blue: #26bbd9;
+  --cyan: #59e1e3;
+  --green: #29d398;
+  --magenta: #ee64ac;
+  --red: #e95678;
+  --yellow: #fab795;
+
+  --bright-blue: #3fc4de;
+  --bright-cyan: #6be4e6;
+  --bright-green: #3fdaa4;
+  --bright-magenta: #f075b5;
+  --bright-red: #ec6a88;
+  --bright-yellow: #fbc3a7;
+}
+
 .container {
   min-width: 320px;
 }
 
-header {
-  background-color: #62a5ee;
-  padding: 10px 20px;
+.routes-header {
   box-sizing: border-box;
 }
 
@@ -18,9 +61,9 @@ header {
   h1 {
     font-size: 30px;
     font-weight: 300;
-    color: white;
+    color: #2e303e;
     margin-bottom: 13px;
-    margin-top: 5px;
+    margin-top: 13px;
   }
 
   h2 {
@@ -83,6 +126,66 @@ table {
   text-align: center;
 }
 
+@media (prefers-color-scheme: dark) {
+  .introduction-body {
+    background-color: var(--background);
+    font-family: "Cascadia Code";
+  }
+
+  .introduction-content {
+    color: var(--lightText);
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    background-color: var(--backgroundAlt);
+    padding: 5%;
+    padding-top: 2%;
+
+    .introduction-titles {
+      color: var(--tacao);
+    }
+    a {
+      color: var(--bright-green);
+    }
+  }
+
+  .introduction-header {
+    color: var(--darkText);
+    background-color: var(--cyan);
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .introduction-body {
+    background-color: var(--lightText);
+    font-family: "Cascadia Code";
+  }
+
+  .introduction-content {
+    color: var(--lightText);
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    background-color: var(--backgroundAlt);
+    padding: 5%;
+    padding-top: 2%;
+
+    .introduction-titles {
+      color: var(--tacao);
+    }
+    a {
+      color: var(--bright-green);
+    }
+  }
+
+  .introduction-header {
+    color: var(--darkText);
+    background-color: var(--cyan);
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+  }
+}
+
 @media all and (max-width: 770px) {
   .titles {
     h1 {
@@ -127,7 +230,7 @@ table {
     padding: 0;
 
     img {
-      width: 100%
+      width: 100%;
     }
   }
 }
