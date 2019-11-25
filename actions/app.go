@@ -59,9 +59,13 @@ func App() *buffalo.App {
 		// Setup and use translations:
 		app.Use(translations())
 
-		app.GET("/routes", RoutesHandler)
-
 		app.GET("/", IntroductionHandler)
+
+		app.GET("/routes", RoutesHandler) // for debugging
+
+		app.GET("/formsTest", func(c buffalo.Context) error {
+			return c.Render(200, r.HTML("formstest.html"))
+		})
 
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}
