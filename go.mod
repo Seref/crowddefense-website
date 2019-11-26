@@ -1,4 +1,4 @@
-module medienprojekt-19-20/crowddefense-website
+module github.com/medienprojekt-19-20/crowddefense-website
 
 go 1.13
 
