@@ -1,4 +1,4 @@
-module github.com/medienprojekt-19-20/crowddefense-website
+module medienprojekt-19-20/crowddefense-website
 
 go 1.13
 
@@ -8,7 +8,7 @@ require (
 	github.com/gobuffalo/buffalo-auth v1.0.8 // indirect
 	github.com/gobuffalo/buffalo-pop v1.23.1
 	github.com/gobuffalo/envy v1.8.1
-	github.com/gobuffalo/flect v0.1.7 // indirect
+	github.com/gobuffalo/flect v0.1.7
 	github.com/gobuffalo/here v0.4.3 // indirect
 	github.com/gobuffalo/logger v1.0.3 // indirect
 	github.com/gobuffalo/meta v0.2.1 // indirect
