@@ -1,7 +1,7 @@
 package grifts
 
 import (
-	"crowddefense-website/actions"
+	"github.com/medienprojekt-19-20/crowddefense-website/actions"
 
 	"github.com/gobuffalo/buffalo"
 )

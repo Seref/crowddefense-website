@@ -5,9 +5,8 @@ import (
 	"github.com/gobuffalo/envy"
 	forcessl "github.com/gobuffalo/mw-forcessl"
 	paramlogger "github.com/gobuffalo/mw-paramlogger"
+	"github.com/medienprojekt-19-20/crowddefense-website/models"
 	"github.com/unrolled/secure"
-
-	"crowddefense-website/models"
 
 	"github.com/gobuffalo/buffalo-pop/pop/popmw"
 	csrf "github.com/gobuffalo/mw-csrf"
