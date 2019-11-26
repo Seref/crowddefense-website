@@ -1,10 +1,10 @@
 ---
 development:
   dialect: "mysql"
-  database: "crowdjump2_dev"
+  database: "crowddefense_dev"
   host: "beemo.at"
   port: "3307"
-  user: "crowdjump2_dev"
+  user: "crowddefense_dev"
   password: "x5nZf%J9wFAnB*#zZEFh%bkabbAQ^FQir^6xidyM*x^JW54e54czVZ*hpAXih^5t"
 
 test:
@@ -17,10 +17,10 @@ test:
   # Note that if you use `url`, other configurations are silently ignored.
   # In this case, the URL must contain all required connection parameters.
   #
-  database: "crowdjump2_dev"
+  database: "crowddefense_dev"
   host: "beemo.at"
   port: "3307"
-  user: "crowdjump2_dev"
+  user: "crowddefense_dev"
   password: "x5nZf%J9wFAnB*#zZEFh%bkabbAQ^FQir^6xidyM*x^JW54e54czVZ*hpAXih^5t"
 
 production:
@@ -30,10 +30,10 @@ production:
   #url: {{envOr "DATABASE_URL" "mysql://root:root@(localhost:3306)/medienprojekt_website_production?parseTime=true&multiStatements=true&readTimeout=3s"}}
   #
   dialect: "mysql"
-  database: "crowdjump2_prod"
+  database: "crowddefense_prod"
   host: {{envOr "DATABASE_HOST" "beemo.at"}}
   port: {{envOr "DATABASE_PORT" "3306"}}
-  user: {{envOr "DATABASE_USER" "crowdjump2_prod"}}
+  user: {{envOr "DATABASE_USER" "crowddefense_dev"}}
   password: {{envOr "DATABASE_PASSWORD" ""}}
   #
   # And you can also override connection parameters by setting it under options.
