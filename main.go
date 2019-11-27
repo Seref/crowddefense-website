@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/medienprojekt-19-20/crowddefense-website/actions"
+	"crowddefense_website/actions"
 )
 
 // main is the starting point for your Buffalo application.

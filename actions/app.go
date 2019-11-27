@@ -5,8 +5,9 @@ import (
 	"github.com/gobuffalo/envy"
 	forcessl "github.com/gobuffalo/mw-forcessl"
 	paramlogger "github.com/gobuffalo/mw-paramlogger"
-	"github.com/medienprojekt-19-20/crowddefense-website/models"
 	"github.com/unrolled/secure"
+
+	"crowddefense_website/models"
 
 	"github.com/gobuffalo/buffalo-pop/pop/popmw"
 	csrf "github.com/gobuffalo/mw-csrf"
@@ -37,7 +38,7 @@ func App() *buffalo.App {
 	if app == nil {
 		app = buffalo.New(buffalo.Options{
 			Env:         ENV,
-			SessionName: "_crowddefense-website_session",
+			SessionName: "_crowddefense_website_session",
 		})
 
 		// Automatically redirect to SSL
@@ -58,22 +59,8 @@ func App() *buffalo.App {
 		// Setup and use translations:
 		app.Use(translations())
 
-		app.GET("/", IntroductionHandler)
+		app.GET("/", HomeHandler)
 
-		app.GET("/routes", RoutesHandler) // for debugging
-
-		app.GET("/formsTest", func(c buffalo.Context) error {
-			return c.Render(200, r.HTML("formstest.html"))
-		})
-
-		app.Use(SetCurrentUser)
-		app.Use(Authorize)
-		app.GET("/users/new", UsersNew)
-		app.POST("/users", UsersCreate)
-		app.GET("/signin", AuthNew)
-		app.POST("/signin", AuthCreate)
-		app.DELETE("/signout", AuthDestroy)
-		app.Middleware.Skip(Authorize, UsersNew, UsersCreate, AuthNew, AuthCreate)
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}
 
