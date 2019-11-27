@@ -61,8 +61,18 @@ func App() *buffalo.App {
 
 		app.GET("/", HomeHandler)
 
+		app.GET("/login", LoginHandler)
+
 		app.GET("/intro", IntroductionHandler)
 
+		app.Use(SetCurrentUser)
+		app.Use(Authorize)
+		app.GET("/users/new", UsersNew)
+		app.POST("/users", UsersCreate)
+		app.GET("/signin", AuthNew)
+		app.POST("/signin", AuthCreate)
+		app.DELETE("/signout", AuthDestroy)
+		app.Middleware.Skip(Authorize, HomeHandler, UsersNew, UsersCreate, AuthNew, AuthCreate, IntroductionHandler, LoginHandler)
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}
 
