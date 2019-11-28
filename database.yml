@@ -1,7 +1,7 @@
 ---
 development:
   dialect: "mysql"
-  database: "crowddefense_dev"
+  database: "crowddefense_website_dev"
   host: "beemo.at"
   port: "3307"
   user: "crowddefense_dev"
@@ -17,7 +17,7 @@ test:
   # Note that if you use `url`, other configurations are silently ignored.
   # In this case, the URL must contain all required connection parameters.
   #
-  database: "crowddefense_dev"
+  database: "crowddefense_website_dev"
   host: "beemo.at"
   port: "3307"
   user: "crowddefense_dev"
@@ -30,10 +30,10 @@ production:
   #url: {{envOr "DATABASE_URL" "mysql://root:root@(localhost:3306)/crowddefense-website_production?parseTime=true&multiStatements=true&readTimeout=3s"}}
   #
   dialect: "mysql"
-  database: "crowddefense_prod"
+  database: "crowddefense_website_prod"
   host: {{envOr "DATABASE_HOST" "beemo.at"}}
   port: {{envOr "DATABASE_PORT" "3306"}}
-  user: {{envOr "DATABASE_USER" "crowddefense_dev"}}
+  user: {{envOr "DATABASE_USER" "crowddefense_prod"}}
   password: {{envOr "DATABASE_PASSWORD" ""}}
   #
   # And you can also override connection parameters by setting it under options.
