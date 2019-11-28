@@ -1,7 +1,7 @@
 package actions
 
 import (
-	"crowddefense_website/models"
+	"crowddefensewebsite/models"
 
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/pop"

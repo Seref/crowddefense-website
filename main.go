@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"crowddefense_website/actions"
+	"crowddefensewebsite/actions"
 )
 
 // main is the starting point for your Buffalo application.

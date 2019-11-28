@@ -7,7 +7,7 @@ import (
 	paramlogger "github.com/gobuffalo/mw-paramlogger"
 	"github.com/unrolled/secure"
 
-	"crowddefense_website/models"
+	"crowddefensewebsite/models"
 
 	"github.com/gobuffalo/buffalo-pop/pop/popmw"
 	csrf "github.com/gobuffalo/mw-csrf"
@@ -38,7 +38,7 @@ func App() *buffalo.App {
 	if app == nil {
 		app = buffalo.New(buffalo.Options{
 			Env:         ENV,
-			SessionName: "_crowddefense_website_session",
+			SessionName: "_crowddefensewebsite_session",
 		})
 
 		// Automatically redirect to SSL
@@ -61,10 +61,6 @@ func App() *buffalo.App {
 
 		app.GET("/", HomeHandler)
 
-		app.GET("/login", LoginHandler)
-
-		app.GET("/intro", IntroductionHandler)
-
 		app.Use(SetCurrentUser)
 		app.Use(Authorize)
 		app.GET("/users/new", UsersNew)
@@ -72,7 +68,7 @@ func App() *buffalo.App {
 		app.GET("/signin", AuthNew)
 		app.POST("/signin", AuthCreate)
 		app.DELETE("/signout", AuthDestroy)
-		app.Middleware.Skip(Authorize, HomeHandler, UsersNew, UsersCreate, AuthNew, AuthCreate, IntroductionHandler, LoginHandler)
+		app.Middleware.Skip(Authorize, HomeHandler, UsersNew, UsersCreate, AuthNew, AuthCreate)
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}
 

@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"strings"
 
-	"crowddefense_website/models"
+	"crowddefensewebsite/models"
 
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/pop"

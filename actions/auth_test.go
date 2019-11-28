@@ -1,7 +1,7 @@
 package actions
 
 import (
-	"crowddefense_website/models"
+	"crowddefensewebsite/models"
 )
 
 func (as *ActionSuite) Test_Auth_New() {

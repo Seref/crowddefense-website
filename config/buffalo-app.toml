@@ -1,5 +1,5 @@
-name = "crowddefense-website"
-bin = "bin/crowddefense-website"
+name = "crowddefensewebsite"
+bin = "bin/crowddefensewebsite"
 vcs = "git"
 with_pop = true
 with_sqlite = false

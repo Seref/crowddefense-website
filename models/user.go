@@ -23,6 +23,14 @@ type User struct {
 
 	Password             string `json:"-" db:"-"`
 	PasswordConfirmation string `json:"-" db:"-"`
+
+	//Extra fields
+
+	FirstName string `json:"first_name" db:"first_name"`
+
+	LastName string `json:"last_name" db:"last_name"`
+
+	Username string `json:"username" db:"username"`
 }
 
 // Create wraps up the pattern of encrypting the password and
