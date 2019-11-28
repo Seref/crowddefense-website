@@ -4,7 +4,6 @@ go 1.13
 
 require (
 	github.com/gobuffalo/buffalo v0.15.0
-	github.com/gobuffalo/buffalo-auth v1.0.8 // indirect
 	github.com/gobuffalo/buffalo-pop v1.23.1
 	github.com/gobuffalo/envy v1.8.1
 	github.com/gobuffalo/flect v0.1.7 // indirect
@@ -17,10 +16,8 @@ require (
 	github.com/gobuffalo/packr/v2 v2.7.1
 	github.com/gobuffalo/pop v4.12.2+incompatible
 	github.com/gobuffalo/suite v2.8.2+incompatible
-	github.com/gobuffalo/tags v2.1.7+incompatible // indirect
 	github.com/gobuffalo/validate v2.0.3+incompatible
 	github.com/gofrs/uuid v3.2.0+incompatible
-	github.com/karrick/godirwalk v1.13.0 // indirect
 	github.com/markbates/grift v1.1.0
 	github.com/pkg/errors v0.8.1
 	github.com/rogpeppe/go-internal v1.5.0 // indirect
