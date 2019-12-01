@@ -1,0 +1,10 @@
+<%= f.InputTag("Title") %>
+<%= f.TextAreaTag("Body", {rows: 10}) %>
+<%= f.InputTag("DevComment") %>
+<%= f.InputTag("VersionWhenSuggested") %>
+<%= f.InputTag("UpvotedBy") %>
+<%= f.InputTag("DownvotedBy") %>
+<%= f.CheckboxTag("Editable", {unchecked: false}) %>
+<%= f.InputTag("Keywords") %>
+<%= f.CheckboxTag("Fulfilled", {unchecked: false}) %>
+<button class="btn btn-success" role="submit">Save</button>
