@@ -59,20 +59,34 @@ func App() *buffalo.App {
 		// Setup and use translations:
 		app.Use(translations())
 
-		app.GET("/", HomeHandler)
-
-		app.GET("/login", LoginHandler)
-
-		app.GET("/intro", IntroductionHandler)
-
 		app.Use(SetCurrentUser)
+
 		app.Use(Authorize)
+
+		app.GET("/", Home)
+
+		app.GET("/login", Login)
+
 		app.GET("/users/new", UsersNew)
-		app.POST("/users", UsersCreate)
+
 		app.GET("/signin", AuthNew)
+
+		app.GET("/legal", Legal)
+
+		app.GET("/forum", Forum)
+
+		app.GET("/submitidea/new", SuggestionsNew)
+
+		app.POST("/users", UsersCreate)
+
+		app.POST("/suggestions", SuggestionsCreate)
+
 		app.POST("/signin", AuthCreate)
+
 		app.DELETE("/signout", AuthDestroy)
-		app.Middleware.Skip(Authorize, HomeHandler, UsersNew, UsersCreate, AuthNew, AuthCreate, IntroductionHandler, LoginHandler)
+
+		app.Middleware.Skip(Authorize, UsersNew, UsersCreate, AuthNew, AuthCreate, Home, Login, Legal)
+
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}
 
