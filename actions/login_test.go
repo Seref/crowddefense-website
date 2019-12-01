@@ -1,6 +1,6 @@
 package actions
 
-import "crowddefense_website/models"
+import "crowddefensewebsite/models"
 
 func (as *ActionSuite) Test_HomeHandler() {
 	res := as.HTML("/").Get()

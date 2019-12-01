@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
--- Host: wailord    Database: crowddefensewebsite_development
+-- Host: beemo.at    Database: crowddefensewebsite_development
 -- ------------------------------------------------------
 -- Server version	8.0.18
 
@@ -25,6 +25,26 @@ DROP TABLE IF EXISTS `schema_migration`;
 CREATE TABLE `schema_migration` (
   `version` varchar(14) COLLATE utf8mb4_general_ci NOT NULL,
   UNIQUE KEY `schema_migration_version_idx` (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `suggestions`
+--
+
+DROP TABLE IF EXISTS `suggestions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `suggestions` (
+  `id` char(36) COLLATE utf8mb4_general_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `body` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `dev_comment` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `version_when_suggested` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `editable` tinyint(1) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -57,4 +77,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-28 23:26:28
+-- Dump completed on 2019-12-01  0:50:32

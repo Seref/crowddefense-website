@@ -85,6 +85,23 @@ func (u *User) Validate(tx *pop.Connection) (*validate.Errors, error) {
 				return !b
 			},
 		},
+		&validators.FuncValidator{
+			Field:   u.Username,
+			Name:    "Username",
+			Message: "%s is already taken",
+			Fn: func() bool {
+				var b bool
+				q := tx.Where("username = ?", u.Username)
+				if u.ID != uuid.Nil {
+					q = q.Where("id != ?", u.ID)
+				}
+				b, err = q.Exists(u)
+				if err != nil {
+					return false
+				}
+				return !b
+			},
+		},
 	), err
 }
 
