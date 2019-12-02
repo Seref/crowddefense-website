@@ -65,6 +65,9 @@ func App() *buffalo.App {
 
 		app.GET("/", Home)
 
+		app.GET("/legal/legal", LegalLegal)
+		app.GET("/legal/dataprotection", LegalDataprotection)
+
 		app.Use(SetCurrentUser)
 		app.Use(Authorize)
 		app.GET("/login", Login)

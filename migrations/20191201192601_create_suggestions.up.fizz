@@ -9,5 +9,6 @@ create_table("suggestions") {
 	t.Column("editable", "bool", {})
 	t.Column("keywords", "json", {})
 	t.Column("fulfilled", "bool", {})
+	t.Column("suggested_by", "string", {})
 	t.Timestamps()
 }

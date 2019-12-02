@@ -3,6 +3,7 @@ package actions
 import (
 	"crowddefensewebsite/models"
 	"fmt"
+
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/pop"
 )
@@ -22,6 +23,11 @@ import (
 // SuggestionsResource is the resource for the Suggestion model
 type SuggestionsResource struct {
 	buffalo.Resource
+	test
+}
+
+type test interface {
+	Upvote(buffalo.Context) error
 }
 
 // List gets all Suggestions. This function is mapped to the path
@@ -92,6 +98,8 @@ func (v SuggestionsResource) Create(c buffalo.Context) error {
 	if !ok {
 		return fmt.Errorf("no transaction found")
 	}
+
+	suggestion.SuggestedBy = c.Value("current_user").(*models.User).Username
 
 	// Validate the data from the html form
 	verrs, err := tx.ValidateAndCreate(suggestion)

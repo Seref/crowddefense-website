@@ -43,6 +43,12 @@
   --bright-yellow: #fbc3a7;
 }
 
+.loginstatus {
+  color: white;
+  padding: 10px;
+  text-align: right;
+}
+
 .container {
   min-width: 320px;
 }
@@ -127,9 +133,13 @@ table {
 }
 
 @media (prefers-color-scheme: dark) {
-  .introduction-body {
+  body {
     background-color: var(--background);
     font-family: "Cascadia Code";
+    color: var(--lightText);
+    a {
+      color: var(--bright-green);
+    }
   }
 
   .introduction-content {

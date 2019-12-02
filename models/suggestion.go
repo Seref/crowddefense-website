@@ -6,23 +6,25 @@ import (
 	"github.com/gobuffalo/pop"
 	"github.com/gobuffalo/pop/slices"
 	"github.com/gobuffalo/validate"
+	"github.com/gobuffalo/validate/validators"
 	"github.com/gofrs/uuid"
 	"time"
-	"github.com/gobuffalo/validate/validators"
 )
+
 type Suggestion struct {
-    ID uuid.UUID `json:"id" db:"id"`
-    Title string `json:"title" db:"title"`
-    Body string `json:"body" db:"body"`
-    DevComment nulls.String `json:"dev_comment" db:"dev_comment"`
-    VersionWhenSuggested nulls.String `json:"version_when_suggested" db:"version_when_suggested"`
-    UpvotedBy slices.Map `json:"upvoted_by" db:"upvoted_by"`
-    DownvotedBy slices.Map `json:"downvoted_by" db:"downvoted_by"`
-    Editable bool `json:"editable" db:"editable"`
-    Keywords slices.Map `json:"keywords" db:"keywords"`
-    Fulfilled bool `json:"fulfilled" db:"fulfilled"`
-    CreatedAt time.Time `json:"created_at" db:"created_at"`
-    UpdatedAt time.Time `json:"updated_at" db:"updated_at"`
+	ID                   uuid.UUID    `json:"id" db:"id"`
+	Title                string       `json:"title" db:"title"`
+	Body                 string       `json:"body" db:"body"`
+	DevComment           nulls.String `json:"dev_comment" db:"dev_comment"`
+	VersionWhenSuggested nulls.String `json:"version_when_suggested" db:"version_when_suggested"`
+	UpvotedBy            slices.Map   `json:"upvoted_by" db:"upvoted_by"`
+	DownvotedBy          slices.Map   `json:"downvoted_by" db:"downvoted_by"`
+	Editable             bool         `json:"editable" db:"editable"`
+	Keywords             slices.Map   `json:"keywords" db:"keywords"`
+	Fulfilled            bool         `json:"fulfilled" db:"fulfilled"`
+	SuggestedBy          string       `json:"suggested_by" db:"suggested_by"`
+	CreatedAt            time.Time    `json:"created_at" db:"created_at"`
+	UpdatedAt            time.Time    `json:"updated_at" db:"updated_at"`
 }
 
 // String is not required by pop and may be deleted
@@ -46,6 +48,7 @@ func (s *Suggestion) Validate(tx *pop.Connection) (*validate.Errors, error) {
 	return validate.Validate(
 		&validators.StringIsPresent{Field: s.Title, Name: "Title"},
 		&validators.StringIsPresent{Field: s.Body, Name: "Body"},
+		&validators.StringIsPresent{Field: s.SuggestedBy, Name: "SuggestedBy"},
 	), nil
 }
 

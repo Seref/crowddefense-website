@@ -1,22 +1,13 @@
-<style>
-  .auth-center{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-  }
-  .sign-in-btn{
-    margin-right: 10px;
-  }
-</style>
-
 <div class="auth-center">
   <%= if (current_user) { %>
-    <h1><%= current_user.Email %></h1>
-    <a href="/signout" data-method="DELETE">Sign Out</a>
+  <div>
+    <h1>You are currently signed in as</h1>
+    <h2>Username: <%= current_user.Username %></h2>
+    <h2>E-Mail: <%= current_user.Email %></h2>
+    <%= linkTo(signoutPath(), {class: "btn btn-danger", "data-method": "DELETE", "data-confirm": "Are you sure?", body: "Sign Out"}) %>
+  </div>
   <% } else { %>
-    <a href="/signin" class="btn btn-primary">Sign In</a>
-    <a href="/users/new" class="btn btn-success">Register</a>
+  <a href="/signin" class="btn btn-primary">Sign In</a>
+  <a href="/users/new" class="btn btn-success">Register</a>
   <% } %>
 </div>
-
