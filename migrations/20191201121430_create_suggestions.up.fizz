@@ -1,12 +1,13 @@
 create_table("suggestions") {
 	t.Column("id", "uuid", {primary: true})
 	t.Column("title", "string", {})
-	t.Column("body", "string", {})
+	t.Column("body", "text", {})
 	t.Column("dev_comment", "string", {null: true})
 	t.Column("version_when_suggested", "string", {})
-	t.Column("upvoted_by", "map[string]user", {})
-	t.Column("downvoted_by", "map[string]user", {})
+	t.Column("upvoted_by", "json", {})
+	t.Column("downvoted_by", "json", {})
 	t.Column("editable", "bool", {})
-
+	t.Column("keywords", "json", {})
+	t.Column("fulfilled", "bool", {})
 	t.Timestamps()
 }

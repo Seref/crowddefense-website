@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/gobuffalo/nulls"
 	"github.com/gobuffalo/pop"
+	"github.com/gobuffalo/pop/slices"
 	"github.com/gobuffalo/validate"
 	"github.com/gobuffalo/validate/validators"
 	"github.com/gofrs/uuid"
@@ -11,16 +12,18 @@ import (
 )
 
 type Suggestion struct {
-	ID                   uuid.UUID       `json:"id" db:"id"`
-	Title                string          `json:"title" db:"title"`
-	Body                 string          `json:"body" db:"body"`
-	DevComment           nulls.String    `json:"dev_comment" db:"dev_comment"`
-	VersionWhenSuggested string          `json:"version_when_suggested" db:"version_when_suggested"`
-	UpvotedBy            map[string]User `json:"upvoted_by" db:"upvoted_by"`
-	DownvotedBy          map[string]User `json:"downvoted_by" db:"downvoted_by"`
-	Editable             bool            `json:"editable" db:"editable"`
-	CreatedAt            time.Time       `json:"created_at" db:"created_at"`
-	UpdatedAt            time.Time       `json:"updated_at" db:"updated_at"`
+	ID                   uuid.UUID    `json:"id" db:"id"`
+	Title                string       `json:"title" db:"title"`
+	Body                 string       `json:"body" db:"body"`
+	DevComment           nulls.String `json:"dev_comment" db:"dev_comment"`
+	VersionWhenSuggested string       `json:"version_when_suggested" db:"version_when_suggested"`
+	UpvotedBy            slices.Map   `json:"upvoted_by" db:"upvoted_by"`
+	DownvotedBy          slices.Map   `json:"downvoted_by" db:"downvoted_by"`
+	Editable             bool         `json:"editable" db:"editable"`
+	Keywords             slices.Map   `json:"keywords" db:"keywords"`
+	Fulfilled            bool         `json:"fulfilled" db:"fulfilled"`
+	CreatedAt            time.Time    `json:"created_at" db:"created_at"`
+	UpdatedAt            time.Time    `json:"updated_at" db:"updated_at"`
 }
 
 // String is not required by pop and may be deleted
@@ -39,7 +42,9 @@ func (s Suggestions) String() string {
 }
 
 // Create gets called when a new suggestion is created
-func (s *Suggestion) Create(tx *pop.Connection) (*validate.Errors, error) {
+func (s *Suggestion) Create(tx *pop.Connection, currentuser *User) (*validate.Errors, error) {
+	s.Editable = true
+	s.UpvotedBy = slices.Map{currentuser.Username: currentuser.Username}
 	return tx.ValidateAndCreate(s)
 }
 

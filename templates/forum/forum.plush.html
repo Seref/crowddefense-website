@@ -1,1 +1,7 @@
 <h1>Forum#Forum</h1>
+
+<div><%= for (suggestion) in suggestions { %>
+    <h3><%= suggestion.Title %></h3>
+    <p><%= suggestion.Body %></p>
+    <% } %>
+</div>

@@ -38,10 +38,14 @@ DROP TABLE IF EXISTS `suggestions`;
 CREATE TABLE `suggestions` (
   `id` char(36) COLLATE utf8mb4_general_ci NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `body` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `body` text COLLATE utf8mb4_general_ci NOT NULL,
   `dev_comment` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `version_when_suggested` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `upvoted_by` json NOT NULL,
+  `downvoted_by` json NOT NULL,
   `editable` tinyint(1) NOT NULL,
+  `keywords` json NOT NULL,
+  `fulfilled` tinyint(1) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
@@ -77,4 +81,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-01  0:50:32
+-- Dump completed on 2019-12-01 13:15:20

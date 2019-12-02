@@ -26,7 +26,7 @@ func SuggestionsCreate(c buffalo.Context) error {
 	}
 
 	tx := c.Value("tx").(*pop.Connection)
-	verrs, err := s.Create(tx)
+	verrs, err := s.Create(tx, c.Value("current_user").(*models.User))
 	if err != nil {
 		return errors.WithStack(err)
 	}

@@ -1,0 +1,10 @@
+<div class="pagination-label">
+    <span class="opacity">Displaying <%= pagination.Offset + 1 %> - <%= pagination.Offset + pagination.CurrentEntriesSize %> of <%= pagination.TotalEntriesSize %> <%= plural %></span> 
+    <i class="per-page-separator">|</i>
+    <span class="per-page-<%= pagination.perPage(per_page) %>">
+        <a href="<%= rootPath %>?per_page=25"><i class="opacity per-page-25-number per-page-option">25</i></a> 
+        <a href="<%= rootPath %>?per_page=50"><i class="opacity per-page-50-number per-page-option">50</i></a> 
+        <a href="<%= rootPath %>?per_page=100"><i class="opacity per-page-100-number per-page-option"> 100</i></a>
+        <i class="opacity"><%= plural %> per page.</i>
+    </span>
+</div>
