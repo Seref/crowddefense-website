@@ -79,7 +79,7 @@ func App() *buffalo.App {
 
 		app.Resource("/suggestions", SuggestionsResource{})
 
-		app.Middleware.Skip(Authorize, UsersNew, UsersCreate, AuthNew, AuthCreate, Home, Login)
+		app.Middleware.Skip(Authorize, UsersNew, UsersCreate, AuthNew, AuthCreate, Home, Login, LegalLegal, LegalDataprotection)
 
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}
