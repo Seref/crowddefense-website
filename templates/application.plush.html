@@ -12,21 +12,16 @@
 </head>
 
 <body>
-
-  <%= if (current_user) { %>
-  <div class="loginstatus">
+  <div class="menu-bar">
+    <%= if (current_user) { %>
     Currently logged in as <%= current_user.Username%>
     <%= linkTo(signoutPath(), {class: "btn btn-danger", "data-method": "DELETE", "data-confirm": "Are you sure?", body: "Sign Out"}) %>
-  </div>
-  <% } else { %>
-  <div class="loginstatus">
+    <% } else { %>
     Currently not logged in
-    <a href="/signin" class="btn btn-primary" ><%= %>Sign In</a>
-    <a href="/users/new" class="btn btn-primary" ><%= %>Register</a>
-
+    <%= linkTo(signinPath(), {class: "btn btn-primary", body: "Sign In"}) %>
+    <%= linkTo(newUsersPath(), {class: "btn btn-primary", body: "Register"}) %>
+    <% } %>
   </div>
-  <% } %>
-
 
   <div class="container">
     <%= partial("flash.html") %>

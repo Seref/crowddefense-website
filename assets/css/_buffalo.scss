@@ -43,10 +43,15 @@
   --bright-yellow: #fbc3a7;
 }
 
-.loginstatus {
-  color: white;
+.menu-bar {
   padding: 10px;
-  text-align: right;
+  background-color: var(--accent);
+  margin-bottom: 10px;
+  border-bottom-width: thin;
+  border-bottom-style: solid;
+  border-bottom-color: var(--shadow);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .container {

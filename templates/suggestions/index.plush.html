@@ -12,7 +12,10 @@
 <br>
 
 <div class="container">
+  <input type="text" id="myInput" onkeyup="search()" placeholder="Search for suggestions..">
+  <div id="suggestion-list">
     <%= for (suggestion) in suggestions { %>
+    <div class="suggestion-element">
       <h2><%= suggestion.Title %></h2>
       <p><%= suggestion.Body %></p>
       <%= if (suggestion.DevComment) { %>
@@ -29,9 +32,34 @@
         </div>
         </td>
         <br>
-      <% } %>
+    </div>
+    <% } %>
+  </div>
 </div>
 
 <div class="text-center">
   <%= paginator(pagination) %>
 </div>
+
+<script>
+  console.log("test");
+  function search() {
+    // Declare variables
+    var input, filter, suggestionList, suggestions, suggestionTitle, i, txtValue;
+    input = document.getElementById('myInput');
+    filter = input.value.toUpperCase();
+    suggestionList = document.getElementById('suggestion-list');
+    suggestions = suggestionList.getElementsByClassName('suggestion-element');
+
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < suggestions.length; i++) {
+      suggestionTitle = suggestions[i].getElementsByTagName("h2")[0];
+      txtValue = suggestionTitle.textContent || suggestionTitle.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        suggestions[i].style.display = "";
+      } else {
+        suggestions[i].style.display = "none";
+      }
+    }
+  }
+</script>
