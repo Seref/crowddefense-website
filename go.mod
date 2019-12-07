@@ -3,6 +3,7 @@ module crowddefensewebsite
 go 1.13
 
 require (
+	github.com/go-redis/redis/v7 v7.0.0-beta.4 // indirect
 	github.com/gobuffalo/buffalo v0.15.0
 	github.com/gobuffalo/buffalo-pop v1.23.1
 	github.com/gobuffalo/envy v1.8.1
