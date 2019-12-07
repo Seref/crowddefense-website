@@ -77,6 +77,8 @@ func App() *buffalo.App {
 		app.POST("/signin", AuthCreate)
 		app.DELETE("/signout", AuthDestroy)
 
+		app.GET("/game", Game)
+
 		app.Resource("/suggestions", SuggestionsResource{})
 
 		app.Middleware.Skip(Authorize, UsersNew, UsersCreate, AuthNew, AuthCreate, Home, Login, LegalLegal, LegalDataprotection)

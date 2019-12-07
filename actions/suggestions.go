@@ -23,11 +23,6 @@ import (
 // SuggestionsResource is the resource for the Suggestion model
 type SuggestionsResource struct {
 	buffalo.Resource
-	test
-}
-
-type test interface {
-	Upvote(buffalo.Context) error
 }
 
 // List gets all Suggestions. This function is mapped to the path
