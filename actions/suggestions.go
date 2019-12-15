@@ -3,7 +3,6 @@ package actions
 import (
 	"crowddefensewebsite/models"
 	"fmt"
-	"log"
 
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/pop"
@@ -47,8 +46,6 @@ func (v SuggestionsResource) List(c buffalo.Context) error {
 	if err := q.All(suggestions); err != nil {
 		return err
 	}
-
-	log.Printf("suggestions: %v", suggestions)
 
 	// Add the paginator to the context so it can be used in the template.
 	c.Set("pagination", q.Paginator)
