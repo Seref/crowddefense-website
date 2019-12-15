@@ -3,6 +3,7 @@ package actions
 import (
 	"crowddefensewebsite/models"
 	"fmt"
+	"log"
 
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/pop"
@@ -40,10 +41,14 @@ func (v SuggestionsResource) List(c buffalo.Context) error {
 	// Default values are "page=1" and "per_page=20".
 	q := tx.PaginateFromParams(c.Params())
 
+	q.Order("JSON_LENGTH(upvoted_by) - JSON_LENGTH(downvoted_by) DESC")
+
 	// Retrieve all Suggestions from the DB
 	if err := q.All(suggestions); err != nil {
 		return err
 	}
+
+	log.Printf("suggestions: %v", suggestions)
 
 	// Add the paginator to the context so it can be used in the template.
 	c.Set("pagination", q.Paginator)
