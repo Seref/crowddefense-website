@@ -70,6 +70,7 @@ func App() *buffalo.App {
 
 		app.Use(SetCurrentUser)
 		app.Use(Authorize)
+
 		app.GET("/login", Login)
 		app.GET("/users/new", UsersNew)
 		app.GET("/signin", AuthNew)
