@@ -6,6 +6,7 @@ import (
 	"log"
 
 	"github.com/gobuffalo/buffalo"
+	"github.com/gobuffalo/nulls"
 	"github.com/gobuffalo/pop"
 )
 
@@ -44,6 +45,9 @@ func (v SuggestionsResource) List(c buffalo.Context) error {
 	}
 
 	suggestions := &models.Suggestions{}
+	allSuggestions := &models.Suggestions{}
+
+	tx.All(allSuggestions)
 
 	// Paginate results. Params "page" and "per_page" control pagination.
 	// Default values are "page=1" and "per_page=20".
@@ -106,6 +110,11 @@ func (v SuggestionsResource) Create(c buffalo.Context) error {
 	}
 
 	suggestion.SuggestedBy = c.Value("current_user").(*models.User).Username
+	val, err := redisClient.Get("game-currentversion").Result()
+	if err != nil {
+		log.Print(err)
+	}
+	suggestion.VersionWhenSuggested = nulls.NewString(val)
 
 	// Validate the data from the html form
 	verrs, err := tx.ValidateAndCreate(suggestion)
@@ -125,7 +134,7 @@ func (v SuggestionsResource) Create(c buffalo.Context) error {
 	// If there are no errors set a success message
 	c.Flash().Add("success", T.Translate(c, "suggestion.created.success"))
 	// and redirect to the suggestions index page
-	return c.Render(201, r.Auto(c, suggestion))
+	return c.Render(200, r.Auto(c, suggestion))
 }
 
 // Edit renders a edit form for a Suggestion. This function is
