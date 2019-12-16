@@ -12,23 +12,51 @@
 </head>
 
 <body>
-  <div class="menu-bar">
-    <%= if (current_user) { %>
-    Currently logged in as <%= current_user.Username%>
-    <%= linkTo(signoutPath(), {class: "btn btn-danger", "data-method": "DELETE", "data-confirm": "Are you sure?", body: "Sign Out"}) %>
-    <% } else { %>
-    Currently not logged in
-    <%= linkTo(signinPath(), {class: "btn btn-primary", body: "Sign In"}) %>
-    <%= linkTo(newUsersPath(), {class: "btn btn-primary", body: "Register"}) %>
-    <% } %>
-  </div>
+  <div id="wrap">
+    <div class="container-fluid">
+      <div class="menu-bar row">
+        <div class="navigation col-sm-4 col-md-4 col-lg-4">
+          Navigation:
+          <%= linkTo(rootPath(),  {class: "btn btn-link", body: "Home"})%>
+          <%= linkTo(suggestionsPath(),  {class: "btn btn-link", body: "Forum"})%>
+          <%= linkTo(gamePath(),  {class: "btn btn-link", body: "Game"})%>
+        </div>
+        <a class="filler col-sm-4 col-md-4 col-lg-4 h3" href="<%=rootPath()%>"
+          style="color:unset; text-decoration: unset;">
+          <img src="<%= rootPath() %>assets/images/eule.gif" alt="Uni Saarland Eule">
+          CrowdDefense
+        </a>
+        <div class="login-register col-sm-4 col-md-4 col-lg-4">
+          <%= if (current_user) { %>
+          Currently logged in as <%= current_user.Username%>
+          <%= linkTo(signoutPath(), {class: "btn btn-danger", "data-method": "DELETE", "data-confirm": "Are you sure you want to log out?", body: "Sign Out"}) %>
+          <% } else { %>
+          Currently not logged in
+          <%= linkTo(signinPath(), {class: "btn btn-primary", body: "Sign In"}) %>
+          <%= linkTo(newUsersPath(), {class: "btn btn-primary", body: "Register"}) %>
+          <% } %>
+        </div>
+      </div>
+    </div>
 
-  <div class="container">
-    <%= partial("flash.html") %>
-    <%= yield %>
+    <div class="container-fluid">
+      <%= partial("flash.html") %>
+      <%= yield %>
+    </div>
+    <%= javascriptTag("application.js") %>
   </div>
-
-  <%= javascriptTag("application.js") %>
+  <footer class="footer">
+    <div class="container-fluid">
+      <div class="col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
+        Created by Jan Larisch, Seref Güngör and Jan-Robin Aumann as part of a student project at Saarland University.
+        <br>
+        <div class="row">
+          <a class="col-sm-6 col-md-6 col-lg-6" href="<%= legalLegalPath()%>">Legal Information</a>
+          <a class="col-sm-6 col-md-6 col-lg-6" href="<%= legalDataprotectionPath()%>">Data Protection Information</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 </body>
 
 </html>

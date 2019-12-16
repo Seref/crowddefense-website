@@ -1,44 +1,58 @@
-<div class="page-header">
-  <h1>Suggestions</h1>
+<div class="row">
+  <div class="sidebar col-sm-1 col-md-1 col-lg-1">
+  </div>
+  <div class="forum-statements col-sm-10 col-md-10 col-lg-10">
+    <h2>Current state of the game</h2>
+    <ul class="gamestate-list">
+      <li><%= state-gameplay %></li>
+      <li><%= state-gamelooks %></li>
+      <li><%= state-voting %></li>
+      <li><%= state-website %></li>
+    </ul>
+    <h3>Not satisfied? Read the suggestions from other players and vote on them, or sumbit your own suggestions!</h3>
+    <br>
+  </div>
+  <div class="sidebar col-sm-1 col-md-1 col-lg-1">
+  </div>
 </div>
-<br>
-<ul class="list-unstyled list-inline">
-  <li>
+<div class="row">
+  <div class="sidebar col-sm-1 col-md-1 col-lg-1">
+  </div>
+  <div class="forum-content col-sm-10 col-md-10 col-lg-10">
     <%= linkTo(newSuggestionsPath(), {class: "btn btn-primary"}) { %>
     Create New Suggestion
     <% } %>
-  </li>
-</ul>
-<br>
-
-<div class="container">
-  <input type="text" id="myInput" onkeyup="search()" placeholder="Search for suggestions..">
-  <div id="suggestion-list">
-    <%= for (suggestion) in suggestions { %>
-    <div class="suggestion-element">
-      <h2><%= suggestion.Title %></h2>
-      <p><%= suggestion.Body %></p>
-      <%= if (suggestion.DevComment) { %>
-      <p><%= suggestion.DevComment %></p>
+    <br>
+    <br>
+    <!-- <input type="text" id="myInput" onkeyup="search()" placeholder="Search for suggestions.."> -->
+    <div id="suggestion-list">
+      <%= for (suggestion) in suggestions { %>
+      <div class="suggestion-element">
+        <h2><%= suggestion.Title %></h2>
+        <p><%= suggestion.Body %></p>
+        <%= if (suggestion.DevComment) { %>
+        <p><%= suggestion.DevComment %></p>
+        <% } %>
+        <p>Suggested in version <%= suggestion.VersionWhenSuggested %> by <%= suggestion.SuggestedBy%></p>
+        <p>Popularity: <%= len(suggestion.UpvotedBy) - len(suggestion.DownvotedBy) %></p>
+        <p><%=  %></p>
+        <p>
+          <div class="pull-right">
+            <%= linkTo(suggestionPath({ suggestion_id: suggestion.ID }), {class: "btn btn-info", body: "View"}) %>
+            <%= linkTo(editSuggestionPath({ suggestion_id: suggestion.ID }), {class: "btn btn-warning", body: "Edit"}) %>
+            <%= if (suggestion.SuggestedBy == current_user.Username) {linkTo(suggestionPath({ suggestion_id: suggestion.ID }), {class: "btn btn-danger", "data-method": "DELETE", "data-confirm": "Are you sure?", body: "Delete"})} %>
+          </div>
+          </td>
+          <br>
+      </div>
       <% } %>
-      <p>Suggested in version <%= suggestion.VersionWhenSuggested %> by <%= suggestion.SuggestedBy%></p>
-      <p>Popularity: <%= len(suggestion.UpvotedBy) - len(suggestion.DownvotedBy) %></p>
-      <p><%=  %></p>
-      <p>
-        <div class="pull-right">
-          <%= linkTo(suggestionPath({ suggestion_id: suggestion.ID }), {class: "btn btn-info", body: "View"}) %>
-          <%= linkTo(editSuggestionPath({ suggestion_id: suggestion.ID }), {class: "btn btn-warning", body: "Edit"}) %>
-          <%= if (suggestion.SuggestedBy == current_user.Username) {linkTo(suggestionPath({ suggestion_id: suggestion.ID }), {class: "btn btn-danger", "data-method": "DELETE", "data-confirm": "Are you sure?", body: "Delete"})} %>
-        </div>
-        </td>
-        <br>
     </div>
-    <% } %>
+    <div>
+      <%= paginator(pagination) %>
+    </div>
   </div>
-</div>
-
-<div class="text-center">
-  <%= paginator(pagination) %>
+  <div class="sidebar col-sm-1 col-md-1 col-lg-1">
+  </div>
 </div>
 
 <script>

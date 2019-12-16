@@ -17,7 +17,7 @@ func init() {
 
 	pong, err := redisClient.Ping().Result()
 	if err != nil {
-		log.Fatalf("Errror initializing Redis Client %v", err)
+		log.Printf("Errror initializing Redis Client %v", err)
 	}
 	log.Printf("%v", pong)
 }

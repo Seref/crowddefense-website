@@ -3,6 +3,7 @@ package actions
 import (
 	"crowddefensewebsite/models"
 	"fmt"
+	"log"
 
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/pop"
@@ -32,6 +33,14 @@ func (v SuggestionsResource) List(c buffalo.Context) error {
 	tx, ok := c.Value("tx").(*pop.Connection)
 	if !ok {
 		return fmt.Errorf("no transaction found")
+	}
+
+	for _, statement := range []string{"state-gameplay", "state-gamelooks", "state-voting", "state-website"} {
+		val, err := redisClient.Get(statement).Result()
+		if err != nil {
+			log.Print(err)
+		}
+		c.Set(statement, val)
 	}
 
 	suggestions := &models.Suggestions{}
