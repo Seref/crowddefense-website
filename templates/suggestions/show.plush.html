@@ -9,10 +9,10 @@
     <% } %>
   </li>
   <li class="list-inline-item">
-    <%= linkTo(editSuggestionPath({ suggestion_id: suggestion.ID }), {class: "btn btn-warning", body: "Edit"}) %>
+    <%= if (suggestion.SuggestedBy == current_user.Username && len(suggestion.UpvotedBy) <= 0) {linkTo(editSuggestionPath({ suggestion_id: suggestion.ID }), {class: "btn btn-warning", body: "Edit"})} %>
   </li>
   <li class="list-inline-item">
-    <%= linkTo(suggestionPath({ suggestion_id: suggestion.ID }), {class: "btn btn-danger", "data-method": "DELETE", "data-confirm": "Are you sure?", body: "Destroy"}) %>
+    <%= if (suggestion.SuggestedBy == current_user.Username && len(suggestion.UpvotedBy) <= 0) {linkTo(suggestionPath({ suggestion_id: suggestion.ID }), {class: "btn btn-danger", "data-method": "DELETE", "data-confirm": "Are you sure?", body: "Destroy"})} %>
   </li>
 </ul>
 
@@ -48,35 +48,6 @@
 </p>
 
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 <br>
 <br>
 <br>

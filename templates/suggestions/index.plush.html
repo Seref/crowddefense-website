@@ -35,12 +35,11 @@
         <% } %>
         <p>Suggested in version <%= suggestion.VersionWhenSuggested %> by <%= suggestion.SuggestedBy%></p>
         <p>Popularity: <%= len(suggestion.UpvotedBy) - len(suggestion.DownvotedBy) %></p>
-        <p><%=  %></p>
         <p>
           <div class="pull-right">
             <%= linkTo(suggestionPath({ suggestion_id: suggestion.ID }), {class: "btn btn-info", body: "View"}) %>
-            <%= linkTo(editSuggestionPath({ suggestion_id: suggestion.ID }), {class: "btn btn-warning", body: "Edit"}) %>
-            <%= if (suggestion.SuggestedBy == current_user.Username) {linkTo(suggestionPath({ suggestion_id: suggestion.ID }), {class: "btn btn-danger", "data-method": "DELETE", "data-confirm": "Are you sure?", body: "Delete"})} %>
+            <%= if (suggestion.SuggestedBy == current_user.Username && len(suggestion.UpvotedBy) <= 0) {linkTo(editSuggestionPath({ suggestion_id: suggestion.ID }), {class: "btn btn-warning", body: "Edit"})} %>
+            <%= if (suggestion.SuggestedBy == current_user.Username && len(suggestion.UpvotedBy) <= 0) {linkTo(suggestionPath({ suggestion_id: suggestion.ID }), {class: "btn btn-danger", "data-method": "DELETE", "data-confirm": "Are you sure?", body: "Delete"})} %>            
           </div>
           </td>
           <br>
