@@ -197,56 +197,6 @@ func (v SuggestionsResource) Update(c buffalo.Context) error {
 	return c.Render(200, r.Auto(c, suggestion))
 }
 
-// Upvote functionality
-func (v SuggestionsResource) Upvote(c buffalo.Context) error {
-	user := c.Value("current_user").(models.User)
-
-	// Get the DB connection from the context
-	tx, ok := c.Value("tx").(*pop.Connection)
-	if !ok {
-		return fmt.Errorf("no transaction found")
-	}
-
-	// Allocate an empty Suggestion
-	suggestion := &models.Suggestion{}
-
-	if err := tx.Find(suggestion, c.Param("suggestion_id")); err != nil {
-		return c.Error(404, err)
-	}
-
-	_, alreadyUpvoted := suggestion.UpvotedBy[user.Username]
-
-	if alreadyUpvoted {
-		/*TODO hadle this*/
-	} else {
-		suggestion.UpvotedBy[user.Username] = user.Username
-	}
-
-	// // Bind Suggestion to the html form elements
-	// if err := c.Bind(suggestion); err != nil {
-	// 	return err
-	// }
-
-	_, err := tx.ValidateAndUpdate(suggestion)
-	if err != nil {
-		return err
-	}
-
-	// if verrs.HasAny() {
-	// 	// Make the errors available inside the html template
-	// 	c.Set("errors", verrs)
-
-	// 	// Render again the edit.html template that the user can
-	// 	// correct the input.
-	// 	return c.Render(422, r.Auto(c, suggestion))
-	// }
-
-	// If there are no errors set a success message
-	c.Flash().Add("success", T.Translate(c, "suggestion.updated.success"))
-	// and redirect to the suggestions index page
-	return c.Render(200, r.Auto(c, suggestion))
-}
-
 // Destroy deletes a Suggestion from the DB. This function is mapped
 // to the path DELETE /suggestions/{suggestion_id}
 func (v SuggestionsResource) Destroy(c buffalo.Context) error {

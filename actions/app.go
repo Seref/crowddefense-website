@@ -78,12 +78,16 @@ func App() *buffalo.App {
 		app.POST("/signin", AuthCreate)
 		app.DELETE("/signout", AuthDestroy)
 
+		app.PUT("/suggestion/upvote/{suggestion_id}", SuggestionUpvote)
+		app.PUT("/suggestion/downvote/{suggestion_id}", SuggestionDownvote)
+
 		app.GET("/game", Game)
 
 		app.Resource("/suggestions", SuggestionsResource{})
 
 		app.Middleware.Skip(Authorize, UsersNew, UsersCreate, AuthNew, AuthCreate, Home, Login, LegalLegal, LegalDataprotection)
 
+		app.PUT("/suggestion/downvote", SuggestionDownvote)
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}
 

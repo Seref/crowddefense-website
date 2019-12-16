@@ -40,6 +40,8 @@
             <%= linkTo(suggestionPath({ suggestion_id: suggestion.ID }), {class: "btn btn-info", body: "View"}) %>
             <%= if (suggestion.SuggestedBy == current_user.Username && len(suggestion.UpvotedBy) <= 0) {linkTo(editSuggestionPath({ suggestion_id: suggestion.ID }), {class: "btn btn-warning", body: "Edit"})} %>
             <%= if (suggestion.SuggestedBy == current_user.Username && len(suggestion.UpvotedBy) <= 0) {linkTo(suggestionPath({ suggestion_id: suggestion.ID }), {class: "btn btn-danger", "data-method": "DELETE", "data-confirm": "Are you sure?", body: "Delete"})} %>            
+            <%= linkTo(suggestionUpvotePath({ suggestion_id: suggestion.ID }), {class: "btn btn-info", body: "Upvote", "data-method": "PUT"}) %>
+            <%= linkTo(suggestionDownvotePath({ suggestion_id: suggestion.ID }), {class: "btn btn-info", body: "Downvote", "data-method": "PUT"}) %>
           </div>
           </td>
           <br>
