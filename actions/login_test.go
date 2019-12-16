@@ -1,14 +1,14 @@
 package actions
 
-import "crowddefense_website/models"
+import "crowddefensewebsite/models"
 
-func (as *ActionSuite) Test_HomeHandler() {
+func (as *ActionSuite) Test_Login() {
 	res := as.HTML("/").Get()
 	as.Equal(200, res.Code)
 	as.Contains(res.Body.String(), "Sign In")
 }
 
-func (as *ActionSuite) Test_HomeHandler_LoggedIn() {
+func (as *ActionSuite) Test_Login_LoggedIn() {
 	u := &models.User{
 		Email:                "mark@example.com",
 		Password:             "password",

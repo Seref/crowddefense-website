@@ -1,0 +1,65 @@
+<div class="page-header">
+  <h1>Suggestion#Show</h1>
+</div>
+
+<ul class="list-unstyled list-inline">
+  <li class="list-inline-item">
+    <%= linkTo(suggestionsPath(), {class: "btn btn-info"}) { %>
+      Back to all Suggestions
+    <% } %>
+  </li>
+  <li class="list-inline-item">
+    <%= if (suggestion.SuggestedBy == current_user.Username && len(suggestion.UpvotedBy) <= 0) {linkTo(editSuggestionPath({ suggestion_id: suggestion.ID }), {class: "btn btn-warning", body: "Edit"})} %>
+  </li>
+  <li class="list-inline-item">
+    <%= if (suggestion.SuggestedBy == current_user.Username && len(suggestion.UpvotedBy) <= 0) {linkTo(suggestionPath({ suggestion_id: suggestion.ID }), {class: "btn btn-danger", "data-method": "DELETE", "data-confirm": "Are you sure?", body: "Destroy"})} %>
+  </li>
+</ul>
+
+<p>
+  <strong>Title</strong>: <%= suggestion.Title %>
+</p>
+<p>
+  <strong>Body</strong>: <%= suggestion.Body %>
+</p>
+<p>
+  <strong>DevComment</strong>: <%= suggestion.DevComment %>
+</p>
+<p>
+  <strong>VersionWhenSuggested</strong>: <%= suggestion.VersionWhenSuggested %>
+</p>
+<p>
+  <strong>UpvotedBy</strong>: <%= suggestion.UpvotedBy %>
+</p>
+<p>
+  <strong>DownvotedBy</strong>: <%= suggestion.DownvotedBy %>
+</p>
+<p>
+  <strong>Editable</strong>: <%= suggestion.Editable %>
+</p>
+<p>
+  <strong>Keywords</strong>: <%= suggestion.Keywords %>
+</p>
+<p>
+  <strong>Fulfilled</strong>: <%= suggestion.Fulfilled %>
+</p>
+<p>
+  <strong>SuggestedBy</strong>: <%= suggestion.SuggestedBy %>
+</p>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

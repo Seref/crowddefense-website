@@ -43,194 +43,102 @@
   --bright-yellow: #fbc3a7;
 }
 
-.container {
-  min-width: 320px;
+html {
+  min-height: 600px;
 }
 
-.routes-header {
-  box-sizing: border-box;
+body {
+  background-color: var(--background);
+  font-family: "Cascadia Code";
+  color: var(--lightText);
+  a {
+    color: var(--bright-green);
+  }
 }
 
-.logo {
+.menu-bar {
+  padding-top: 10px;
+  background-color: var(--accent);
+  border-bottom-width: thin;
+  border-bottom-style: solid;
+  border-bottom-color: var(--shadow);
+}
+
+// .navigation {
+// }
+
+// .login-register {
+// }
+
+.filler {
+  text-align: center;
   img {
-    width: 80px;
+    width: 40px;
   }
 }
 
-.titles {
-  h1 {
-    font-size: 30px;
-    font-weight: 300;
-    color: #2e303e;
-    margin-bottom: 13px;
-    margin-top: 13px;
-  }
+.sidebar {
+  background-color: var(--backgroundAlt);
+}
 
+.intro-content {
+  padding-top: 20px;
   h2 {
     font-weight: 300;
-    font-size: 18px;
-    display: inline-block;
-    margin: 0;
+    color: var(--tacao);
   }
-
   a {
-    color: white;
-    text-decoration: underline;
-  }
-
-  i {
-    margin-right: 5px;
-    text-decoration: none;
-  }
-
-  .documentation {
-    margin-left: 28px;
-  }
-}
-
-.subtitle {
-  color: white;
-  margin: 0;
-  padding: 13px 0;
-  background-color: #2a3543;
-  margin-bottom: 20px;
-
-  h3 {
-    font-size: 22px;
-    font-weight: 400;
-    margin: 0;
-  }
-}
-
-table {
-  font-size: 14px;
-
-  &.table tbody tr td {
-    border-top: 0;
-    padding: 10px;
-  }
-}
-
-.foot {
-  text-align: right;
-  color: #c5c5c5;
-  font-weight: 300;
-
-  a {
-    color: #8b8b8b;
+    color: var(--bright-green);
     text-decoration: underline;
   }
 }
 
-.centered {
+.footer {
+  padding-top: 10px;
+  background-color: var(--accent);
+  border-top-width: thin;
+  border-top-style: solid;
+  border-top-color: var(--shadow);
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  height: 60px; /* Set the fixed height of the footer here */
+  line-height: 20px;
+}
+
+.legal-content {
+  h4 {
+    font-weight: 300;
+    color: var(--tacao);
+  }
+  padding-top: 20px;
+}
+
+.auth-wrapper{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-wrapper .sign-form{
+  max-width: 350px;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.auth-wrapper h1{margin-bottom: 20px;}
+
+.forum-statements {
+  padding-top: 20px;
   text-align: center;
-}
-
-@media (prefers-color-scheme: dark) {
-  .introduction-body {
-    background-color: var(--background);
-    font-family: "Cascadia Code";
-  }
-
-  .introduction-content {
-    color: var(--lightText);
-    border-bottom-right-radius: 25px;
-    border-bottom-left-radius: 25px;
-    background-color: var(--backgroundAlt);
-    padding: 5%;
-    padding-top: 2%;
-
-    .introduction-titles {
-      color: var(--tacao);
-    }
-    a {
-      color: var(--bright-green);
-    }
-  }
-
-  .introduction-header {
-    color: var(--darkText);
-    background-color: var(--cyan);
-    border-top-right-radius: 25px;
-    border-top-left-radius: 25px;
+  h2 {
+    font-weight: 300;
+    color: var(--tacao);
   }
 }
 
-@media (prefers-color-scheme: light) {
-  .introduction-body {
-    background-color: var(--lightText);
-    font-family: "Cascadia Code";
-  }
-
-  .introduction-content {
-    color: var(--lightText);
-    border-bottom-right-radius: 25px;
-    border-bottom-left-radius: 25px;
-    background-color: var(--backgroundAlt);
-    padding: 5%;
-    padding-top: 2%;
-
-    .introduction-titles {
-      color: var(--tacao);
-    }
-    a {
-      color: var(--bright-green);
-    }
-  }
-
-  .introduction-header {
-    color: var(--darkText);
-    background-color: var(--cyan);
-    border-top-right-radius: 25px;
-    border-top-left-radius: 25px;
-  }
-}
-
-@media all and (max-width: 770px) {
-  .titles {
-    h1 {
-      font-size: 25px;
-      margin: 15px 0 5px 0;
-    }
-  }
-}
-
-@media all and (max-width: 640px) {
-  .titles {
-    h1 {
-      font-size: 23px;
-      margin: 15px 0 5px 0;
-    }
-
-    h2 {
-      font-size: 15px;
-    }
-
-    .documentation {
-      margin-left: 10px;
-    }
-  }
-}
-
-@media all and (max-width: 530px) {
-  .titles {
-    h1 {
-      font-size: 20px;
-      margin: 5px 0;
-    }
-
-    .documentation {
-      margin-left: 0px;
-      margin-top: 5px;
-      display: block;
-    }
-  }
-
-  .logo {
-    padding: 0;
-
-    img {
-      width: 100%;
-    }
-  }
+.gamestate-list {
+  text-align: left;
+  font-size: x-large;
 }

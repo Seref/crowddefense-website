@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="sidebar col-sm-1 col-md-1 col-lg-1">
+  </div>
+  <div class="forum-statements col-sm-10 col-md-10 col-lg-10">
+    <h2>Current state of the game</h2>
+    <ul class="gamestate-list">
+      <li><%= state-gameplay %></li>
+      <li><%= state-gamelooks %></li>
+      <li><%= state-voting %></li>
+      <li><%= state-website %></li>
+    </ul>
+    <h3>Not satisfied? Read the suggestions from other players and vote on them, or sumbit your own suggestions!</h3>
+    <br>
+  </div>
+  <div class="sidebar col-sm-1 col-md-1 col-lg-1">
+  </div>
+</div>
+<div class="row">
+  <div class="sidebar col-sm-1 col-md-1 col-lg-1">
+  </div>
+  <div class="forum-content col-sm-10 col-md-10 col-lg-10">
+    <%= linkTo(newSuggestionsPath(), {class: "btn btn-primary"}) { %>
+    Create New Suggestion
+    <% } %>
+    <br>
+    <br>
+    <!-- <input type="text" id="myInput" onkeyup="search()" placeholder="Search for suggestions.."> -->
+    <div id="suggestion-list">
+      <%= for (suggestion) in suggestions { %>
+      <div class="suggestion-element">
+        <h2><%= suggestion.Title %></h2>
+        <p><%= suggestion.Body %></p>
+        <%= if (suggestion.DevComment) { %>
+        <p><%= suggestion.DevComment %></p>
+        <% } %>
+        <p>Suggested in version <%= suggestion.VersionWhenSuggested %> by <%= suggestion.SuggestedBy%></p>
+        <p>Popularity: <%= len(suggestion.UpvotedBy) - len(suggestion.DownvotedBy) %></p>
+        <p>
+          <div class="pull-right">
+            <%= linkTo(suggestionPath({ suggestion_id: suggestion.ID }), {class: "btn btn-info", body: "View"}) %>
+            <%= if (suggestion.SuggestedBy == current_user.Username && len(suggestion.UpvotedBy) <= 0) {linkTo(editSuggestionPath({ suggestion_id: suggestion.ID }), {class: "btn btn-warning", body: "Edit"})} %>
+            <%= if (suggestion.SuggestedBy == current_user.Username && len(suggestion.UpvotedBy) <= 0) {linkTo(suggestionPath({ suggestion_id: suggestion.ID }), {class: "btn btn-danger", "data-method": "DELETE", "data-confirm": "Are you sure?", body: "Delete"})} %>            
+            <%= linkTo(suggestionUpvotePath({ suggestion_id: suggestion.ID }), {class: "btn btn-info", body: "Upvote", "data-method": "PUT"}) %>
+            <%= linkTo(suggestionDownvotePath({ suggestion_id: suggestion.ID }), {class: "btn btn-info", body: "Downvote", "data-method": "PUT"}) %>
+          </div>
+          </td>
+          <br>
+      </div>
+      <% } %>
+    </div>
+    <div>
+      <%= paginator(pagination) %>
+    </div>
+  </div>
+  <div class="sidebar col-sm-1 col-md-1 col-lg-1">
+  </div>
+</div>
+
+<script>
+  console.log("test");
+  function search() {
+    // Declare variables
+    var input, filter, suggestionList, suggestions, suggestionTitle, i, txtValue;
+    input = document.getElementById('myInput');
+    filter = input.value.toUpperCase();
+    suggestionList = document.getElementById('suggestion-list');
+    suggestions = suggestionList.getElementsByClassName('suggestion-element');
+
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < suggestions.length; i++) {
+      suggestionTitle = suggestions[i].getElementsByTagName("h2")[0];
+      txtValue = suggestionTitle.textContent || suggestionTitle.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        suggestions[i].style.display = "";
+      } else {
+        suggestions[i].style.display = "none";
+      }
+    }
+  }
+</script>

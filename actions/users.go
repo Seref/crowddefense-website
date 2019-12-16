@@ -34,7 +34,7 @@ func UsersCreate(c buffalo.Context) error {
 	}
 
 	c.Session().Set("current_user_id", u.ID)
-	c.Flash().Add("success", "Welcome to Buffalo!")
+	c.Flash().Add("success", "Welcome to CrowdDefense!")
 
 	return c.Redirect(302, "/")
 }
@@ -67,7 +67,7 @@ func Authorize(next buffalo.Handler) buffalo.Handler {
 				return errors.WithStack(err)
 			}
 
-			c.Flash().Add("danger", "You must be authorized to see that page")
+			c.Flash().Add("danger", "You need to be signed in to see this content. Either 'sign in', if you already have one or click 'register' to create one!")
 			return c.Redirect(302, "/")
 		}
 		return next(c)

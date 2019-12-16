@@ -1,33 +1,53 @@
 <style>
-  .auth-wrapper{
+  .auth-wrapper {
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .auth-wrapper .sign-form{
+  .auth-wrapper .sign-form {
     max-width: 350px;
     width: 100%;
     padding: 0 20px;
   }
 
-  .auth-wrapper h1{margin-bottom: 20px;}
+  .auth-wrapper h1 {
+    margin-bottom: 20px;
+  }
 </style>
-  
+
 <div class="auth-wrapper">
   <div class="sign-form">
+    <%= if (current_user) {%>
+    <h1>No need to register, you're already registered and logged in as <%= current_user.Username %></h1>
+    <% } else { %>
     <h1>Register</h1>
 
+    <p><b>None of this information will be publicly shown except the username.</b></p>
+
     <%= form_for(user, {action: usersPath()}) { %>
-      <%= f.InputTag("Email") %>
-      <%= f.InputTag("Password", {type: "password"}) %>
-      <%= f.InputTag("PasswordConfirmation", {type: "password"}) %>
-      <%= f.InputTag("FirstName", {}) %>
-      <%= f.InputTag("LastName", {}) %>
-      <%= f.InputTag("Username", {}) %>
-      
-      <button class="btn btn-success">Register!</button>
+    <%= f.InputTag("Email") %>
+    <%= f.InputTag("Username", {}) %>
+    <%= f.InputTag("Password", {type: "password"}) %>
+    <%= f.InputTag("PasswordConfirmation", {type: "password"}) %>
+
+    <br>
+
+    <div>
+      By hitting the "Register" button, you agree that you have <b>read and understood</b> the <a
+        href="/legal/dataprotection">information on data protection</a>. <br> <br>
+      You can find more information and contact options <a href="/legal/legal">here</a> in the legal information
+    </div>
+
+    <br>
+
+    <button class="btn btn-success">Register!</button>
+
+    <br>
+    <br>
+    <br>
+    <% } %>
     <% } %>
   </div>
 </div>
