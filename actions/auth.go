@@ -2,6 +2,7 @@ package actions
 
 import (
 	"database/sql"
+	"net/http"
 	"strings"
 
 	"crowddefensewebsite/models"
@@ -12,6 +13,11 @@ import (
 	"github.com/pkg/errors"
 	"golang.org/x/crypto/bcrypt"
 )
+
+// AuthLanding shows a landing page to login
+func AuthLanding(c buffalo.Context) error {
+	return c.Render(200, r.HTML("auth/landing.plush.html"))
+}
 
 // AuthNew loads the signin page
 func AuthNew(c buffalo.Context) error {
@@ -28,21 +34,23 @@ func AuthCreate(c buffalo.Context) error {
 
 	tx := c.Value("tx").(*pop.Connection)
 
-	// find a user with the email
-	err := tx.Where("email = ?", strings.ToLower(strings.TrimSpace(u.Email))).First(u)
+	// find a user with the username
+	err := tx.Where("username = ?", strings.ToLower(strings.TrimSpace(u.Username))).First(u)
 
 	// helper function to handle bad attempts
 	bad := func() error {
-		c.Set("user", u)
 		verrs := validate.NewErrors()
-		verrs.Add("email", "invalid email/password")
+		verrs.Add("username", "invalid username/password")
+
 		c.Set("errors", verrs)
-		return c.Render(422, r.HTML("auth/new.plush.html"))
+		c.Set("user", u)
+
+		return c.Render(http.StatusUnauthorized, r.HTML("auth/new.plush.html"))
 	}
 
 	if err != nil {
 		if errors.Cause(err) == sql.ErrNoRows {
-			// couldn't find an user with the supplied email address.
+			// couldn't find an user with the supplied username address.
 			return bad()
 		}
 		return errors.WithStack(err)
@@ -57,7 +65,7 @@ func AuthCreate(c buffalo.Context) error {
 	c.Flash().Add("success", "Welcome Back to CrowdDefense!")
 
 	redirectURL := "/"
-	if redir, ok := c.Session().Get("redirectURL").(string); ok {
+	if redir, ok := c.Session().Get("redirectURL").(string); ok && redir != "" {
 		redirectURL = redir
 	}
 

@@ -1,0 +1,15 @@
+create_table("ideas") {
+	t.Column("id", "uuid", {primary: true})
+	t.Column("title", "string", {})
+	t.Column("description", "text", {null: true})
+	t.Column("dev_comment", "text", {null: true})
+	t.Column("version_when_suggested", "string", {})
+	t.Column("upvoted_by", "json", {})
+	t.Column("downvoted_by", "json", {})
+	t.Column("editable", "bool", {})
+	t.Column("keywords", "string", {null: true})
+	t.Column("fullfilled", "bool", {})
+	t.Column("picked", "bool", {})
+	t.Column("suggested_by", "string", {})
+	t.Timestamps()
+}

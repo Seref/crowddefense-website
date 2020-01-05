@@ -1,0 +1,93 @@
+<div class="page-header">
+  <h1>Prequestionnaire#Show</h1>
+</div>
+
+<ul class="list-unstyled list-inline">
+  <li class="list-inline-item">
+    <%= linkTo(prequestionnairesPath(), {class: "btn btn-info"}) { %>
+      Back to all Prequestionnaires
+    <% } %>
+  </li>
+  <li class="list-inline-item">
+    <%= linkTo(editPrequestionnairePath({ prequestionnaire_id: prequestionnaire.ID }), {class: "btn btn-warning", body: "Edit"}) %>
+  </li>
+  <li class="list-inline-item">
+    <%= linkTo(prequestionnairePath({ prequestionnaire_id: prequestionnaire.ID }), {class: "btn btn-danger", "data-method": "DELETE", "data-confirm": "Are you sure?", body: "Destroy"}) %>
+  </li>
+</ul>
+
+<p>
+  <strong>Age</strong>: <%= prequestionnaire.Age %>
+</p>
+<p>
+  <strong>Gender</strong>: <%= prequestionnaire.Gender %>
+</p>
+<p>
+  <strong>Job</strong>: <%= prequestionnaire.Job %>
+</p>
+<p>
+  <strong>HoursAtPCPerWeek</strong>: <%= prequestionnaire.HoursAtPCPerWeek %>
+</p>
+<p>
+  <strong>HoursVideoGamesPerWeek</strong>: <%= prequestionnaire.HoursVideoGamesPerWeek %>
+</p>
+<p>
+  <strong>MostImportantVideoGameAspects</strong>: <%= prequestionnaire.MostImportantVideoGameAspects %>
+</p>
+<p>
+  <strong>MostImportantVideoGameAspect</strong>: <%= prequestionnaire.MostImportantVideoGameAspect %>
+</p>
+<p>
+  <strong>PlayedALotOfPlatformers</strong>: <%= prequestionnaire.PlayedALotOfPlatformers %>
+</p>
+<p>
+  <strong>LikesTowerDefense</strong>: <%= prequestionnaire.LikesTowerDefense %>
+</p>
+<p>
+  <strong>PlaysMoreTowerDefenseThanOtherGames</strong>: <%= prequestionnaire.PlaysMoreTowerDefenseThanOtherGames %>
+</p>
+<p>
+  <strong>HasDesignedVideoGame</strong>: <%= prequestionnaire.HasDesignedVideoGame %>
+</p>
+<p>
+  <strong>HasDesignedOtherApplication</strong>: <%= prequestionnaire.HasDesignedOtherApplication %>
+</p>
+<p>
+  <strong>WantsToBeIncluded</strong>: <%= prequestionnaire.WantsToBeIncluded %>
+</p>
+<p>
+  <strong>HowWantsToBeIncluded</strong>: <%= prequestionnaire.HowWantsToBeIncluded %>
+</p>
+<p>
+  <strong>EverWatchedTwitchPlays</strong>: <%= prequestionnaire.EverWatchedTwitchPlays %>
+</p>
+<p>
+  <strong>ParticipatedTwitchPlays</strong>: <%= prequestionnaire.ParticipatedTwitchPlays %>
+</p>
+<p>
+  <strong>HowLikesTwitchPlays</strong>: <%= prequestionnaire.HowLikesTwitchPlays %>
+</p>
+<p>
+  <strong>HeardOfPleaseBeNice</strong>: <%= prequestionnaire.HeardOfPleaseBeNice %>
+</p>
+<p>
+  <strong>PlayedPleaseBeNice</strong>: <%= prequestionnaire.PlayedPleaseBeNice %>
+</p>
+<p>
+  <strong>LikedPleaseBeNice</strong>: <%= prequestionnaire.LikedPleaseBeNice %>
+</p>
+<p>
+  <strong>IdeaImplementedPleaseBeNice</strong>: <%= prequestionnaire.IdeaImplementedPleaseBeNice %>
+</p>
+<p>
+  <strong>HeardOfCrowdjump</strong>: <%= prequestionnaire.HeardOfCrowdjump %>
+</p>
+<p>
+  <strong>PlayedCrowdjump</strong>: <%= prequestionnaire.PlayedCrowdjump %>
+</p>
+<p>
+  <strong>LikedCrowdjump</strong>: <%= prequestionnaire.LikedCrowdjump %>
+</p>
+<p>
+  <strong>IdeaImplementedCrowdjump</strong>: <%= prequestionnaire.IdeaImplementedCrowdjump %>
+</p>

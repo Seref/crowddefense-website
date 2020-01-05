@@ -1,144 +1,170 @@
-@font-face {
-  font-family: "Cascadia Code";
-  src: url("https://github.com/microsoft/cascadia-code/releases/download/v1910.04/Cascadia.ttf");
+.navbar-icon {
+  height: 8vh;
+  padding: 1vh;
 }
 
-:root {
-  --lavender: #b877db;
-  --cranberry: #e95678;
-  --turquoise: #25b0bc;
-  --apricot: #f09483;
-  --rosebud: #fab795;
-  --tacao: #fac29a;
-
-  --gray: #bbbbbb;
-  --shadow: #16161c;
-  --border: #1a1c23;
-  --background: #1c1e26;
-  --backgroundAlt: #232530;
-  --accent: #2e303e;
-  --accentAlt: #6c6f93;
-  --secondaryAccent: #e9436d;
-  --secondaryAccentAlt: #e95378;
-  --tertiaryAccent: #fab38e;
-  --positive: #09f7a0;
-  --negative: #f43e5c;
-  --warning: #27d797;
-  --modified: #21bfc2;
-  --lightText: #d5d8da;
-  --darkText: #06060c;
-
-  --blue: #26bbd9;
-  --cyan: #59e1e3;
-  --green: #29d398;
-  --magenta: #ee64ac;
-  --red: #e95678;
-  --yellow: #fab795;
-
-  --bright-blue: #3fc4de;
-  --bright-cyan: #6be4e6;
-  --bright-green: #3fdaa4;
-  --bright-magenta: #f075b5;
-  --bright-red: #ec6a88;
-  --bright-yellow: #fbc3a7;
+.current-user-status-text{
+  padding-right: 1vw
 }
+
+/* Sticky footer styles
+-------------------------------------------------- */
 
 html {
-  min-height: 600px;
+  position: relative;
+  min-height: 100%;
 }
-
 body {
-  background-color: var(--background);
-  font-family: "Cascadia Code";
-  color: var(--lightText);
-  a {
-    color: var(--bright-green);
-  }
+  margin-bottom: 120px; /* Margin bottom by footer height */
 }
 
-.menu-bar {
-  padding-top: 10px;
-  background-color: var(--accent);
-  border-bottom-width: thin;
-  border-bottom-style: solid;
-  border-bottom-color: var(--shadow);
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 120px; /* Set the fixed height of the footer here */
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #f5f5f5;
 }
 
-// .navigation {
-// }
+/* Sticky footer styles end
+-------------------------------------------------- */
 
-// .login-register {
-// }
+#unityWrapper {
+  width: 100%;
+  padding-bottom: 56.25%;
+}
 
-.filler {
-  text-align: center;
+.container {
+  min-width: 320px;
+}
+
+header {
+  background-color: #62a5ee;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+.logo {
   img {
-    width: 40px;
+    width: 80px;
   }
 }
 
-.sidebar {
-  background-color: var(--backgroundAlt);
-}
+.titles {
+  h1 {
+    font-size: 30px;
+    font-weight: 300;
+    color: white;
+    margin-bottom: 13px;
+    margin-top: 5px;
+  }
 
-.intro-content {
-  padding-top: 20px;
   h2 {
     font-weight: 300;
-    color: var(--tacao);
+    font-size: 18px;
+    display: inline-block;
+    margin: 0;
   }
+
   a {
-    color: var(--bright-green);
+    color: white;
+    text-decoration: underline;
+  }
+
+  i {
+    margin-right: 5px;
+    text-decoration: none;
+  }
+
+  .documentation {
+    margin-left: 28px;
+  }
+}
+
+.subtitle {
+  color: white;
+  margin: 0;
+  padding: 13px 0;
+  background-color: #2a3543;
+  margin-bottom: 20px;
+
+  h3 {
+    font-size: 22px;
+    font-weight: 400;
+    margin: 0;
+  }
+}
+
+table {
+  font-size: 14px;
+
+  &.table tbody tr td {
+    border-top: 0;
+    padding: 10px;
+  }
+}
+
+.foot {
+  text-align: right;
+  color: #c5c5c5;
+  font-weight: 300;
+
+  a {
+    color: #8b8b8b;
     text-decoration: underline;
   }
 }
 
-.footer {
-  padding-top: 10px;
-  background-color: var(--accent);
-  border-top-width: thin;
-  border-top-style: solid;
-  border-top-color: var(--shadow);
-  position: sticky;
-  bottom: 0;
-  width: 100%;
-  height: 60px; /* Set the fixed height of the footer here */
-  line-height: 20px;
-}
-
-.legal-content {
-  h4, h2{
-    font-weight: 300;
-    color: var(--tacao);
-  }
-  padding-top: 20px;
-}
-
-.auth-wrapper{
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.auth-wrapper .sign-form{
-  max-width: 350px;
-  width: 100%;
-  padding: 0 20px;
-}
-
-.auth-wrapper h1{margin-bottom: 20px;}
-
-.forum-statements {
-  padding-top: 20px;
+.centered {
   text-align: center;
-  h2 {
-    font-weight: 300;
-    color: var(--tacao);
+}
+
+@media all and (max-width: 770px) {
+  .titles {
+    h1 {
+      font-size: 25px;
+      margin: 15px 0 5px 0;
+    }
   }
 }
 
-.gamestate-list {
-  text-align: left;
-  font-size: x-large;
+@media all and (max-width: 640px) {
+  .titles {
+    h1 {
+      font-size: 23px;
+      margin: 15px 0 5px 0;
+    }
+
+    h2 {
+      font-size: 15px;
+    }
+
+    .documentation {
+      margin-left: 10px;
+    }
+  }
+}
+
+@media all and (max-width: 530px) {
+  .titles {
+    h1 {
+      font-size: 20px;
+      margin: 5px 0;
+    }
+
+    .documentation {
+      margin-left: 0px;
+      margin-top: 5px;
+      display: block;
+    }
+  }
+
+  .logo {
+    padding: 0;
+
+    img {
+      width: 100%
+    }
+  }
 }

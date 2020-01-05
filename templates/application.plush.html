@@ -6,57 +6,128 @@
   <meta charset="utf-8">
   <title>CrowdDefense</title>
   <%= stylesheetTag("application.css") %>
+  <%= stylesheetTag("css/cookiealert.css") %>
   <meta name="csrf-param" content="authenticity_token" />
   <meta name="csrf-token" content="<%= authenticity_token %>" />
   <link rel="icon" href="<%= assetPath("images/eule.gif") %>">
 </head>
 
 <body>
-  <div id="wrap">
-    <div class="container-fluid">
-      <div class="menu-bar row">
-        <div class="navigation col-sm-4 col-md-4 col-lg-4">
-          Navigation:
-          <%= linkTo(rootPath(),  {class: "btn btn-link", body: "Home"})%>
-          <%= linkTo(suggestionsPath(),  {class: "btn btn-link", body: "Forum"})%>
-          <%= linkTo(gamePath(),  {class: "btn btn-link", body: "Game"})%>
-        </div>
-        <a class="filler col-sm-4 col-md-4 col-lg-4 h3" href="<%=rootPath()%>"
-          style="color:unset; text-decoration: unset;">
-          <img src="<%= rootPath() %>assets/images/eule.gif" alt="Uni Saarland Eule">
-          CrowdDefense
-        </a>
-        <div class="login-register col-sm-4 col-md-4 col-lg-4">
-          <%= if (current_user) { %>
-          Currently logged in as <%= current_user.Username%>
-          <%= linkTo(signoutPath(), {class: "btn btn-danger", "data-method": "DELETE", "data-confirm": "Are you sure you want to log out?", body: "Sign Out"}) %>
-          <% } else { %>
-          Currently not logged in
-          <%= linkTo(signinPath(), {class: "btn btn-primary", body: "Sign In"}) %>
-          <%= linkTo(newUsersPath(), {class: "btn btn-primary", body: "Register"}) %>
-          <% } %>
-        </div>
-      </div>
-    </div>
 
-    <div class="container-fluid">
-      <%= partial("flash.html") %>
-      <%= yield %>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href=" <%= rootPath()%>"><img class="navbar-icon" src="<%= assetPath("images/eule.gif")%>"
+        alt="Uni Saarland Eule">CrowdDefense</img></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="<%= rootPath()%>">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link <%= if (!current_user) { %> disabled <% } %>" href="<%= ideasPath() %>">Ideas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link <%= if (!current_user) { %> disabled <% } %>" href=" <%= gamePath()%>">Game</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link <%= if (!current_user) { %> disabled <% } %>" href=" <%= historyPath()%>">Game History</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Questionaires
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href=" <%=  %>">Pre-Questionaire</a>
+            <a class="dropdown-item" href=" <%=  %>">Post-Questionaire</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Sign In/Sign Up
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="<%= newAuthPath() %>">Sign In</a>
+            <a class="dropdown-item" href="<%= newUsersPath() %>">Sign Up</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Legal Information
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href=" <%= legalDataprotectionPath() %>">Data Protection Information</a>
+            <a class="dropdown-item" href=" <%= legalContactinformationPath() %>">Contact/Legal Information</a>
+          </div>
+        </li>
+      </ul>
+      <%= if (current_user) { %>
+      <a class="current-user-status-text">Currently logged in as <%= current_user.Username%></a>
+      <%= linkTo(authPath(), {class: "btn btn-danger", "data-method": "DELETE", "data-confirm": "Are you sure you want to log out?", body: "Sign Out"}) %>
+      <% } else { %>
+      <a class="current-user-status-text">Currently not logged in</a>
+      <% } %>
     </div>
-    <%= javascriptTag("application.js") %>
+  </nav>
+
+  <div class="container">
+    <%= partial("flash.html") %>
+    <%= yield %>
   </div>
+
+  <div class="alert alert-dismissible text-center cookiealert" role="alert">
+    <div class="cookiealert-container">
+      <b>Do you like cookies?</b> &#x1F36A; We use cookies to ensure you get the best experience on our website. <a
+        href="#" data-toggle="modal" data-target="#dpiModal">Data Protection Information</a>
+      <button type="button" class="btn btn-primary btn-sm acceptcookies" aria-label="Close">
+        I agree
+      </button>
+    </div>
+  </div>
+  <br>
   <footer class="footer">
-    <div class="container-fluid">
-      <div class="col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
+    <div class="container">
+      <span class="text-muted">
         Created by Jan Larisch, Seref Güngör and Jan-Robin Aumann as part of a student project at Saarland University.
-        <br>
-        <div class="row">
-          <a class="col-sm-6 col-md-6 col-lg-6" href="<%= legalLegalPath()%>">Legal Information</a>
-          <a class="col-sm-6 col-md-6 col-lg-6" href="<%= legalDataprotectionPath()%>">Data Protection Information</a>
-        </div>
-      </div>
+        <ul class="list-unstyled list-inline" style="margin: unset;">
+          <li class="list-inline-item">
+            <a target="_blank" href="<%= legalContactinformationPath() %>">Legal Information</a>
+          </li>
+          <li class="list-inline-item">
+            <a target="_blank" href="<%= legalDataprotectionPath() %>">Data Protection Information</a>
+          </li>
+        </ul>
+      </span>
     </div>
   </footer>
+
+  <div class="modal fade" id="dpiModal" tabindex="-1" role="dialog" aria-labelledby="dpiModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="dpiModalLabel">Data protection and usage information</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <%= partial("legal/dataprotection.html") %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%= javascriptTag("application.js") %>
+  <%= javascriptTag("js/cookiealert.js") %>
 </body>
 
 </html>

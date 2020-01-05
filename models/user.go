@@ -18,25 +18,17 @@ type User struct {
 	ID           uuid.UUID `json:"id" db:"id"`
 	CreatedAt    time.Time `json:"created_at" db:"created_at"`
 	UpdatedAt    time.Time `json:"updated_at" db:"updated_at"`
-	Email        string    `json:"email" db:"email"`
+	Username     string    `json:"username" db:"username"`
 	PasswordHash string    `json:"password_hash" db:"password_hash"`
 
 	Password             string `json:"-" db:"-"`
 	PasswordConfirmation string `json:"-" db:"-"`
-
-	//Extra fields
-
-	FirstName string `json:"first_name" db:"first_name"`
-
-	LastName string `json:"last_name" db:"last_name"`
-
-	Username string `json:"username" db:"username"`
 }
 
 // Create wraps up the pattern of encrypting the password and
 // running validations. Useful when writing tests.
 func (u *User) Create(tx *pop.Connection) (*validate.Errors, error) {
-	u.Email = strings.ToLower(u.Email)
+	u.Username = strings.ToLower(u.Username)
 	ph, err := bcrypt.GenerateFromPassword([]byte(u.Password), bcrypt.DefaultCost)
 	if err != nil {
 		return validate.NewErrors(), errors.WithStack(err)
@@ -65,16 +57,16 @@ func (u Users) String() string {
 func (u *User) Validate(tx *pop.Connection) (*validate.Errors, error) {
 	var err error
 	return validate.Validate(
-		&validators.StringIsPresent{Field: u.Email, Name: "Email"},
+		&validators.StringIsPresent{Field: u.Username, Name: "Username"},
 		&validators.StringIsPresent{Field: u.PasswordHash, Name: "PasswordHash"},
-		// check to see if the email address is already taken:
+		// check to see if the Username address is already taken:
 		&validators.FuncValidator{
-			Field:   u.Email,
-			Name:    "Email",
+			Field:   u.Username,
+			Name:    "Username",
 			Message: "%s is already taken",
 			Fn: func() bool {
 				var b bool
-				q := tx.Where("email = ?", u.Email)
+				q := tx.Where("username = ?", u.Username)
 				if u.ID != uuid.Nil {
 					q = q.Where("id != ?", u.ID)
 				}
@@ -93,6 +85,7 @@ func (u *User) Validate(tx *pop.Connection) (*validate.Errors, error) {
 func (u *User) ValidateCreate(tx *pop.Connection) (*validate.Errors, error) {
 	var err error
 	return validate.Validate(
+		&validators.StringLengthInRange{Field: u.Password, Name: "Password", Min: 12, Message: "Password must be at least 12 characters long"},
 		&validators.StringIsPresent{Field: u.Password, Name: "Password"},
 		&validators.StringsMatch{Name: "Password", Field: u.Password, Field2: u.PasswordConfirmation, Message: "Password does not match confirmation"},
 	), err

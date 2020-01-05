@@ -1,0 +1,193 @@
+<div class="form-group<%= if (errors.Errors["age"]) { %> has-error <% } %>">
+    <label>Age</label>
+    <select class="form-control<%= if (errors.Errors["age"]) { %> is-invalid <% } %>" id="prequestionnaire-Age"
+        name="Age">
+        <option disabled selected style="display: none;" value=""> -- select an option -- </option>
+        <option <%= if (params["Age"] == "< 18") { %> selected <% } %> value="< 18">
+            < 18</option> <option <%= if (params["Age"] == "18 - 26") { %> selected <% } %> value="18 - 26">18 - 26
+        </option>
+        <option <%= if (params["Age"] == "26 - 39") { %> selected <% } %> value="26 - 39">26 - 39</option>
+        <option <%= if (params["Age"] == "> 40") { %> selected <% } %> value="> 40">> 40</option>
+    </select>
+    <%= if (errors.Errors["age"]) { %>
+    <div class="invalid-feedback help-block"><%= errors.Errors["age"] %></div>
+    <% } %>
+</div>
+<div class="form-group<%= if (errors.Errors["gender"]) { %> has-error <% } %>">
+    <label>Gender</label>
+    <select class="form-control<%= if (errors.Errors["gender"]) { %> is-invalid <% } %>" id="prequestionnaire-Gender"
+        name="Gender">
+        <option disabled selected style="display: none;" value=""> -- select an option -- </option>
+        <option <%= if (params["Gender"] == "female") { %> selected <% } %> value="female">female</option>
+        <option <%= if (params["Gender"] == "male") { %> selected <% } %> value="male">male</option>
+        <option <%= if (params["Gender"] == "other") { %> selected <% } %> value="other">other</option>
+    </select>
+    <%= if (errors.Errors["gender"]) { %>
+    <div class="invalid-feedback help-block"><%= errors.Errors["gender"] %></div>
+    <% } %>
+</div>
+<%= f.InputTag("Job") %>
+<div class="form-group<%= if (errors.Errors["hours_at_p_c_per_week"]) { %> has-error <% } %>">
+    <label>Time in hours you use your PC per week</label>
+    <select class="form-control<%= if (errors.Errors["hours_at_p_c_per_week"]) { %> is-invalid <% } %>"
+        id="prequestionnaire-HoursAtPCPerWeek" name="HoursAtPCPerWeek">
+        <option disabled selected style="display: none;" value=""> -- select an option -- </option>
+        <option <%= if (params["HoursAtPCPerWeek"] == "0 - 5") { %> selected <% } %> value="0 - 5">0 - 5</option>
+        <option <%= if (params["HoursAtPCPerWeek"] == "5 - 10") { %> selected <% } %> value="5 - 10">5 - 10</option>
+        <option <%= if (params["HoursAtPCPerWeek"] == "10 - 15") { %> selected <% } %> value="10 - 15">10 - 15</option>
+        <option <%= if (params["HoursAtPCPerWeek"] == "15 - 20") { %> selected <% } %> value="15 - 20">15 - 20</option>
+        <option <%= if (params["HoursAtPCPerWeek"] == "20-25") { %> selected <% } %> value="20-25">20-25</option>
+        <option <%= if (params["HoursAtPCPerWeek"] == "25+") { %> selected <% } %> value="25+">25+</option>
+    </select>
+    <%= if (errors.Errors["hours_at_p_c_per_week"]) { %>
+    <div class="invalid-feedback help-block"><%= errors.Errors["hours_at_p_c_per_week"] %></div>
+    <% } %>
+</div>
+<div class="form-group<%= if (errors.Errors["hours_video_games_per_week"]) { %> has-error <% } %>">
+    <label>Time in hours you play video games per week</label>
+    <select class="form-control<%= if (errors.Errors["hours_video_games_per_week"]) { %> is-invalid <% } %>"
+        id="prequestionnaire-HoursVideoGamesPerWeek" name="HoursVideoGamesPerWeek">
+        <option disabled selected style="display: none;" value=""> -- select an option -- </option>
+        <option <%= if (params["HoursVideoGamesPerWeek"] == "0 - 5") { %> selected <% } %> value="0 - 5">0 - 5</option>
+        <option <%= if (params["HoursVideoGamesPerWeek"] == "5 - 10") { %> selected <% } %> value="5 - 10">5 - 10
+        </option>
+        <option <%= if (params["HoursVideoGamesPerWeek"] == "10 - 15") { %> selected <% } %> value="10 - 15">10 - 15
+        </option>
+        <option <%= if (params["HoursVideoGamesPerWeek"] == "15 - 20") { %> selected <% } %> value="15 - 20">15 - 20
+        </option>
+        <option <%= if (params["HoursVideoGamesPerWeek"] == "20-25") { %> selected <% } %> value="20-25">20-25</option>
+        <option <%= if (params["HoursVideoGamesPerWeek"] == "25+") { %> selected <% } %> value="25+">25+</option>
+    </select>
+    <%= if (errors.Errors["hours_video_games_per_week"]) { %>
+    <div class="invalid-feedback help-block"><%= errors.Errors["hours_video_games_per_week"] %></div>
+    <% } %>
+</div>
+<div class="form-group<%= if (errors.Errors["most_important_video_game_aspects"]) { %> has-error <% } %>">
+    <label>What are important aspects in a video game? (Select multiple by keeping CTRL pressed)</label>
+    <select size='8' onchange="selectMultipleHandler()" id="importantaspects" multiple
+        class="form-control<%= if (errors.Errors["most_important_video_game_aspects"]) { %> is-invalid <% } %>">
+        <option disabled selected style="display: none;" value=""> -- select an option -- </option>
+        <option id="Story" <%= if (strings.Contains(params["MostImportantVideoGameAspects"], "Story")) { %> selected
+            <% } %> value="Story">Story</option>
+        <option id="Graphic" <%= if (strings.Contains(params["MostImportantVideoGameAspects"], "Graphics")) { %>
+            selected <% } %> value="Graphic">Graphic</option>
+        <option id="Innovation" <%= if (strings.Contains(params["MostImportantVideoGameAspects"], "Innovation")) { %>
+            selected <% } %> value="Innovation">Innovation</option>
+        <option id="Multiplayer" <%= if (strings.Contains(params["MostImportantVideoGameAspects"], "Multiplayer")) { %>
+            selected <% } %> value="Multiplayer">Multiplayer</option>
+        <option id="Competition with others"
+            <%= if (strings.Contains(params["MostImportantVideoGameAspects"], "Competition with other players")) { %>
+            selected <% } %> value="Competition with other players">Competition with other players</option>
+        <option id="Difficulty" <%= if (strings.Contains(params["MostImportantVideoGameAspects"], "Difficulty")) { %>
+            selected <% } %> value="Difficulty">Difficulty</option>
+        <option id="Gameplay" <%= if (strings.Contains(params["MostImportantVideoGameAspects"], "Gameplay")) { %>
+            selected <% } %> value="Gameplay">Gameplay</option>
+        <option id="Other" <%= if (strings.Contains(params["MostImportantVideoGameAspects"], "Other")) { %> selected
+            <% } %> value="Other">Other</option>
+    </select>
+    <%= if (errors.Errors["most_important_video_game_aspects"]) { %>
+    <div class="invalid-feedback help-block"><%= errors.Errors["most_important_video_game_aspects"] %></div>
+    <% } %>
+</div>
+<div class="form-group" style="display: none;">
+    <input class=" form-control" id="prequestionnaire-MostImportantVideoGameAspects"
+        name="MostImportantVideoGameAspects" type="text" value=<%= params["MostImportantVideoGameAspects"]%>>
+</div>
+<div class="form-group<%= if (errors.Errors["most_important_video_game_aspect"]) { %> has-error <% } %>">
+    <label>What is THE most important aspect in a video game?</label>
+    <select class="form-control<%= if (errors.Errors["most_important_video_game_aspect"]) { %> is-invalid <% } %>"
+        id="prequestionnaire-MostImportantVideoGameAspect" name="MostImportantVideoGameAspect">
+        <option disabled selected style="display: none;" value=""> -- select an option -- </option>
+        <option <%= if (params["MostImportantVideoGameAspect"] == "Story") { %> selected <% } %> value="Story">Story
+        </option>
+        <option <%= if (params["MostImportantVideoGameAspect"] == "Graphic") { %> selected <% } %> value="Graphic">
+            Graphic</option>
+        <option <%= if (params["MostImportantVideoGameAspect"] == "Innovation") { %> selected <% } %>
+            value="Innovation">Innovation</option>
+        <option <%= if (params["MostImportantVideoGameAspect"] == "Multiplayer") { %> selected <% } %>
+            value="Multiplayer">Multiplayer</option>
+        <option <%= if (params["MostImportantVideoGameAspect"] == "Competition with other players") { %> selected
+            <% } %> value="Competition with other players">Competition with other players</option>
+        <option <%= if (params["MostImportantVideoGameAspect"] == "Difficulty") { %> selected <% } %>
+            value="Difficulty">Difficulty</option>
+        <option <%= if (params["MostImportantVideoGameAspect"] == "Gameplay") { %> selected <% } %> value="Gameplay">
+            Gameplay</option>
+        <option <%= if (params["MostImportantVideoGameAspect"] == "Other") { %> selected <% } %> value="Other">Other
+        </option>
+    </select>
+    <%= if (errors.Errors["most_important_video_game_aspect"]) { %>
+    <div class="invalid-feedback help-block"><%= errors.Errors["most_important_video_game_aspect"] %></div>
+    <% } %>
+</div>
+<label>Please answer the following statements</label>
+<div id="prequestionnaire-PlayedALotOfPlatformers" name="PlayedALotOfPlatformers"
+    class="form-group<%= if (errors.Errors["played_a_lot_of_platformers"]) { %> has-error <% } %>">
+    <label style="margin-right: 2vw;">I played a lot of tower defense games</label>
+    <div class="form-check form-check-inline">
+        <label style="margin-right: 1vw;" class="form-check-label" for="inlineRadio0">Agree</label>
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio0" value=0>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value=1>
+        <label class="form-check-label" for="inlineRadio1"></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value=2>
+        <label class="form-check-label" for="inlineRadio2"></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value=3>
+        <label class="form-check-label" for="inlineRadio3"></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value=4>
+        <label class="form-check-label" for="inlineRadio4"></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value=5>
+        <label class="form-check-label" for="inlineRadio5"></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input style="margin-right: 1vw;" class="form-check-input" type="radio" name="inlineRadioOptions"
+            id="inlineRadio6" value=6>
+        <label class="form-check-label" for="inlineRadio6">Disagree</label>
+    </div>
+    <%= if (errors.Errors["played_a_lot_of_platformers"]) { %>
+    <div class="invalid-feedback help-block"><%= errors.Errors["played_a_lot_of_platformers"] %></div>
+    <% } %>
+</div>
+
+<%= f.InputTag("PlayedALotOfPlatformers") %>
+<%= f.InputTag("LikesTowerDefense") %>
+<%= f.InputTag("PlaysMoreTowerDefenseThanOtherGames") %>
+<%= f.CheckboxTag("HasDesignedVideoGame", {unchecked: false, label: "test"}) %>
+<%= f.CheckboxTag("HasDesignedOtherApplication", {unchecked: false}) %>
+<%= f.CheckboxTag("WantsToBeIncluded", {unchecked: false}) %>
+<%= f.TextAreaTag("HowWantsToBeIncluded", {rows: 10}) %>
+<%= f.CheckboxTag("EverWatchedTwitchPlays", {unchecked: false}) %>
+<%= f.CheckboxTag("ParticipatedTwitchPlays", {unchecked: false}) %>
+<%= f.InputTag("HowLikesTwitchPlays") %>
+<%= f.CheckboxTag("HeardOfPleaseBeNice", {unchecked: false}) %>
+<%= f.CheckboxTag("PlayedPleaseBeNice", {unchecked: false}) %>
+<%= f.InputTag("LikedPleaseBeNice") %>
+<%= f.CheckboxTag("IdeaImplementedPleaseBeNice", {unchecked: false}) %>
+<%= f.CheckboxTag("HeardOfCrowdjump", {unchecked: false}) %>
+<%= f.CheckboxTag("PlayedCrowdjump", {unchecked: false}) %>
+<%= f.InputTag("LikedCrowdjump") %>
+<%= f.CheckboxTag("IdeaImplementedCrowdjump", {unchecked: false}) %>
+<button class="btn btn-success" onclick="selectMultipleHandler" role="submit">Save</button>
+
+<script>
+    window.onload = selectMultipleHandler2()
+
+    function selectMultipleHandler() {
+        $('#prequestionnaire-MostImportantVideoGameAspects').val($('#importantaspects').val().join())
+    }
+    function selectMultipleHandler2() {
+        var string = document.getElementById('prequestionnaire-MostImportantVideoGameAspects').value
+        var array = string.split(',')
+        array.forEach(element => {
+            document.getElementById(element).selected = true
+        });
+    }
+</script>

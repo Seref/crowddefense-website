@@ -1,0 +1,8 @@
+<div class="page-header">
+  <h1>New Idea</h1>
+</div>
+
+<%= formFor(idea, {action: ideasPath(), method: "POST"}) { %>
+  <%= partial("ideas/form.html") %>
+  <%= linkTo(ideasPath(), {class: "btn btn-warning", "data-confirm": "Are you sure?", body: "Cancel"}) %>
+<% } %>

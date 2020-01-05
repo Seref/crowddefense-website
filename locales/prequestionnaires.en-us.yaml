@@ -1,0 +1,6 @@
+- id: "prequestionnaire.created.success"
+  translation: "Prequestionnaire was successfully created."
+- id: "prequestionnaire.updated.success"
+  translation: "Prequestionnaire was successfully updated."
+- id: "prequestionnaire.destroyed.success"
+  translation: "Prequestionnaire was successfully destroyed."

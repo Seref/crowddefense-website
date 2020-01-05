@@ -1,0 +1,56 @@
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+</head>
+<div style="margin-top: 3vh;">
+    <table id="all_ideas" class="table table-striped table-bordered" style="width:100%;">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Popularity</th>
+                <th>Upvotes</th>
+                <th>Downvotes</th>
+                <th>Version When Suggested</th>
+                <th>Suggested by</th>
+                <th>Suggested on</th>
+                <th>Keywords</th>
+                <th>Fullfilled</th>
+                <th>Picked</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%= for (key, idea) in all_ideas { %>
+            <tr onclick="window.location='<%= ideaPath({idea_id: idea.ID})%>';">
+                <td><%= idea.Title %></td>
+                <td style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:1px;">
+                    <%= idea.Description %></td>
+                <td><%= len(idea.UpvotedBy) - len(idea.DownvotedBy) %></td>
+                <td><%= len(idea.UpvotedBy) %></td>
+                <td><%= len(idea.DownvotedBy) %></td>
+                <td><%= idea.VersionWhenSuggested %></td>
+                <td><%= idea.SuggestedBy %></td>
+                <td><%= idea.CreatedAt %> </td>
+                <td style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:1px;"><%= idea.Keywords %> </td>
+                <td><%= if (idea.Fullfilled) { %>
+                    Fullfilled
+                    <% } else { %>
+                    Not Fullfilled
+                    <% } %></td>
+                <td><%= if (idea.Picked) { %>
+                    Picked
+                    <% } else { %>
+                    Not Picked
+                    <% } %></td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#all_ideas').DataTable();
+    });
+</script>

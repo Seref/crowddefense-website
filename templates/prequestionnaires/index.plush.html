@@ -1,0 +1,81 @@
+<div class="page-header">
+  <h1>Prequestionnaires</h1>
+</div>
+<ul class="list-unstyled list-inline">
+  <li>
+    <%= linkTo(newPrequestionnairesPath(), {class: "btn btn-primary"}) { %>
+      Create New Prequestionnaire
+    <% } %>
+  </li>
+</ul>
+
+<table class="table table-striped">
+  <thead>
+  <th>Age</th>
+    <th>Gender</th>
+    <th>Job</th>
+    <th>HoursAtPCPerWeek</th>
+    <th>HoursVideoGamesPerWeek</th>
+    <th>MostImportantVideoGameAspects</th>
+    <th>MostImportantVideoGameAspect</th>
+    <th>PlayedALotOfPlatformers</th>
+    <th>LikesTowerDefense</th>
+    <th>PlaysMoreTowerDefenseThanOtherGames</th>
+    <th>HasDesignedVideoGame</th>
+    <th>HasDesignedOtherApplication</th>
+    <th>WantsToBeIncluded</th>
+    <th>EverWatchedTwitchPlays</th>
+    <th>ParticipatedTwitchPlays</th>
+    <th>HowLikesTwitchPlays</th>
+    <th>HeardOfPleaseBeNice</th>
+    <th>PlayedPleaseBeNice</th>
+    <th>LikedPleaseBeNice</th>
+    <th>IdeaImplementedPleaseBeNice</th>
+    <th>HeardOfCrowdjump</th>
+    <th>PlayedCrowdjump</th>
+    <th>LikedCrowdjump</th>
+    <th>IdeaImplementedCrowdjump</th>
+    <th>&nbsp;</th>
+  </thead>
+  <tbody>
+    <%= for (prequestionnaire) in prequestionnaires { %>
+      <tr>
+      <td><%= prequestionnaire.Age %></td>
+        <td><%= prequestionnaire.Gender %></td>
+        <td><%= prequestionnaire.Job %></td>
+        <td><%= prequestionnaire.HoursAtPCPerWeek %></td>
+        <td><%= prequestionnaire.HoursVideoGamesPerWeek %></td>
+        <td><%= prequestionnaire.MostImportantVideoGameAspects %></td>
+        <td><%= prequestionnaire.MostImportantVideoGameAspect %></td>
+        <td><%= prequestionnaire.PlayedALotOfPlatformers %></td>
+        <td><%= prequestionnaire.LikesTowerDefense %></td>
+        <td><%= prequestionnaire.PlaysMoreTowerDefenseThanOtherGames %></td>
+        <td><%= prequestionnaire.HasDesignedVideoGame %></td>
+        <td><%= prequestionnaire.HasDesignedOtherApplication %></td>
+        <td><%= prequestionnaire.WantsToBeIncluded %></td>
+        <td><%= prequestionnaire.EverWatchedTwitchPlays %></td>
+        <td><%= prequestionnaire.ParticipatedTwitchPlays %></td>
+        <td><%= prequestionnaire.HowLikesTwitchPlays %></td>
+        <td><%= prequestionnaire.HeardOfPleaseBeNice %></td>
+        <td><%= prequestionnaire.PlayedPleaseBeNice %></td>
+        <td><%= prequestionnaire.LikedPleaseBeNice %></td>
+        <td><%= prequestionnaire.IdeaImplementedPleaseBeNice %></td>
+        <td><%= prequestionnaire.HeardOfCrowdjump %></td>
+        <td><%= prequestionnaire.PlayedCrowdjump %></td>
+        <td><%= prequestionnaire.LikedCrowdjump %></td>
+        <td><%= prequestionnaire.IdeaImplementedCrowdjump %></td>
+        <td>
+          <div class="pull-right">
+            <%= linkTo(prequestionnairePath({ prequestionnaire_id: prequestionnaire.ID }), {class: "btn btn-info", body: "View"}) %>
+            <%= linkTo(editPrequestionnairePath({ prequestionnaire_id: prequestionnaire.ID }), {class: "btn btn-warning", body: "Edit"}) %>
+            <%= linkTo(prequestionnairePath({ prequestionnaire_id: prequestionnaire.ID }), {class: "btn btn-danger", "data-method": "DELETE", "data-confirm": "Are you sure?", body: "Destroy"}) %>
+          </div>
+        </td>
+      </tr>
+    <% } %>
+  </tbody>
+</table>
+
+<div class="text-center">
+  <%= paginator(pagination) %>
+</div>

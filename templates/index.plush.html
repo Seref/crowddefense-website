@@ -1,64 +1,68 @@
-<header>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-1 col-sm-2 col-xs-2 logo">
-        <a href="<%= rootPath() %>"><img src="<%= rootPath() %>assets/images/logo.svg" alt=""></a>
-      </div>
-      <div class="col-md-9 col-sm-9 col-xs-10 titles">
-        <h1><%= t("welcome_greeting") %></h1>
-        <h2>
-          <a href="https://github.com/gobuffalo/buffalo"><i class="fab fa-github" aria-hidden="true"></i> https://github.com/gobuffalo/buffalo</a>
-        </h2>
-        <h2 class="documentation">
-          <a href="http://gobuffalo.io/"><i class="fa fa-book" aria-hidden="true"></i> Documentation</a>
-        </h2>
-      </div>
-    </div>
-  </div>
+<style>
+  h2 {
+    margin-top: 3vh;
+  }
+  p {
+    font-size: 120%;
+  }
 
-</header>
-
-<div class="row">
-  <div class="col-md-12">
-    <div class="subtitle">
-      <div class="container">
-        <h3>Defined Routes</h3>
-      </div>
-    </div>
-    <div class="table-responsive">
-      <table class="table table-striped">
-        <thead>
-          <tr text-align="left">
-            <th class="centered">METHOD</th>
-            <th>PATH</th>
-            <th>NAME</th>
-            <th>HANDLER</th>
-          </tr>
-        </thead>
-        <tbody>
-
-          <%= for (r) in routes { %>
-            <tr>
-              <td class="centered">
-                <%= r.Method %>
-              </td>
-              <td>
-                <%= if (r.Method != "GET" || r.Path ~= "{") {
-                  return r.Path
-                } else {
-                  return linkTo(r.Path, {body: r.Path})
-                } %>
-              </td>
-              <td>
-                <%= r.PathName %>
-              </td>
-              <td><code><%= r.HandlerName %></code></td>
-            </tr>
-          <% } %>
-
-        </tbody>
-      </table>
-    </div>
-  </div>
+</style>
+<h2>What even is this?</h2>
+<div>
+  <p>
+    <a href="https://github.com/Seref">Seref G&#xFC;ng&#xF6;r</a>,
+    <a href="https://github.com/JanLari">Jan Larisch</a>
+    and
+    <a href="https://beemo.at">Jan-Robin Auman</a>
+    created CrowdDefense with support from
+    <a href="https://umtl.cs.uni-saarland.de/people/pascal-lessel.html">Dr. Pascal Lessel (Saarland
+      University/DFKI)</a>.
+    We built a very simple tower defense game, but we need <strong>your</strong> help to make it more interesting!
+  </p>
 </div>
-<div class="foot"> <span> Powered by <a href="http://gobuffalo.io/">gobuffalo.io</a></span> </div>
+<h2>How do I get involved?</h2>
+<div>
+  <p>
+    On our ideas page community members (you!) can create, share, upvote and downvote suggestions for new game features.
+  </p>
+  <p>
+    Everyday at 9am and 7pm, the highest voted suggestion is picked, given a time estimate and implemented.
+    We aspire to completing it in 24 hours. Why? Because a new version of CrowdDefense will go live every day at 7pm,
+    and we want to have it available (<em>if possible</em>) to you for that daily release so the game stays
+    interesting and engaging!
+  </p>
+</div>
+<h2>What kind of stuff should I suggest?</h2>
+<div>
+  <p>
+    Suggestions can be as simple or complicated as you like. Maybe you just want a prettier game or web
+    page, you want to have a different way on how ideas are selected or you want to have new features
+    that improve the game or the web page.
+  </p>
+  <p>
+    Share your ideas with the community, and just see how people react!
+  </p>
+  <p>
+    Your suggestions are the most powerful tool to make this an engaging experience, and can not only affect the game
+    but also the community and process around it.
+  </p>
+</div>
+<h2>Why are we doing this?</h2>
+<div>
+  <p>CrowdDefense is part of a study on user driven game development that will be conducted starting from the 10th of
+    January 2020 until the second of February.</p>
+  <p>After that date, the study will conclude and the game will be taken down.</p>
+  <p>During the time however we hope to collect information on how the community plays the game and how it
+    suggests new features. We also ask our community members to take part in our questionnaires. They
+    are very important as they'll allow us to get conclusive insight from the study.</p>
+</div>
+<br>
+<div>
+  <p>
+    <strong>
+      What are you waiting for?
+      <a href="<%= newUsersPath() %>">Sign up</a>,
+      play the game and share your ideas with the community!
+    </strong>
+  </p>
+</div>

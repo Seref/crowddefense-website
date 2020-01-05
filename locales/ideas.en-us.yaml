@@ -1,0 +1,6 @@
+- id: "idea.created.success"
+  translation: "Idea was successfully submitted."
+- id: "idea.updated.success"
+  translation: "Idea was successfully updated."
+- id: "idea.destroyed.success"
+  translation: "Idea was successfully deleted."

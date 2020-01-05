@@ -1,14 +1,16 @@
-<div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-12" id="unityContainer" style="width: 1280px; height: 900px;"></div>
-    <div>
-        <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
-    </div>
+<style>
+    .container {
+        max-width: 80%;
+    }
+</style>
+<div id="unityWrapper"><div id="unityContainer"></div></div>
+<div>
+    <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
 </div>
 <script src="https://medienprojekt-19-20.github.io/crowddefense-game/TemplateData/UnityProgress.js"></script>
 <script src="https://medienprojekt-19-20.github.io/crowddefense-game/Build/UnityLoader.js"></script>
 <script>
-    var unityInstance = UnityLoader.instantiate("unityContainer", "https://medienprojekt-19-20.github.io/crowddefense-game/Build/docs.json", { onProgress: UnityProgress});
-
+    var unityInstance = UnityLoader.instantiate("unityContainer", "https://medienprojekt-19-20.github.io/crowddefense-game/Build/docs.json", { onProgress: UnityProgress });
     function OnAppReady() {
         unityInstance.SendMessage('GameManager', 'SetClientID', "<%= current_user.Username%>");
     }

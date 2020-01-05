@@ -1,0 +1,83 @@
+<ul class="list-unstyled list-inline" style="margin-top: 3vh;">
+  <li class="list-inline-item">
+    <%= linkTo(ideasPath(), {class: "btn btn-info"}) { %>
+    Back to all Ideas
+    <% } %>
+  </li>
+  <li class="list-inline-item">
+    <%= if (current_user.Username == idea.SuggestedBy && len(idea.UpvotedBy) <= 0) { %>
+    <a class="btn btn-warning" href="<%= editIdeaPath({ idea_id: idea.ID }) %>" role="button">Edit</a>
+    <% } else if (current_user.Username == idea.SuggestedBy) { %>
+    <a class="btn btn-warning disabled" href="<%= editIdeaPath({ idea_id: idea.ID }) %>" role="button">Can't be
+      edited</a>
+    <% } %>
+  </li>
+  <li class="list-inline-item">
+    <%= if (current_user.Username == idea.SuggestedBy && !idea.Picked && !idea.Fullfilled) { %>
+    <a class="btn btn-danger" href="<%= ideaPath({ idea_id: idea.ID }) %>" role="button" data-method="DELETE"
+      data-confirm="Are you sure?">Delete</a>
+    <% } else if (current_user.Username == idea.SuggestedBy) { %>
+    <a class="btn btn-danger disabled" href="<%= ideaPath({ idea_id: idea.ID }) %>" role="button" data-method="DELETE"
+      data-confirm="Are you sure?">Can't be
+      deleted</a>
+    <% } %>
+  </li>
+  <li class="list-inline-item">
+    <a class="btn fas fa-thumbs-up <%= if (idea.Picked || idea.Fullfilled) { %> disabled <% } %> <%= if (!idea.UpvotedBy[current_user.Username]) { %> btn-outline-success <% } else { %> btn-success <% } %>"
+      data-method="PUT" href="<%= ideaUpvotePath({idea_id: idea.ID}) %>"
+      <%= if (!idea.UpvotedBy[current_user.Username]) { %> style="color: black;" <% } else { %> style="color: white;"
+      <% } %>>
+      <%= " " + len(idea.UpvotedBy) %>
+    </a>
+  <li class="list-inline-item">
+    <a class="btn fas fa-thumbs-down <%= if (idea.Picked || idea.Fullfilled) { %> disabled <% } %> <%= if (!idea.DownvotedBy[current_user.Username]) { %> btn-outline-danger <% } else { %> btn-danger <% } %>"
+      data-method="PUT" href="<%= ideaDownvotePath({idea_id: idea.ID}) %> "
+      <%= if (!idea.DownvotedBy[current_user.Username]) { %> style="color: black;" <% } else { %> style="color: white;"
+      <% } %>>
+      <%= " " + len(idea.DownvotedBy) %>
+    </a>
+  </li>
+</ul>
+
+<div class="card" style="margin-top: 1vh;">
+  <%= if (idea.Fullfilled == true) { %>
+  <div class="card-header" style="background-color: lightgreen;">
+    <h5>Fullfilled!</h5>
+  </div>
+  <% } else if (idea.Picked == true) { %>
+  <div class="card-header" style="background-color: mediumturquoise;">
+    <h5>Picked!</h5>
+  </div>
+  <% } %>
+  <div class="card-body">
+    <h4 class="card-title"><%= idea.Title %></h4>
+    <p class="card-text"><%=  idea.Description%></p>
+  </div>
+  <%= if (idea.DevComment != "") { %>
+  <div class="card-body">
+    <h5 class="card-title">Comment from the developers</h5>
+    <p><%= idea.DevComment %></p>
+  </div>
+  <% } %>
+  <div class="card-body" id="keywordsection">
+    <span class="badge badge-pill badge-info">Popularity: <%= len(idea.UpvotedBy) - len(idea.DownvotedBy)%></span>
+    <span class="badge badge-pill badge-info">Suggested in Version <%= idea.VersionWhenSuggested %> by
+      <%= idea.SuggestedBy %></span>
+    <script>
+      var keywordsection = document.getElementById('keywordsection');
+
+      var keywordString = "<%= idea.Keywords %>";
+      var keywords = keywordString.split(";");
+
+      var keywordsHTML = ''
+
+      keywords.forEach(keyword => {
+        keywordsHTML += `<span class="badge badge-pill badge-primary" style="margin-right: 0.3vw">${keyword}</span>`
+      });
+
+      keywordsection.innerHTML += keywordsHTML
+
+    </script>
+  </div>
+</div>
+<br>

@@ -16,38 +16,63 @@
     margin-bottom: 20px;
   }
 </style>
-
 <div class="auth-wrapper">
   <div class="sign-form">
-    <%= if (current_user) {%>
-    <h1>No need to register, you're already registered and logged in as <%= current_user.Username %></h1>
-    <% } else { %>
     <h1>Register</h1>
 
-    <p><b>None of this information will be publicly shown except the username.</b></p>
+    <p>Please choose a username that does not allow anyone to link back your account to your person.</p>
+    <p>Please choose a <a href="https://xkcd.com/936/" target="_blank">secure password</a>.</p>
 
     <%= form_for(user, {action: usersPath()}) { %>
-    <%= f.InputTag("Email") %>
-    <%= f.InputTag("Username", {}) %>
+    <%= f.InputTag("Username") %>
     <%= f.InputTag("Password", {type: "password"}) %>
     <%= f.InputTag("PasswordConfirmation", {type: "password"}) %>
 
+    <input type="checkbox" onchange="document.getElementById('submitbutton').disabled = !this.checked;">
+    I have read and accepted the information on <a href="#" data-toggle="modal" data-target="#dpiModal">data protection and data usage</a> aswell as <a href="#" data-toggle="modal" data-target="#glModal">the general legal information</a>
+    </input>
     <br>
+    <br>
+    <button id="submitbutton" class="btn btn-success" disabled>Register!</button>
 
-    <div>
-      By hitting the "Register" button, you agree that you have <b>read and understood</b> the <a
-        href="/legal/dataprotection">information on data protection</a>. <br> <br>
-      You can find more information and contact options <a href="/legal/legal">here</a> in the legal information
+    <% } %>
+  </div>
+</div>
+
+<div class="modal fade" id="dpiModal" tabindex="-1" role="dialog" aria-labelledby="dpiModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="dpiModalLabel">Data protection and usage information</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= partial("legal/dataprotection.html") %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+      </div>
     </div>
+  </div>
+</div>
 
-    <br>
-
-    <button class="btn btn-success">Register!</button>
-
-    <br>
-    <br>
-    <br>
-    <% } %>
-    <% } %>
+<div class="modal fade" id="glModal" tabindex="-1" role="dialog" aria-labelledby="glModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="glModalLabel">Contact/Legal information</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= partial("legal/contactinformation.html") %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+      </div>
+    </div>
   </div>
 </div>

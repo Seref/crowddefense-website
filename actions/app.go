@@ -59,35 +59,44 @@ func App() *buffalo.App {
 		// Setup and use translations:
 		app.Use(translations())
 
-		if app.Env == "development" {
-			app.GET("/routes", Routes)
-		}
+		app.GET("/", HomeHandler)
 
-		app.GET("/", Home)
+		app.Middleware.Skip(Authorize, HomeHandler)
 
-		app.GET("/legal/legal", LegalLegal)
-		app.GET("/legal/dataprotection", LegalDataprotection)
-
+		//AuthMiddlewares
 		app.Use(SetCurrentUser)
 		app.Use(Authorize)
 
-		app.GET("/login", Login)
-		app.GET("/users/new", UsersNew)
-		app.GET("/signin", AuthNew)
-		app.POST("/users", UsersCreate)
-		app.POST("/signin", AuthCreate)
-		app.DELETE("/signout", AuthDestroy)
+		//Routes for Auth
+		auth := app.Group("/auth")
+		auth.GET("/", AuthLanding)
+		auth.GET("/new", AuthNew)
+		auth.POST("/", AuthCreate)
+		auth.DELETE("/", AuthDestroy)
+		auth.Middleware.Skip(Authorize, AuthLanding, AuthNew, AuthCreate, HomeHandler)
 
-		app.PUT("/suggestion/upvote/{suggestion_id}", SuggestionUpvote)
-		app.PUT("/suggestion/downvote/{suggestion_id}", SuggestionDownvote)
+		//Routes for User registration
+		users := app.Group("/users")
+		users.GET("/new", UsersNew)
+		users.POST("/", UsersCreate)
+		users.Middleware.Remove(Authorize)
 
-		app.GET("/game", Game)
 
-		app.Resource("/suggestions", SuggestionsResource{})
+		app.Resource("/ideas", IdeasResource{})
+		app.GET("/allideas", IdeasViewall)
+		app.PUT("/ideas/{idea_id}/upvote", UpvoteIdea)
+		app.PUT("/ideas/{idea_id}/downvote", DownvoteIdea)
 
-		app.Middleware.Skip(Authorize, UsersNew, UsersCreate, AuthNew, AuthCreate, Home, Login, LegalLegal, LegalDataprotection)
+		app.GET("/game", GameHandler)
+		
+		legal := app.Group("/legal")
+		legal.GET("/dataprotection", LegalDataProtection)
+		legal.GET("/contactinformation", LegalContactInformation)
+		
+		app.GET("/history", HistoryView)
 
-		app.PUT("/suggestion/downvote", SuggestionDownvote)
+		app.Resource("/prequestionnaires", PrequestionnairesResource{})
+		
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}
 
