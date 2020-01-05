@@ -61,7 +61,7 @@ func App() *buffalo.App {
 
 		app.GET("/", HomeHandler)
 
-		app.Middleware.Skip(Authorize, HomeHandler)
+		app.Middleware.Skip(Authorize, HomeHandler, LegalDataProtection, LegalContactInformation)
 
 		//AuthMiddlewares
 		app.Use(SetCurrentUser)
@@ -73,7 +73,6 @@ func App() *buffalo.App {
 		auth.GET("/new", AuthNew)
 		auth.POST("/", AuthCreate)
 		auth.DELETE("/", AuthDestroy)
-		auth.Middleware.Skip(Authorize, AuthLanding, AuthNew, AuthCreate, HomeHandler)
 
 		//Routes for User registration
 		users := app.Group("/users")
@@ -96,6 +95,8 @@ func App() *buffalo.App {
 		app.GET("/history", HistoryView)
 
 		app.Resource("/prequestionnaires", PrequestionnairesResource{})
+
+		auth.Middleware.Skip(Authorize, AuthLanding, AuthNew, AuthCreate, HomeHandler)
 		
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}
