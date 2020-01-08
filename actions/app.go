@@ -98,6 +98,7 @@ func App() *buffalo.App {
 
 		auth.Middleware.Skip(Authorize, AuthLanding, AuthNew, AuthCreate, HomeHandler)
 		
+		app.Resource("/postquestionnaires", PostquestionnairesResource{})
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}
 

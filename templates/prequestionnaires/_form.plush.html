@@ -120,45 +120,45 @@
     <% } %>
 </div>
 <label>Please answer the following statements:</label>
-<div class="form-group<%= if (errors.Errors["played_a_lot_of_platformers"]) { %> has-error <% } %>">
+<div class="form-group<%= if (errors.Errors["played_a_lot_of_tower_defense"]) { %> has-error <% } %>">
     <label style="margin-right: 2vw;">I played a lot of tower defense games</label>
     <div class="form-check form-check-inline">
         <label style="margin-right: 1vw;" class="form-check-label" for="inlineRadio0">Agree</label>
-        <input class="form-check-input" type="radio" name="PlayedALotOfPlatformers" id="inlineRadio0" value=0
-            <%= if (params["PlayedALotOfPlatformers"] == 0) { %> checked <% } %>>
+        <input class="form-check-input" type="radio" name="PlayedALotOfTowerDefense" id="inlineRadio0" value=0
+            <%= if (params["PlayedALotOfTowerDefense"] == 0) { %> checked <% } %>>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="PlayedALotOfPlatformers" id="inlineRadio1" value=1
-            <%= if (params["PlayedALotOfPlatformers"] == 1) { %> checked <% } %>>
+        <input class="form-check-input" type="radio" name="PlayedALotOfTowerDefense" id="inlineRadio1" value=1
+            <%= if (params["PlayedALotOfTowerDefense"] == 1) { %> checked <% } %>>
         <label class="form-check-label" for="inlineRadio1"></label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="PlayedALotOfPlatformers" id="inlineRadio2" value=2
-            <%= if (params["PlayedALotOfPlatformers"] == 2) { %> checked <% } %>>
+        <input class="form-check-input" type="radio" name="PlayedALotOfTowerDefense" id="inlineRadio2" value=2
+            <%= if (params["PlayedALotOfTowerDefense"] == 2) { %> checked <% } %>>
         <label class="form-check-label" for="inlineRadio2"></label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="PlayedALotOfPlatformers" id="inlineRadio3" value=3
-            <%= if (params["PlayedALotOfPlatformers"] == 3) { %> checked <% } %>>
+        <input class="form-check-input" type="radio" name="PlayedALotOfTowerDefense" id="inlineRadio3" value=3
+            <%= if (params["PlayedALotOfTowerDefense"] == 3) { %> checked <% } %>>
         <label class="form-check-label" for="inlineRadio3"></label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="PlayedALotOfPlatformers" id="inlineRadio4" value=4
-            <%= if (params["PlayedALotOfPlatformers"] == 4) { %> checked <% } %>>
+        <input class="form-check-input" type="radio" name="PlayedALotOfTowerDefense" id="inlineRadio4" value=4
+            <%= if (params["PlayedALotOfTowerDefense"] == 4) { %> checked <% } %>>
         <label class="form-check-label" for="inlineRadio4"></label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="PlayedALotOfPlatformers" id="inlineRadio5" value=5
-            <%= if (params["PlayedALotOfPlatformers"] == 5) { %> checked <% } %>>
+        <input class="form-check-input" type="radio" name="PlayedALotOfTowerDefense" id="inlineRadio5" value=5
+            <%= if (params["PlayedALotOfTowerDefense"] == 5) { %> checked <% } %>>
         <label class="form-check-label" for="inlineRadio5"></label>
     </div>
     <div class="form-check form-check-inline">
-        <input style="margin-right: 1vw;" class="form-check-input" type="radio" name="PlayedALotOfPlatformers"
-            id="inlineRadio6" value=6 <%= if (params["PlayedALotOfPlatformers"] == 6) { %> checked <% } %>>
+        <input style="margin-right: 1vw;" class="form-check-input" type="radio" name="PlayedALotOfTowerDefense"
+            id="inlineRadio6" value=6 <%= if (params["PlayedALotOfTowerDefense"] == 6) { %> checked <% } %>>
         <label class="form-check-label" for="inlineRadio6">Disagree</label>
     </div>
-    <%= if (errors.Errors["played_a_lot_of_platformers"]) { %>
-    <div class="invalid-feedback help-block" style="display: block;"><%= errors.Errors["played_a_lot_of_platformers"] %>
+    <%= if (errors.Errors["played_a_lot_of_tower_defense"]) { %>
+    <div class="invalid-feedback help-block" style="display: block;"><%= errors.Errors["played_a_lot_of_tower_defense"] %>
     </div>
     <% } %>
 </div>

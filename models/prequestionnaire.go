@@ -18,7 +18,7 @@ type Prequestionnaire struct {
     HoursVideoGamesPerWeek string `json:"hours_video_games_per_week" db:"hours_video_games_per_week"`
     MostImportantVideoGameAspects string `json:"most_important_video_game_aspects" db:"most_important_video_game_aspects"`
     MostImportantVideoGameAspect string `json:"most_important_video_game_aspect" db:"most_important_video_game_aspect"`
-    PlayedALotOfPlatformers int `json:"played_alot_of_platformers" db:"played_alot_of_platformers"`
+    PlayedALotOfTowerDefense int `json:"played_alot_of_tower_defense" db:"played_alot_of_tower_defense"`
     LikesTowerDefense int `json:"likes_tower_defense" db:"likes_tower_defense"`
     PlaysMoreTowerDefenseThanOtherGames int `json:"plays_more_tower_defense_than_other_games" db:"plays_more_tower_defense_than_other_games"`
     HasDesignedVideoGame bool `json:"has_designed_video_game" db:"has_designed_video_game"`
@@ -66,7 +66,7 @@ func (p *Prequestionnaire) Validate(tx *pop.Connection) (*validate.Errors, error
 		&validators.StringIsPresent{Field: p.HoursVideoGamesPerWeek, Name: "HoursVideoGamesPerWeek"},
 		&validators.StringIsPresent{Field: p.MostImportantVideoGameAspects, Name: "MostImportantVideoGameAspects"},
 		&validators.StringIsPresent{Field: p.MostImportantVideoGameAspect, Name: "MostImportantVideoGameAspect"},
-		&validators.IntIsPresent{Field: p.PlayedALotOfPlatformers, Name: "PlayedALotOfPlatformers"},
+		&validators.IntIsPresent{Field: p.PlayedALotOfTowerDefense, Name: "PlayedALotOfTowerDefense"},
 		&validators.IntIsPresent{Field: p.LikesTowerDefense, Name: "LikesTowerDefense"},
 		&validators.IntIsPresent{Field: p.PlaysMoreTowerDefenseThanOtherGames, Name: "PlaysMoreTowerDefenseThanOtherGames"},
 		&validators.StringIsPresent{Field: p.HowWantsToBeIncluded, Name: "HowWantsToBeIncluded"},
