@@ -10,7 +10,8 @@ import (
 )
 // Postquestionnaire is used by pop to map your .model.Name.Proper.Pluralize.Underscore database table to your go code.
 type Postquestionnaire struct {
-    ID uuid.UUID `json:"id" db:"id"`
+	ID uuid.UUID `json:"id" db:"id"`
+	Username string `json:"username" db:"username"`
     PlayingWasFun int `json:"playing_was_fun" db:"playing_was_fun"`
     LikedPlaying int `json:"liked_playing" db:"liked_playing"`
     EnjoyedPlayingVeryMuch int `json:"enjoyed_playing_very_much" db:"enjoyed_playing_very_much"`

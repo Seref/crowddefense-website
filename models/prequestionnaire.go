@@ -10,7 +10,8 @@ import (
 )
 // Prequestionnaire is used by pop to map your .model.Name.Proper.Pluralize.Underscore database table to your go code.
 type Prequestionnaire struct {
-    ID uuid.UUID `json:"id" db:"id"`
+	ID uuid.UUID `json:"id" db:"id"`
+	Username string `json:"username" db:"username"`
     Age string `json:"age" db:"age"`
     Gender string `json:"gender" db:"gender"`
     Job string `json:"job" db:"job"`
@@ -69,10 +70,6 @@ func (p *Prequestionnaire) Validate(tx *pop.Connection) (*validate.Errors, error
 		&validators.IntIsPresent{Field: p.PlayedALotOfTowerDefense, Name: "PlayedALotOfTowerDefense"},
 		&validators.IntIsPresent{Field: p.LikesTowerDefense, Name: "LikesTowerDefense"},
 		&validators.IntIsPresent{Field: p.PlaysMoreTowerDefenseThanOtherGames, Name: "PlaysMoreTowerDefenseThanOtherGames"},
-		&validators.StringIsPresent{Field: p.HowWantsToBeIncluded, Name: "HowWantsToBeIncluded"},
-		&validators.IntIsPresent{Field: p.HowLikesTwitchPlays, Name: "HowLikesTwitchPlays"},
-		&validators.IntIsPresent{Field: p.LikedPleaseBeNice, Name: "LikedPleaseBeNice"},
-		&validators.IntIsPresent{Field: p.LikedCrowdjump, Name: "LikedCrowdjump"},
 	), nil
 }
 

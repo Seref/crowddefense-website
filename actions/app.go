@@ -49,7 +49,8 @@ func App() *buffalo.App {
 
 		// Protect against CSRF attacks. https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)
 		// Remove to disable this.
-		app.Use(csrf.New)
+		csrf := csrf.New
+		app.Use(csrf)
 
 		// Wraps each request in a transaction.
 		//  c.Value("tx").(*pop.Connection)
@@ -61,7 +62,7 @@ func App() *buffalo.App {
 
 		app.GET("/", HomeHandler)
 
-		app.Middleware.Skip(Authorize, HomeHandler, LegalDataProtection, LegalContactInformation)
+		app.Middleware.Skip(Authorize, HomeHandler, LegalDataProtection, LegalContactInformation, StatisticsHandler)
 
 		//AuthMiddlewares
 		app.Use(SetCurrentUser)
@@ -95,10 +96,13 @@ func App() *buffalo.App {
 		app.GET("/history", HistoryView)
 
 		app.Resource("/prequestionnaires", PrequestionnairesResource{})
-
-		auth.Middleware.Skip(Authorize, AuthLanding, AuthNew, AuthCreate, HomeHandler)
-		
 		app.Resource("/postquestionnaires", PostquestionnairesResource{})
+
+		app.POST("/statistics", StatisticsHandler)
+		app.Middleware.Skip(csrf, StatisticsHandler)
+
+		auth.Middleware.Skip(Authorize, AuthLanding, AuthNew, AuthCreate)
+		
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}
 

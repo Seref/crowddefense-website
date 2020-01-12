@@ -28,48 +28,50 @@ type PostquestionnairesResource struct{
 // List gets all Postquestionnaires. This function is mapped to the path
 // GET /postquestionnaires
 func (v PostquestionnairesResource) List(c buffalo.Context) error {
-  // Get the DB connection from the context
-  tx, ok := c.Value("tx").(*pop.Connection)
-  if !ok {
-    return fmt.Errorf("no transaction found")
-  }
+  // // Get the DB connection from the context
+  // tx, ok := c.Value("tx").(*pop.Connection)
+  // if !ok {
+  //   return fmt.Errorf("no transaction found")
+  // }
 
-  postquestionnaires := &models.Postquestionnaires{}
+  // postquestionnaires := &models.Postquestionnaires{}
 
-  // Paginate results. Params "page" and "per_page" control pagination.
-  // Default values are "page=1" and "per_page=20".
-  q := tx.PaginateFromParams(c.Params())
+  // // Paginate results. Params "page" and "per_page" control pagination.
+  // // Default values are "page=1" and "per_page=20".
+  // q := tx.PaginateFromParams(c.Params())
 
-  // Retrieve all Postquestionnaires from the DB
-  if err := q.All(postquestionnaires); err != nil {
-    return err
-  }
+  // // Retrieve all Postquestionnaires from the DB
+  // if err := q.All(postquestionnaires); err != nil {
+  //   return err
+  // }
 
-  // Add the paginator to the context so it can be used in the template.
-  c.Set("pagination", q.Paginator)
+  // // Add the paginator to the context so it can be used in the template.
+  // c.Set("pagination", q.Paginator)
 
-  return c.Render(200, r.Auto(c, postquestionnaires))
+  // return c.Render(200, r.Auto(c, postquestionnaires))
+	return c.Render(404, r.HTML("404.html"))
 }
 
 // Show gets the data for one Postquestionnaire. This function is mapped to
 // the path GET /postquestionnaires/{postquestionnaire_id}
-func (v PostquestionnairesResource) Show(c buffalo.Context) error {
-  // Get the DB connection from the context
-  tx, ok := c.Value("tx").(*pop.Connection)
-  if !ok {
-    return fmt.Errorf("no transaction found")
-  }
+// func (v PostquestionnairesResource) Show(c buffalo.Context) error {
+//   // // Get the DB connection from the context
+//   // tx, ok := c.Value("tx").(*pop.Connection)
+//   // if !ok {
+//   //   return fmt.Errorf("no transaction found")
+//   // }
 
-  // Allocate an empty Postquestionnaire
-  postquestionnaire := &models.Postquestionnaire{}
+//   // // Allocate an empty Postquestionnaire
+//   // postquestionnaire := &models.Postquestionnaire{}
 
-  // To find the Postquestionnaire the parameter postquestionnaire_id is used.
-  if err := tx.Find(postquestionnaire, c.Param("postquestionnaire_id")); err != nil {
-    return c.Error(404, err)
-  }
+//   // // To find the Postquestionnaire the parameter postquestionnaire_id is used.
+//   // if err := tx.Find(postquestionnaire, c.Param("postquestionnaire_id")); err != nil {
+//   //   return c.Error(404, err)
+//   // }
 
-  return c.Render(200, r.Auto(c, postquestionnaire))
-}
+//   // return c.Render(200, r.Auto(c, postquestionnaire))
+// 	return c.Render(404, r.HTML("404.html"))
+// }
 
 // New renders the form for creating a new Postquestionnaire.
 // This function is mapped to the path GET /postquestionnaires/new
@@ -81,6 +83,8 @@ func (v PostquestionnairesResource) New(c buffalo.Context) error {
 func (v PostquestionnairesResource) Create(c buffalo.Context) error {
   // Allocate an empty Postquestionnaire
   postquestionnaire := &models.Postquestionnaire{}
+
+	postquestionnaire.Username = c.Value("current_user").(*models.User).Username
 
   // Bind postquestionnaire to the html form elements
   if err := c.Bind(postquestionnaire); err != nil {
@@ -111,91 +115,92 @@ func (v PostquestionnairesResource) Create(c buffalo.Context) error {
   // If there are no errors set a success message
   c.Flash().Add("success", T.Translate(c, "postquestionnaire.created.success"))
   // and redirect to the postquestionnaires index page
-  return c.Render(201, r.Auto(c, postquestionnaire))
+	return c.Redirect(200, "/game")
 }
 
 // Edit renders a edit form for a Postquestionnaire. This function is
 // mapped to the path GET /postquestionnaires/{postquestionnaire_id}/edit
-func (v PostquestionnairesResource) Edit(c buffalo.Context) error {
-  // Get the DB connection from the context
-  tx, ok := c.Value("tx").(*pop.Connection)
-  if !ok {
-    return fmt.Errorf("no transaction found")
-  }
+// func (v PostquestionnairesResource) Edit(c buffalo.Context) error {
+//   // // Get the DB connection from the context
+//   // tx, ok := c.Value("tx").(*pop.Connection)
+//   // if !ok {
+//   //   return fmt.Errorf("no transaction found")
+//   // }
 
-  // Allocate an empty Postquestionnaire
-  postquestionnaire := &models.Postquestionnaire{}
+//   // // Allocate an empty Postquestionnaire
+//   // postquestionnaire := &models.Postquestionnaire{}
 
-  if err := tx.Find(postquestionnaire, c.Param("postquestionnaire_id")); err != nil {
-    return c.Error(404, err)
-  }
+//   // if err := tx.Find(postquestionnaire, c.Param("postquestionnaire_id")); err != nil {
+//   //   return c.Error(404, err)
+//   // }
 
-  return c.Render(200, r.Auto(c, postquestionnaire))
-}
+//   // return c.Render(200, r.Auto(c, postquestionnaire))
+// 	return c.Render(404, r.HTML("404.html"))
+// }
 // Update changes a Postquestionnaire in the DB. This function is mapped to
 // the path PUT /postquestionnaires/{postquestionnaire_id}
-func (v PostquestionnairesResource) Update(c buffalo.Context) error {
-  // Get the DB connection from the context
-  tx, ok := c.Value("tx").(*pop.Connection)
-  if !ok {
-    return fmt.Errorf("no transaction found")
-  }
+// func (v PostquestionnairesResource) Update(c buffalo.Context) error {
+//   // Get the DB connection from the context
+//   tx, ok := c.Value("tx").(*pop.Connection)
+//   if !ok {
+//     return fmt.Errorf("no transaction found")
+//   }
 
-  // Allocate an empty Postquestionnaire
-  postquestionnaire := &models.Postquestionnaire{}
+//   // Allocate an empty Postquestionnaire
+//   postquestionnaire := &models.Postquestionnaire{}
 
-  if err := tx.Find(postquestionnaire, c.Param("postquestionnaire_id")); err != nil {
-    return c.Error(404, err)
-  }
+//   if err := tx.Find(postquestionnaire, c.Param("postquestionnaire_id")); err != nil {
+//     return c.Error(404, err)
+//   }
 
-  // Bind Postquestionnaire to the html form elements
-  if err := c.Bind(postquestionnaire); err != nil {
-    return err
-  }
+//   // Bind Postquestionnaire to the html form elements
+//   if err := c.Bind(postquestionnaire); err != nil {
+//     return err
+//   }
 
-  verrs, err := tx.ValidateAndUpdate(postquestionnaire)
-  if err != nil {
-    return err
-  }
+//   verrs, err := tx.ValidateAndUpdate(postquestionnaire)
+//   if err != nil {
+//     return err
+//   }
 
-  if verrs.HasAny() {
-    // Make the errors available inside the html template
-    c.Set("errors", verrs)
+//   if verrs.HasAny() {
+//     // Make the errors available inside the html template
+//     c.Set("errors", verrs)
 
-    // Render again the edit.html template that the user can
-    // correct the input.
-    return c.Render(422, r.Auto(c, postquestionnaire))
-  }
+//     // Render again the edit.html template that the user can
+//     // correct the input.
+//     return c.Render(422, r.Auto(c, postquestionnaire))
+//   }
 
-  // If there are no errors set a success message
-  c.Flash().Add("success", T.Translate(c, "postquestionnaire.updated.success"))
-  // and redirect to the postquestionnaires index page
-  return c.Render(200, r.Auto(c, postquestionnaire))
-}
+//   // If there are no errors set a success message
+//   c.Flash().Add("success", T.Translate(c, "postquestionnaire.updated.success"))
+//   // and redirect to the postquestionnaires index page
+//   return c.Render(200, r.Auto(c, postquestionnaire))
+// }
 
 // Destroy deletes a Postquestionnaire from the DB. This function is mapped
 // to the path DELETE /postquestionnaires/{postquestionnaire_id}
-func (v PostquestionnairesResource) Destroy(c buffalo.Context) error {
-  // Get the DB connection from the context
-  tx, ok := c.Value("tx").(*pop.Connection)
-  if !ok {
-    return fmt.Errorf("no transaction found")
-  }
+// func (v PostquestionnairesResource) Destroy(c buffalo.Context) error {
+//   // Get the DB connection from the context
+//   tx, ok := c.Value("tx").(*pop.Connection)
+//   if !ok {
+//     return fmt.Errorf("no transaction found")
+//   }
 
-  // Allocate an empty Postquestionnaire
-  postquestionnaire := &models.Postquestionnaire{}
+//   // Allocate an empty Postquestionnaire
+//   postquestionnaire := &models.Postquestionnaire{}
 
-  // To find the Postquestionnaire the parameter postquestionnaire_id is used.
-  if err := tx.Find(postquestionnaire, c.Param("postquestionnaire_id")); err != nil {
-    return c.Error(404, err)
-  }
+//   // To find the Postquestionnaire the parameter postquestionnaire_id is used.
+//   if err := tx.Find(postquestionnaire, c.Param("postquestionnaire_id")); err != nil {
+//     return c.Error(404, err)
+//   }
 
-  if err := tx.Destroy(postquestionnaire); err != nil {
-    return err
-  }
+//   if err := tx.Destroy(postquestionnaire); err != nil {
+//     return err
+//   }
 
-  // If there are no errors set a flash message
-  c.Flash().Add("success", T.Translate(c, "postquestionnaire.destroyed.success"))
-  // Redirect to the postquestionnaires index page
-  return c.Render(200, r.Auto(c, postquestionnaire))
-}
+//   // If there are no errors set a flash message
+//   c.Flash().Add("success", T.Translate(c, "postquestionnaire.destroyed.success"))
+//   // Redirect to the postquestionnaires index page
+//   return c.Render(200, r.Auto(c, postquestionnaire))
+// }

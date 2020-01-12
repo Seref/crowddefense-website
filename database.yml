@@ -2,7 +2,7 @@
 development:
   dialect: "mysql"
   database: "crowddefensewebsite_development"
-  host: "beemo.at"
+  host: "wailord"
   port: "3307"
   user: "crowddefense_dev"
   password: "x5nZf%J9wFAnB*#zZEFh%bkabbAQ^FQir^6xidyM*x^JW54e54czVZ*hpAXih^5t"
@@ -18,7 +18,7 @@ test:
   # In this case, the URL must contain all required connection parameters.
   #
   database: "crowddefensewebsite_test"
-  host: "beemo.at"
+  host: "wailord"
   port: "3308"
   user: "crowddefense_dev"
   password: "x5nZf%J9wFAnB*#zZEFh%bkabbAQ^FQir^6xidyM*x^JW54e54czVZ*hpAXih^5t"

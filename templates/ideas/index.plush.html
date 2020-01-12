@@ -140,8 +140,7 @@
 
 <script>
   function upvoteSuggestion(suggestion_uuid, auth_token) {
-    console.log(auth_token)
-    console.log(fetch(`/ideas/${suggestion_uuid}/upvote`, {
+    fetch(`/ideas/${suggestion_uuid}/upvote`, {
       method: 'PUT',
       headers: {
         'conten-type': 'application/x-www-form-urlencoded',
@@ -170,7 +169,7 @@
           upvotebutton.style = "color: black;"
         }
       }
-    }))
+    })
   }
 
   function downvoteSuggestion(suggestion_uuid, auth_token) {

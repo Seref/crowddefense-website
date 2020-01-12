@@ -1,5 +1,5 @@
 - id: "postquestionnaire.created.success"
-  translation: "Postquestionnaire was successfully created."
+  translation: "Postquestionnaire was successfully submitted, thanks for taking part!"
 - id: "postquestionnaire.updated.success"
   translation: "Postquestionnaire was successfully updated."
 - id: "postquestionnaire.destroyed.success"

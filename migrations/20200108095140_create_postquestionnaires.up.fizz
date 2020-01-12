@@ -1,5 +1,6 @@
 create_table("postquestionnaires") {
 	t.Column("id", "uuid", {primary: true})
+	t.Column("username", "string", {})
 	t.Column("playing_was_fun", "integer", {})
 	t.Column("liked_playing", "integer", {})
 	t.Column("enjoyed_playing_very_much", "integer", {})

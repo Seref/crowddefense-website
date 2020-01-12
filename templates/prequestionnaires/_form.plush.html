@@ -121,83 +121,96 @@
 </div>
 <label>Please answer the following statements:</label>
 <div class="form-group<%= if (errors.Errors["played_a_lot_of_tower_defense"]) { %> has-error <% } %>">
-    <label style="margin-right: 2vw;">I played a lot of tower defense games.</label>
-    <div class="form-check form-check-inline">
-        <label style="margin-right: 1vw;" class="form-check-label" for="inlineRadio0">Agree</label>
-        <input class="form-check-input" type="radio" name="PlayedALotOfTowerDefense" id="inlineRadio0" value=0
-            <%= if (params["PlayedALotOfTowerDefense"] == 0) { %> checked <% } %>>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="PlayedALotOfTowerDefense" id="inlineRadio1" value=1
-            <%= if (params["PlayedALotOfTowerDefense"] == 1) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio1"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="PlayedALotOfTowerDefense" id="inlineRadio2" value=2
-            <%= if (params["PlayedALotOfTowerDefense"] == 2) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio2"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="PlayedALotOfTowerDefense" id="inlineRadio3" value=3
-            <%= if (params["PlayedALotOfTowerDefense"] == 3) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio3"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="PlayedALotOfTowerDefense" id="inlineRadio4" value=4
-            <%= if (params["PlayedALotOfTowerDefense"] == 4) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio4"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="PlayedALotOfTowerDefense" id="inlineRadio5" value=5
-            <%= if (params["PlayedALotOfTowerDefense"] == 5) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio5"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input style="margin-right: 1vw;" class="form-check-input" type="radio" name="PlayedALotOfTowerDefense"
-            id="inlineRadio6" value=6 <%= if (params["PlayedALotOfTowerDefense"] == 6) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio6">Disagree</label>
+    <div class="row">
+        <div class="col-6">
+            <label style="margin-right: 2vw;">I played a lot of tower defense games.</label>
+        </div>
+        <div class="col-6">
+            <div class="form-check form-check-inline">
+                <label style="margin-right: 1vw;" class="form-check-label" for="inlineRadio1">Disagree</label>
+                <input class="form-check-input" type="radio" name="PlayedALotOfTowerDefense" id="inlineRadio1" value=1
+                    <%= if (params["PlayedALotOfTowerDefense"] == 1) { %> checked <% } %>>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="PlayedALotOfTowerDefense" id="inlineRadio2" value=2
+                    <%= if (params["PlayedALotOfTowerDefense"] == 2) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio2"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="PlayedALotOfTowerDefense" id="inlineRadio3" value=3
+                    <%= if (params["PlayedALotOfTowerDefense"] == 3) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio3"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="PlayedALotOfTowerDefense" id="inlineRadio4" value=4
+                    <%= if (params["PlayedALotOfTowerDefense"] == 4) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio4"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="PlayedALotOfTowerDefense" id="inlineRadio5" value=5
+                    <%= if (params["PlayedALotOfTowerDefense"] == 5) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio5"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="PlayedALotOfTowerDefense" id="inlineRadio6" value=6
+                    <%= if (params["PlayedALotOfTowerDefense"] == 6) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio6"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input style="margin-right: 1vw;" class="form-check-input" type="radio" name="PlayedALotOfTowerDefense"
+                    id="inlineRadio7" value=7 <%= if (params["PlayedALotOfTowerDefense"] == 7) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio7">Agree</label>
+            </div>
+        </div>
     </div>
     <%= if (errors.Errors["played_a_lot_of_tower_defense"]) { %>
-    <div class="invalid-feedback help-block" style="display: block;"><%= errors.Errors["played_a_lot_of_tower_defense"] %>
+    <div class="invalid-feedback help-block" style="display: block;">
+        <%= errors.Errors["played_a_lot_of_tower_defense"] %>
     </div>
     <% } %>
 </div>
 <div class="form-group<%= if (errors.Errors["likes_tower_defense"]) { %> has-error <% } %>">
-    <label style="margin-right: 2vw;">I like tower defense games.</label>
-    <div class="form-check form-check-inline">
-        <label style="margin-right: 1vw;" class="form-check-label" for="inlineRadio0">Agree</label>
-        <input class="form-check-input" type="radio" name="LikesTowerDefense" id="inlineRadio0" value=0
-            <%= if (params["LikesTowerDefense"] == 0) { %> checked <% } %>>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="LikesTowerDefense" id="inlineRadio1" value=1
-            <%= if (params["LikesTowerDefense"] == 1) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio1"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="LikesTowerDefense" id="inlineRadio2" value=2
-            <%= if (params["LikesTowerDefense"] == 2) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio2"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="LikesTowerDefense" id="inlineRadio3" value=3
-            <%= if (params["LikesTowerDefense"] == 3) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio3"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="LikesTowerDefense" id="inlineRadio4" value=4
-            <%= if (params["LikesTowerDefense"] == 4) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio4"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="LikesTowerDefense" id="inlineRadio5" value=5
-            <%= if (params["LikesTowerDefense"] == 5) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio5"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input style="margin-right: 1vw;" class="form-check-input" type="radio" name="LikesTowerDefense"
-            id="inlineRadio6" value=6 <%= if (params["LikesTowerDefense"] == 6) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio6">Disagree</label>
+    <div class="row">
+        <div class="col-6">
+            <label style="margin-right: 2vw;">I like tower defense games.</label>
+        </div>
+        <div class="col-6">
+            <div class="form-check form-check-inline">
+                <label style="margin-right: 1vw;" class="form-check-label" for="inlineRadio1">Disagree</label>
+                <input class="form-check-input" type="radio" name="LikesTowerDefense" id="inlineRadio1" value=1
+                    <%= if (params["LikesTowerDefense"] == 1) { %> checked <% } %>>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="LikesTowerDefense" id="inlineRadio2" value=2
+                    <%= if (params["LikesTowerDefense"] == 2) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio2"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="LikesTowerDefense" id="inlineRadio3" value=3
+                    <%= if (params["LikesTowerDefense"] == 3) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio3"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="LikesTowerDefense" id="inlineRadio4" value=4
+                    <%= if (params["LikesTowerDefense"] == 4) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio4"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="LikesTowerDefense" id="inlineRadio5" value=5
+                    <%= if (params["LikesTowerDefense"] == 5) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio5"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="LikesTowerDefense" id="inlineRadio6" value=6
+                    <%= if (params["LikesTowerDefense"] == 6) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio6"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input style="margin-right: 1vw;" class="form-check-input" type="radio" name="LikesTowerDefense"
+                    id="inlineRadio7" value=7 <%= if (params["LikesTowerDefense"] == 7) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio7">Agree</label>
+            </div>
+        </div>
     </div>
     <%= if (errors.Errors["likes_tower_defense"]) { %>
     <div class="invalid-feedback help-block" style="display: block;"><%= errors.Errors["likes_tower_defense"] %>
@@ -205,193 +218,371 @@
     <% } %>
 </div>
 <div class="form-group<%= if (errors.Errors["plays_more_tower_defense_than_other_games"]) { %> has-error <% } %>">
-    <label style="margin-right: 2vw;">I play more tower defense games than other game genres.</label>
-    <div class="form-check form-check-inline">
-        <label style="margin-right: 1vw;" class="form-check-label" for="inlineRadio0">Agree</label>
-        <input class="form-check-input" type="radio" name="PlaysMoreTowerDefenseThanOtherGames" id="inlineRadio0" value=0
-            <%= if (params["PlaysMoreTowerDefenseThanOtherGames"] == 0) { %> checked <% } %>>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="PlaysMoreTowerDefenseThanOtherGames" id="inlineRadio1" value=1
-            <%= if (params["PlaysMoreTowerDefenseThanOtherGames"] == 1) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio1"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="PlaysMoreTowerDefenseThanOtherGames" id="inlineRadio2" value=2
-            <%= if (params["PlaysMoreTowerDefenseThanOtherGames"] == 2) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio2"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="PlaysMoreTowerDefenseThanOtherGames" id="inlineRadio3" value=3
-            <%= if (params["PlaysMoreTowerDefenseThanOtherGames"] == 3) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio3"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="PlaysMoreTowerDefenseThanOtherGames" id="inlineRadio4" value=4
-            <%= if (params["PlaysMoreTowerDefenseThanOtherGames"] == 4) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio4"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="PlaysMoreTowerDefenseThanOtherGames" id="inlineRadio5" value=5
-            <%= if (params["PlaysMoreTowerDefenseThanOtherGames"] == 5) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio5"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input style="margin-right: 1vw;" class="form-check-input" type="radio" name="PlaysMoreTowerDefenseThanOtherGames"
-            id="inlineRadio6" value=6 <%= if (params["PlaysMoreTowerDefenseThanOtherGames"] == 6) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio6">Disagree</label>
+    <div class="row">
+        <div class="col-6">
+            <label style="margin-right: 2vw;">I play more tower defense games than other game genres.</label>
+        </div>
+        <div class="col-6">
+            <div class="form-check form-check-inline">
+                <label style="margin-right: 1vw;" class="form-check-label" for="inlineRadio1">Disagree</label>
+                <input class="form-check-input" type="radio" name="PlaysMoreTowerDefenseThanOtherGames"
+                    id="inlineRadio1" value=1 <%= if (params["PlaysMoreTowerDefenseThanOtherGames"] == 1) { %> checked
+                    <% } %>>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="PlaysMoreTowerDefenseThanOtherGames"
+                    id="inlineRadio2" value=2 <%= if (params["PlaysMoreTowerDefenseThanOtherGames"] == 2) { %> checked
+                    <% } %>>
+                <label class="form-check-label" for="inlineRadio2"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="PlaysMoreTowerDefenseThanOtherGames"
+                    id="inlineRadio3" value=3 <%= if (params["PlaysMoreTowerDefenseThanOtherGames"] == 3) { %> checked
+                    <% } %>>
+                <label class="form-check-label" for="inlineRadio3"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="PlaysMoreTowerDefenseThanOtherGames"
+                    id="inlineRadio4" value=4 <%= if (params["PlaysMoreTowerDefenseThanOtherGames"] == 4) { %> checked
+                    <% } %>>
+                <label class="form-check-label" for="inlineRadio4"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="PlaysMoreTowerDefenseThanOtherGames"
+                    id="inlineRadio5" value=5 <%= if (params["PlaysMoreTowerDefenseThanOtherGames"] == 5) { %> checked
+                    <% } %>>
+                <label class="form-check-label" for="inlineRadio5"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="PlaysMoreTowerDefenseThanOtherGames"
+                    id="inlineRadio6" value=6 <%= if (params["PlaysMoreTowerDefenseThanOtherGames"] == 6) { %> checked
+                    <% } %>>
+                <label class="form-check-label" for="inlineRadio6"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input style="margin-right: 1vw;" class="form-check-input" type="radio"
+                    name="PlaysMoreTowerDefenseThanOtherGames" id="inlineRadio7" value=7
+                    <%= if (params["PlaysMoreTowerDefenseThanOtherGames"] == 7) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio7">Agree</label>
+            </div>
+        </div>
     </div>
     <%= if (errors.Errors["plays_more_tower_defense_than_other_games"]) { %>
-    <div class="invalid-feedback help-block" style="display: block;"><%= errors.Errors["plays_more_tower_defense_than_other_games"] %>
+    <div class="invalid-feedback help-block" style="display: block;">
+        <%= errors.Errors["plays_more_tower_defense_than_other_games"] %>
     </div>
     <% } %>
 </div>
 
+<div class="form-group<%= if (errors.Errors["has_designed_video_game"]) { %> has-error <% } %>">
+    <label>Have you ever designed a Videogame?</label>
+    <select class="form-control<%= if (errors.Errors["has_designed_video_game"]) { %> is-invalid <% } %>"
+        id="prequestionnaire-HasDesignedVideoGame" name="HasDesignedVideoGame">
+        <option disabled selected style="display: none;" value=""> -- select an option -- </option>
+        <option <%= if (params["HasDesignedVideoGame"] == true) { %> selected <% } %> value=true>yes</option>
+        <option <%= if (params["HasDesignedVideoGame"] == false) { %> selected <% } %> value=false>no</option>
+    </select>
+    <%= if (errors.Errors["has_designed_video_game"]) { %>
+    <div class="invalid-feedback help-block"><%= errors.Errors["has_designed_video_game"] %></div>
+    <% } %>
+</div>
 
-<%= f.CheckboxTag("HasDesignedVideoGame", {unchecked: false, label: "Have you ever designed a Videogame?"}) %>
-<%= f.CheckboxTag("HasDesignedOtherApplication", {unchecked: false, label: "Have you ever designed an application? (except video games)"}) %>
-<%= f.CheckboxTag("WantsToBeIncluded", {unchecked: false, label: "If you had the choice, do you want to be included in the design process of a video game?"}) %>
-<%= f.TextAreaTag("HowWantsToBeIncluded", {rows: 10, label: "How would you like to be included?"}) %>
-<%= f.CheckboxTag("EverWatchedTwitchPlays", {unchecked: false, label: "Have you ever watched a 'Twitch Plays' series (e.g. Twitch Plays Pokemon, Twitch Plays Darksouls, Twitch Plays Pubg, etc) on Twitch?"}) %>
-<%= f.CheckboxTag("ParticipatedTwitchPlays", {unchecked: false, label: "Did you actively participate in the Twitch Plays series?"}) %>
+<div class="form-group<%= if (errors.Errors["has_designed_other_application"]) { %> has-error <% } %>">
+    <label>Have you ever designed an application? (except video games)</label>
+    <select class="form-control<%= if (errors.Errors["has_designed_other_application"]) { %> is-invalid <% } %>"
+        id="prequestionnaire-HasDesignedOtherApplication" name="HasDesignedOtherApplication">
+        <option disabled selected style="display: none;" value=""> -- select an option -- </option>
+        <option <%= if (params["HasDesignedOtherApplication"] == true) { %> selected <% } %> value=true>yes</option>
+        <option <%= if (params["HasDesignedOtherApplication"] == false) { %> selected <% } %> value=false>no</option>
+    </select>
+    <%= if (errors.Errors["has_designed_other_application"]) { %>
+    <div class="invalid-feedback help-block"><%= errors.Errors["has_designed_other_application"] %></div>
+    <% } %>
+</div>
 
-<div class="form-group<%= if (errors.Errors["how_likes_twitch_plays"]) { %> has-error <% } %>">
-    <label style="margin-right: 2vw;">How did you like Twitch Plays?</label>
-    <div class="form-check form-check-inline">
-        <label style="margin-right: 1vw;" class="form-check-label" for="inlineRadio0">Very much</label>
-        <input class="form-check-input" type="radio" name="HowLikesTwitchPlays" id="inlineRadio0" value=0
-            <%= if (params["HowLikesTwitchPlays"] == 0) { %> checked <% } %>>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="HowLikesTwitchPlays" id="inlineRadio1" value=1
-            <%= if (params["HowLikesTwitchPlays"] == 1) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio1"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="HowLikesTwitchPlays" id="inlineRadio2" value=2
-            <%= if (params["HowLikesTwitchPlays"] == 2) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio2"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="HowLikesTwitchPlays" id="inlineRadio3" value=3
-            <%= if (params["HowLikesTwitchPlays"] == 3) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio3"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="HowLikesTwitchPlays" id="inlineRadio4" value=4
-            <%= if (params["HowLikesTwitchPlays"] == 4) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio4"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="HowLikesTwitchPlays" id="inlineRadio5" value=5
-            <%= if (params["HowLikesTwitchPlays"] == 5) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio5"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input style="margin-right: 1vw;" class="form-check-input" type="radio" name="HowLikesTwitchPlays"
-            id="inlineRadio6" value=6 <%= if (params["HowLikesTwitchPlays"] == 6) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio6">Not at all</label>
+<div class="form-group<%= if (errors.Errors["wants_to_be_included"]) { %> has-error <% } %>">
+    <label>If you had the choice, do you want to be included in the design process of a video game?</label>
+    <select onchange="let wtbi = document.getElementsByClassName('wtbi'); if (this.value == 'true') { for (let item of wtbi) {item.style = 'display: inline;'} }
+        else { for (let item of wtbi) {item.style = 'display: none;'} }"
+        class="form-control<%= if (errors.Errors["wants_to_be_included"]) { %> is-invalid <% } %>"
+        id="prequestionnaire-WantsToBeIncluded" name="WantsToBeIncluded">
+        <option disabled selected style="display: none;" value=""> -- select an option -- </option>
+        <option <%= if (params["WantsToBeIncluded"] == true) { %> selected <% } %> value=true>yes</option>
+        <option <%= if (params["WantsToBeIncluded"] == false) { %> selected <% } %> value=false>no</option>
+    </select>
+    <%= if (errors.Errors["wants_to_be_included"]) { %>
+    <div class="invalid-feedback help-block"><%= errors.Errors["wants_to_be_included"] %></div>
+    <% } %>
+</div>
+
+<div class="wtbi" style="display: none;">
+    <%= f.TextAreaTag("HowWantsToBeIncluded", {rows: 10, label: "How would you like to be included?"}) %>
+</div>
+
+<div class="form-group<%= if (errors.Errors["ever_watched_twitch_plays"]) { %> has-error <% } %>">
+    <label>Have you ever watched a 'Twitch Plays' series (e.g. Twitch Plays Pokemon, Twitch Plays Darksouls, Twitch
+        Plays PUBG, etc.) on Twitch?</label>
+    <select onchange="let tp = document.getElementsByClassName('tp'); if (this.value == 'true') { for (let item of tp) {item.style = 'display: block;'} }
+    else { for (let item of tp) {item.style = 'display: none;'} }"
+        class="form-control<%= if (errors.Errors["ever_watched_twitch_plays"]) { %> is-invalid <% } %>"
+        id="prequestionnaire-EverWatchedTwitchPlays" name="EverWatchedTwitchPlays">
+        <option disabled selected style="display: none;" value=""> -- select an option -- </option>
+        <option <%= if (params["EverWatchedTwitchPlays"] == true) { %> selected <% } %> value=true>yes</option>
+        <option <%= if (params["EverWatchedTwitchPlays"] == false) { %> selected <% } %> value=false>no</option>
+    </select>
+    <%= if (errors.Errors["ever_watched_twitch_plays"]) { %>
+    <div class="invalid-feedback help-block"><%= errors.Errors["ever_watched_twitch_plays"] %></div>
+    <% } %>
+</div>
+
+<div style="display: none;"
+    class="tp form-group<%= if (errors.Errors["participated_twitch_plays"]) { %> has-error <% } %>">
+    <label>Did you actively participate in the Twitch Plays series?</label>
+    <select class="form-control<%= if (errors.Errors["participated_twitch_plays"]) { %> is-invalid <% } %>"
+        id="prequestionnaire-ParticipatedTwitchPlays" name="ParticipatedTwitchPlays">
+        <option disabled selected style="display: none;" value=""> -- select an option -- </option>
+        <option <%= if (params["ParticipatedTwitchPlays"] == true) { %> selected <% } %> value=true>yes</option>
+        <option <%= if (params["ParticipatedTwitchPlays"] == false) { %> selected <% } %> value=false>no</option>
+    </select>
+    <%= if (errors.Errors["participated_twitch_plays"]) { %>
+    <div class="invalid-feedback help-block"><%= errors.Errors["participated_twitch_plays"] %></div>
+    <% } %>
+</div>
+
+<div style="display: none;" class="tp form-group<%= if (errors.Errors["how_likes_twitch_plays"]) { %> has-error <% } %>">
+    <div class="row">
+        <div class="col-6">
+            <label style="margin-right: 2vw;">How did you like Twitch Plays?</label>
+        </div>
+        <div class="col-6">
+
+            <div class="form-check form-check-inline">
+                <label style="margin-right: 1vw;" class="form-check-label" for="inlineRadio1">Very much</label>
+                <input class="form-check-input" type="radio" name="HowLikesTwitchPlays" id="inlineRadio1" value=1
+                    <%= if (params["HowLikesTwitchPlays"] == 1) { %> checked <% } %>>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="HowLikesTwitchPlays" id="inlineRadio2" value=2
+                    <%= if (params["HowLikesTwitchPlays"] == 2) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio2"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="HowLikesTwitchPlays" id="inlineRadio3" value=3
+                    <%= if (params["HowLikesTwitchPlays"] == 3) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio3"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="HowLikesTwitchPlays" id="inlineRadio4" value=4
+                    <%= if (params["HowLikesTwitchPlays"] == 4) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio4"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="HowLikesTwitchPlays" id="inlineRadio5" value=5
+                    <%= if (params["HowLikesTwitchPlays"] == 5) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio5"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="HowLikesTwitchPlays" id="inlineRadio6" value=6
+                    <%= if (params["HowLikesTwitchPlays"] == 6) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio6"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input style="margin-right: 1vw;" class="form-check-input" type="radio" name="HowLikesTwitchPlays"
+                    id="inlineRadio7" value=7 <%= if (params["HowLikesTwitchPlays"] == 7) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio7">Not at all</label>
+            </div>
+        </div>
     </div>
     <%= if (errors.Errors["how_likes_twitch_plays"]) { %>
-    <div class="invalid-feedback help-block" style="display: block;"><%= errors.Errors["how_likes_twitch_plays"] %>
+    <div class="invalid-feedback help-block" style="display: block;">
+        <%= errors.Errors["how_likes_twitch_plays"] %>
     </div>
     <% } %>
 </div>
 
-<%= f.CheckboxTag("HeardOfPleaseBeNice", {unchecked: false, label: "Have you heard of 'PleaseBeNice'?"}) %>
-<%= f.CheckboxTag("PlayedPleaseBeNice", {unchecked: false, label: "Did you play 'PleaseBeNice' yourself?"}) %>
+<div class="form-group<%= if (errors.Errors["heard_of_please_be_nice"]) { %> has-error <% } %>">
+    <label>Have you heard of 'PleaseBeNice'?</label>
+    <select onchange="let pbn = document.getElementsByClassName('pbn'); if (this.value == 'true') { for (let item of pbn) {item.style = 'display: block;'} }
+    else { for (let item of pbn) {item.style = 'display: none;'} }"
+        class="form-control<%= if (errors.Errors["heard_of_please_be_nice"]) { %> is-invalid <% } %>"
+        id="prequestionnaire-HeardOfPleaseBeNice" name="HeardOfPleaseBeNice">
+        <option disabled selected style="display: none;" value=""> -- select an option -- </option>
+        <option <%= if (params["HeardOfPleaseBeNice"] == true) { %> selected <% } %> value=true>yes</option>
+        <option <%= if (params["HeardOfPleaseBeNice"] == false) { %> selected <% } %> value=false>no</option>
+    </select>
+    <%= if (errors.Errors["heard_of_please_be_nice"]) { %>
+    <div class="invalid-feedback help-block"><%= errors.Errors["heard_of_please_be_nice"] %></div>
+    <% } %>
+</div>
 
-<div class="form-group<%= if (errors.Errors["liked_please_be_nice"]) { %> has-error <% } %>">
-    <label style="margin-right: 2vw;">How did you like 'PleaseBeNice'?</label>
-    <div class="form-check form-check-inline">
-        <label style="margin-right: 1vw;" class="form-check-label" for="inlineRadio0">Very much</label>
-        <input class="form-check-input" type="radio" name="LikedPleaseBeNice" id="inlineRadio0" value=0
-            <%= if (params["LikedPleaseBeNice"] == 0) { %> checked <% } %>>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="LikedPleaseBeNice" id="inlineRadio1" value=1
-            <%= if (params["LikedPleaseBeNice"] == 1) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio1"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="LikedPleaseBeNice" id="inlineRadio2" value=2
-            <%= if (params["LikedPleaseBeNice"] == 2) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio2"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="LikedPleaseBeNice" id="inlineRadio3" value=3
-            <%= if (params["LikedPleaseBeNice"] == 3) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio3"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="LikedPleaseBeNice" id="inlineRadio4" value=4
-            <%= if (params["LikedPleaseBeNice"] == 4) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio4"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="LikedPleaseBeNice" id="inlineRadio5" value=5
-            <%= if (params["LikedPleaseBeNice"] == 5) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio5"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input style="margin-right: 1vw;" class="form-check-input" type="radio" name="LikedPleaseBeNice"
-            id="inlineRadio6" value=6 <%= if (params["LikedPleaseBeNice"] == 6) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio6">Not at all</label>
+<div style="display: none;" class="pbn form-group<%= if (errors.Errors["played_please_be_nice"]) { %> has-error <% } %>">
+    <label>Did you play 'PleaseBeNice' yourself?</label>
+    <select class="form-control<%= if (errors.Errors["played_please_be_nice"]) { %> is-invalid <% } %>"
+        id="prequestionnaire-PlayedPleaseBeNice" name="PlayedPleaseBeNice">
+        <option disabled selected style="display: none;" value=""> -- select an option -- </option>
+        <option <%= if (params["PlayedPleaseBeNice"] == true) { %> selected <% } %> value=true>yes</option>
+        <option <%= if (params["PlayedPleaseBeNice"] == false) { %> selected <% } %> value=false>no</option>
+    </select>
+    <%= if (errors.Errors["played_please_be_nice"]) { %>
+    <div class="invalid-feedback help-block"><%= errors.Errors["played_please_be_nice"] %></div>
+    <% } %>
+</div>
+
+<div style="display: none;" class="pbn form-group<%= if (errors.Errors["liked_please_be_nice"]) { %> has-error <% } %>">
+    <div class="row">
+        <div class="col-6">
+            <label style="margin-right: 2vw;">How did you like 'PleaseBeNice'?</label>
+        </div>
+        <div class="col-6">
+            <div class="form-check form-check-inline">
+                <label style="margin-right: 1vw;" class="form-check-label" for="inlineRadio1">Very much</label>
+                <input class="form-check-input" type="radio" name="LikedPleaseBeNice" id="inlineRadio1" value=1
+                    <%= if (params["LikedPleaseBeNice"] == 1) { %> checked <% } %>>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="LikedPleaseBeNice" id="inlineRadio2" value=2
+                    <%= if (params["LikedPleaseBeNice"] == 2) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio2"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="LikedPleaseBeNice" id="inlineRadio3" value=3
+                    <%= if (params["LikedPleaseBeNice"] == 3) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio3"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="LikedPleaseBeNice" id="inlineRadio4" value=4
+                    <%= if (params["LikedPleaseBeNice"] == 4) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio4"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="LikedPleaseBeNice" id="inlineRadio5" value=5
+                    <%= if (params["LikedPleaseBeNice"] == 5) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio5"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="LikedPleaseBeNice" id="inlineRadio6" value=6
+                    <%= if (params["LikedPleaseBeNice"] == 6) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio6"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input style="margin-right: 1vw;" class="form-check-input" type="radio" name="LikedPleaseBeNice"
+                    id="inlineRadio7" value=7 <%= if (params["LikedPleaseBeNice"] == 7) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio7">Not at all</label>
+            </div>
+        </div>
     </div>
     <%= if (errors.Errors["liked_please_be_nice"]) { %>
-    <div class="invalid-feedback help-block" style="display: block;"><%= errors.Errors["liked_please_be_nice"] %>
+    <div class="invalid-feedback help-block" style="display: block;">
+        <%= errors.Errors["liked_please_be_nice"] %>
     </div>
     <% } %>
 </div>
 
-<%= f.CheckboxTag("IdeaImplementedPleaseBeNice", {unchecked: false, label: "Did one of your ideas get implemented?"}) %>
-<%= f.CheckboxTag("HeardOfCrowdjump", {unchecked: false, label: "Have you heard of 'Crowdjump'?"}) %>
-<%= f.CheckboxTag("PlayedCrowdjump", {unchecked: false, label: "Did you play 'Crowdjump?'"}) %>
+<div style="display: none;" class="pbn form-group<%= if (errors.Errors["idea_implemented_please_be_nice"]) { %> has-error <% } %>">
+    <label>Did one of your ideas get implemented?</label>
+    <select class="form-control<%= if (errors.Errors["idea_implemented_please_be_nice"]) { %> is-invalid <% } %>"
+        id="prequestionnaire-IdeaImplementedPleaseBeNice" name="IdeaImplementedPleaseBeNice">
+        <option disabled selected style="display: none;" value=""> -- select an option -- </option>
+        <option <%= if (params["IdeaImplementedPleaseBeNice"] == true) { %> selected <% } %> value=true>yes</option>
+        <option <%= if (params["IdeaImplementedPleaseBeNice"] == false) { %> selected <% } %> value=false>no</option>
+    </select>
+    <%= if (errors.Errors["idea_implemented_please_be_nice"]) { %>
+    <div class="invalid-feedback help-block"><%= errors.Errors["idea_implemented_please_be_nice"] %></div>
+    <% } %>
+</div>
 
-<div class="form-group<%= if (errors.Errors["liked_crowdjump"]) { %> has-error <% } %>">
-    <label style="margin-right: 2vw;">How did you like 'Crowdjump'?</label>
-    <div class="form-check form-check-inline">
-        <label style="margin-right: 1vw;" class="form-check-label" for="inlineRadio0">Very much</label>
-        <input class="form-check-input" type="radio" name="LikedCrowdjump" id="inlineRadio0" value=0
-            <%= if (params["LikedCrowdjump"] == 0) { %> checked <% } %>>
+<div class="form-group<%= if (errors.Errors["heard_of_crowdjump"]) { %> has-error <% } %>">
+    <label>Have you heard of 'Crowdjump'?</label>
+    <select onchange="let cj = document.getElementsByClassName('cj'); if (this.value == 'true') { for (let item of cj) {item.style = 'display: block;'} }
+    else { for (let item of cj) {item.style = 'display: none;'} }"
+        class="form-control<%= if (errors.Errors["heard_of_crowdjump"]) { %> is-invalid <% } %>"
+        id="prequestionnaire-HeardOfCrowdjump" name="HeardOfCrowdjump">
+        <option disabled selected style="display: none;" value=""> -- select an option -- </option>
+        <option <%= if (params["HeardOfCrowdjump"] == true) { %> selected <% } %> value=true>yes</option>
+        <option <%= if (params["HeardOfCrowdjump"] == false) { %> selected <% } %> value=false>no</option>
+    </select>
+    <%= if (errors.Errors["heard_of_crowdjump"]) { %>
+    <div class="invalid-feedback help-block"><%= errors.Errors["heard_of_crowdjump"] %></div>
+    <% } %>
+</div>
+
+<div style="display: none;" class="cj form-group<%= if (errors.Errors["played_crowdjump"]) { %> has-error <% } %>">
+    <label>Did you play 'Crowdjump'?</label>
+    <select class="form-control<%= if (errors.Errors["played_crowdjump"]) { %> is-invalid <% } %>"
+        id="prequestionnaire-PlayedCrowdjump" name="PlayedCrowdjump">
+        <option disabled selected style="display: none;" value=""> -- select an option -- </option>
+        <option <%= if (params["PlayedCrowdjump"] == true) { %> selected <% } %> value=true>yes</option>
+        <option <%= if (params["PlayedCrowdjump"] == false) { %> selected <% } %> value=false>no</option>
+    </select>
+    <%= if (errors.Errors["played_crowdjump"]) { %>
+    <div class="invalid-feedback help-block"><%= errors.Errors["played_crowdjump"] %></div>
+    <% } %>
+</div>
+
+<div style="display: none;" class="cj form-group<%= if (errors.Errors["liked_crowdjump"]) { %> has-error <% } %>">
+    <div class="row">
+        <div class="col-6">
+            <label style="margin-right: 2vw;">How did you like 'Crowdjump'?</label>
+        </div>
+        <div class="col-6">
+            <div class="form-check form-check-inline">
+                <label style="margin-right: 1vw;" class="form-check-label" for="inlineRadio1">Very
+                    much</label>
+                <input class="form-check-input" type="radio" name="LikedCrowdjump" id="inlineRadio1" value=1
+                    <%= if (params["LikedCrowdjump"] == 1) { %> checked <% } %>>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="LikedCrowdjump" id="inlineRadio2" value=2
+                    <%= if (params["LikedCrowdjump"] == 2) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio2"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="LikedCrowdjump" id="inlineRadio3" value=3
+                    <%= if (params["LikedCrowdjump"] == 3) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio3"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="LikedCrowdjump" id="inlineRadio4" value=4
+                    <%= if (params["LikedCrowdjump"] == 4) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio4"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="LikedCrowdjump" id="inlineRadio5" value=5
+                    <%= if (params["LikedCrowdjump"] == 5) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio5"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="LikedCrowdjump" id="inlineRadio6" value=6
+                    <%= if (params["LikedCrowdjump"] == 6) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio6"></label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input style="margin-right: 1vw;" class="form-check-input" type="radio" name="LikedCrowdjump"
+                    id="inlineRadio7" value=7 <%= if (params["LikedCrowdjump"] == 7) { %> checked <% } %>>
+                <label class="form-check-label" for="inlineRadio7">Not at all</label>
+            </div>
+        </div>
     </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="LikedCrowdjump" id="inlineRadio1" value=1
-            <%= if (params["LikedCrowdjump"] == 1) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio1"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="LikedCrowdjump" id="inlineRadio2" value=2
-            <%= if (params["LikedCrowdjump"] == 2) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio2"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="LikedCrowdjump" id="inlineRadio3" value=3
-            <%= if (params["LikedCrowdjump"] == 3) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio3"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="LikedCrowdjump" id="inlineRadio4" value=4
-            <%= if (params["LikedCrowdjump"] == 4) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio4"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="LikedCrowdjump" id="inlineRadio5" value=5
-            <%= if (params["LikedCrowdjump"] == 5) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio5"></label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input style="margin-right: 1vw;" class="form-check-input" type="radio" name="LikedCrowdjump"
-            id="inlineRadio6" value=6 <%= if (params["LikedCrowdjump"] == 6) { %> checked <% } %>>
-        <label class="form-check-label" for="inlineRadio6">Not at all</label>
-    </div>
+
     <%= if (errors.Errors["liked_crowdjump"]) { %>
-    <div class="invalid-feedback help-block" style="display: block;"><%= errors.Errors["liked_crowdjump"] %>
+    <div class="invalid-feedback help-block" style="display: block;">
+        <%= errors.Errors["liked_crowdjump"] %>
     </div>
     <% } %>
 </div>
 
-<%= f.CheckboxTag("IdeaImplementedCrowdjump", {unchecked: false, label: "Did one of your 'Crowdjump' ideas get implemented?"}) %>
+<div style="display: none;" class="cj form-group<%= if (errors.Errors["idea_implemented_crowdjump"]) { %> has-error <% } %>">
+    <label>Did one of your 'Crowdjump' ideas get implemented?</label>
+    <select class="form-control<%= if (errors.Errors["idea_implemented_crowdjump"]) { %> is-invalid <% } %>"
+        id="prequestionnaire-IdeaImplementedCrowdjump" name="IdeaImplementedCrowdjump">
+        <option disabled selected style="display: none;" value=""> -- select an option -- </option>
+        <option <%= if (params["IdeaImplementedCrowdjump"] == true) { %> selected <% } %> value=true>yes</option>
+        <option <%= if (params["IdeaImplementedCrowdjump"] == false) { %> selected <% } %> value=false>no</option>
+    </select>
+    <%= if (errors.Errors["idea_implemented_crowdjump"]) { %>
+    <div class="invalid-feedback help-block"><%= errors.Errors["idea_implemented_crowdjump"] %></div>
+    <% } %>
+</div>
 
 <button class="btn btn-success" onclick="selectMultipleHandler" role="submit">Save</button>
 
