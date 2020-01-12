@@ -7,9 +7,6 @@
   <li class="list-inline-item">
     <%= if (current_user.Username == idea.SuggestedBy && len(idea.UpvotedBy) <= 0) { %>
     <a class="btn btn-warning" href="<%= editIdeaPath({ idea_id: idea.ID }) %>" role="button">Edit</a>
-    <% } else if (current_user.Username == idea.SuggestedBy) { %>
-    <a class="btn btn-warning disabled" href="<%= editIdeaPath({ idea_id: idea.ID }) %>" role="button">Can't be
-      edited</a>
     <% } %>
   </li>
   <li class="list-inline-item">
@@ -24,14 +21,14 @@
   </li>
   <li class="list-inline-item">
     <a class="btn fas fa-thumbs-up <%= if (idea.Picked || idea.Fullfilled) { %> disabled <% } %> <%= if (!idea.UpvotedBy[current_user.Username]) { %> btn-outline-success <% } else { %> btn-success <% } %>"
-      data-method="PUT" href="<%= ideaUpvotePath({idea_id: idea.ID}) %>"
+      id="upvotes_<%= idea.ID %>" onclick="upvoteSuggestion('<%= idea.ID %>', '<%= authenticity_token %>')"
       <%= if (!idea.UpvotedBy[current_user.Username]) { %> style="color: black;" <% } else { %> style="color: white;"
       <% } %>>
       <%= " " + len(idea.UpvotedBy) %>
     </a>
   <li class="list-inline-item">
     <a class="btn fas fa-thumbs-down <%= if (idea.Picked || idea.Fullfilled) { %> disabled <% } %> <%= if (!idea.DownvotedBy[current_user.Username]) { %> btn-outline-danger <% } else { %> btn-danger <% } %>"
-      data-method="PUT" href="<%= ideaDownvotePath({idea_id: idea.ID}) %> "
+      id="downvotes_<%= idea.ID %>" onclick="downvoteSuggestion('<%= idea.ID %>', '<%= authenticity_token %>')"
       <%= if (!idea.DownvotedBy[current_user.Username]) { %> style="color: black;" <% } else { %> style="color: white;"
       <% } %>>
       <%= " " + len(idea.DownvotedBy) %>
@@ -81,3 +78,72 @@
   </div>
 </div>
 <br>
+
+<script>
+  function upvoteSuggestion(suggestion_uuid, auth_token) {
+    console.log(auth_token)
+    console.log(fetch(`/ideas/${suggestion_uuid}/upvote`, {
+      method: 'PUT',
+      headers: {
+        'conten-type': 'application/x-www-form-urlencoded',
+        'x-csrf-token': auth_token
+      }
+    }).then(response => {
+
+      let upvotebutton = document.getElementById(`upvotes_${suggestion_uuid}`)
+      let downvotebutton = document.getElementById(`downvotes_${suggestion_uuid}`)
+
+      if (response.status == 200) {
+        if (upvotebutton.classList.contains('btn-outline-success')) {
+          upvotebutton.classList.replace('btn-outline-success', 'btn-success')
+          upvotebutton.innerText = " " + (parseInt(upvotebutton.innerText) + 1).toString()
+          upvotebutton.style = "color: white;"
+          if (downvotebutton.classList.contains('btn-danger')) {
+            downvotebutton.classList.replace('btn-danger', 'btn-outline-danger')
+            downvotebutton.innerText = " " + (parseInt(downvotebutton.innerText) - 1).toString()
+            downvotebutton.style = "color: black;"
+          }
+        }
+      } else if (response.status == 201) {
+        if (upvotebutton.classList.contains('btn-success')) {
+          upvotebutton.classList.replace('btn-success', 'btn-outline-success')
+          upvotebutton.innerText = " " + (parseInt(upvotebutton.innerText) - 1).toString()
+          upvotebutton.style = "color: black;"
+        }
+      }
+    }))
+  }
+
+  function downvoteSuggestion(suggestion_uuid, auth_token) {
+    fetch(`/ideas/${suggestion_uuid}/downvote`, {
+      method: 'PUT',
+      headers: {
+        'conten-type': 'application/x-www-form-urlencoded',
+        'x-csrf-token': auth_token
+      }
+    }).then(response => {
+
+      let upvotebutton = document.getElementById(`upvotes_${suggestion_uuid}`)
+      let downvotebutton = document.getElementById(`downvotes_${suggestion_uuid}`)
+
+      if (response.status == 200) {
+        if (downvotebutton.classList.contains('btn-outline-danger')) {
+          downvotebutton.classList.replace('btn-outline-danger', 'btn-danger')
+          downvotebutton.innerText = " " + (parseInt(downvotebutton.innerText) + 1).toString()
+          downvotebutton.style = "color: white;"
+          if (upvotebutton.classList.contains('btn-success')) {
+            upvotebutton.classList.replace('btn-success', 'btn-outline-success')
+            upvotebutton.innerText = " " + (parseInt(upvotebutton.innerText) - 1).toString()
+            upvotebutton.style = "color: black;"
+          }
+        }
+      } else if (response.status == 201) {
+        if (downvotebutton.classList.contains('btn-danger')) {
+          downvotebutton.classList.replace('btn-danger', 'btn-outline-danger')
+          downvotebutton.innerText = " " + (parseInt(downvotebutton.innerText) - 1).toString()
+          downvotebutton.style = "color: black;"
+        }
+      }
+    })
+  }
+</script>

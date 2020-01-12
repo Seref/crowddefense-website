@@ -238,12 +238,15 @@ func UpvoteIdea(c buffalo.Context) error {
 
 			// Render again the edit.html template that the user can
 			// correct the input.
-			return c.Render(422, r.Auto(c, idea))
+			// return c.Render(422, r.Auto(c, idea))
+			return c.Render(422, r.JSON(struct{success bool}{success: false}))
+
 		}
-		// If there are no errors set a success message
-		c.Flash().Add("danger", "Upvote taken back")
-		// and redirect to the ideas index page
-		return c.Redirect(302, "/ideas")
+		// // If there are no errors set a success message
+		// c.Flash().Add("danger", "Upvote taken back")
+		// // and redirect to the ideas index page
+		// return c.Redirect(302, "/ideas")
+		return c.Render(201, r.JSON(struct{success bool}{success: true}))
 	} else if alreadyDownvoted {
 		delete(idea.DownvotedBy, user.Username)
 		idea.UpvotedBy[user.Username] = user.Username
@@ -262,13 +265,15 @@ func UpvoteIdea(c buffalo.Context) error {
 
 		// Render again the edit.html template that the user can
 		// correct the input.
-		return c.Render(422, r.Auto(c, idea))
+		// return c.Render(422, r.Auto(c, idea))
+		return c.Render(422, r.JSON(struct{success bool}{success: false}))
 	}
 
-	// If there are no errors set a success message
-	c.Flash().Add("success", "Idea successfully upvoted")
-	// and redirect to the ideas index page
-	return c.Redirect(302, "/ideas")
+	// // If there are no errors set a success message
+	// c.Flash().Add("success", "Idea successfully upvoted")
+	// // and redirect to the ideas index page
+	// return c.Redirect(302, "/ideas")
+	return c.Render(200, r.JSON(struct{success bool}{success: true}))
 }
 
 func DownvoteIdea(c buffalo.Context) error {
@@ -307,12 +312,9 @@ func DownvoteIdea(c buffalo.Context) error {
 
 			// Render again the edit.html template that the user can
 			// correct the input.
-			return c.Render(422, r.Auto(c, idea))
+			return c.Render(422, r.JSON(struct{success bool}{success: false}))
 		}
-		// If there are no errors set a success message
-		c.Flash().Add("danger", "Downvote taken back")
-		// and redirect to the ideas index page
-		return c.Redirect(302, "/ideas")
+		return c.Render(201, r.JSON(struct{success bool}{success: true}))
 	} else {
 		idea.DownvotedBy[user.Username] = user.Username
 	}
@@ -328,13 +330,9 @@ func DownvoteIdea(c buffalo.Context) error {
 
 		// Render again the edit.html template that the user can
 		// correct the input.
-		return c.Render(422, r.Auto(c, idea))
+		return c.Render(422, r.JSON(struct{success bool}{success: false}))
 	}
-
-	// If there are no errors set a success message
-	c.Flash().Add("success", "Idea successfully downvoted")
-	// and redirect to the ideas index page
-	return c.Redirect(302, "/ideas")
+	return c.Render(200, r.JSON(struct{success bool}{success: true}))
 }
 
 // Destroy deletes a Idea from the DB. This function is mapped
