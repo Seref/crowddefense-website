@@ -46,30 +46,51 @@ func (v IdeasResource) List(c buffalo.Context) error {
 
 	ideas := &models.Ideas{}
 
+	ideasHot := &models.Ideas{}
+	ideasNew := &models.Ideas{}
+	ideasRandom := &models.Ideas{}
+
 	// Paginate results. Params "page" and "per_page" control pagination.
 	// Default values are "page=1" and "per_page=20".
 
 	page, _ := strconv.Atoi(c.Param("page"))
 
-	q := tx.Paginate(page, 8)
+	hot := tx.Paginate(page, 8)
+	new := tx.Paginate(page, 8)
+	random := tx.Paginate(page, 8)
 
-	q.Where("fullfilled != true")
-	q.Where("picked != true")
+	hot.Where("fullfilled != true")
+	new.Where("fullfilled != true")
+	random.Where("fullfilled != true")
+	
+	hot.Where("picked != true")
+	new.Where("picked != true")
+	random.Where("picked != true")
 
-	// currentVersion, err := redisClient.Get("game-currentversion").Result()
-	// 	if err != nil {
-	// 		log.Print(err)
-	// 	}
+	hot.Order("JSON_LENGTH(upvoted_by) - JSON_LENGTH(downvoted_by) DESC")
+	new.Order("created_at DESC")
+	random.Order("RAND()")
 
-	q.Order("JSON_LENGTH(upvoted_by) - JSON_LENGTH(downvoted_by) DESC")
-
-	// Retrieve all Ideas from the DB
-	if err := q.All(ideas); err != nil {
+	if err := hot.All(ideasHot); err != nil {
 		return err
 	}
 
+	if err := new.All(ideasNew); err != nil {
+		return err
+	}
+
+	if err := random.All(ideasRandom); err != nil {
+		return err
+	}
+
+	c.Set("ideasHot", ideasHot)
+	c.Set("ideasNew", ideasNew)
+	c.Set("ideasRandom", ideasRandom)
+
 	// Add the paginator to the context so it can be used in the template.
-	c.Set("pagination", q.Paginator)
+	c.Set("paginationHot", hot.Paginator)
+	c.Set("paginationNew", new.Paginator)
+	c.Set("paginationRandom", random.Paginator)
 
 	return c.Render(200, r.Auto(c, ideas))
 }

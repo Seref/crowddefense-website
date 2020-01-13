@@ -10,7 +10,8 @@
   </ul>
   <hr class="my-4">
   <span class="lead">Not satisfied? Read the ideas from other players below. Listed are those, that are currently up for
-    discussion (unfulfilled and unselected) sorted by popularity. Go vote on them, or submit your own
+    discussion (unfulfilled and unselected) sorted by popularity, recently created and just random. Go vote on them, or
+    submit your own
     ideas! In case you are looking for ones that have already been selected/fulfilled or just need to search all ideas
     for something specific, head over to the <a href="<%= allideasPath()%>">all ideas section</a>!</h1>
     <hr class="my-4">
@@ -60,82 +61,228 @@
     </script>
 </div>
 
-<%= for (key, idea) in ideas { %>
-<div class="card">
-  <%= if (key == 0) { %>
-  <div class="card-header" style="background-color: lightgreen;">
-    <h5>Highest Popularity!</h5>
-  </div>
-  <% } else if (key == 1) { %>
-  <div class="card-header" style="background-color: mediumturquoise;">
-    <h5>Still in the running!</h5>
-  </div>
-  <% } else if (key == 2){ %>
-  <div class="card-header" style="background-color: orangered;">
-    <h5>Might still make it with your vote!</h5>
-  </div>
-  <% } %>
-  <div class="card-body">
-    <h4 class="card-title"><%= idea.Title %></h4>
-    <p class="card-text"><%=  idea.Description%></p>
-  </div>
-  <%= if (idea.DevComment != "") { %>
-  <div class="card-body">
-    <h5 class="card-title">Comment from the developers</h5>
-    <p><%= idea.DevComment %></p>
-  </div>
-  <% } %>
-  <div class="card-body" id="keywordsection">
-    <span class="badge badge-pill badge-info">Popularity: <%= len(idea.UpvotedBy) - len(idea.DownvotedBy)%></span>
-    <span class="badge badge-pill badge-info">Suggested in Version <%= idea.VersionWhenSuggested %> by
-      <%= idea.SuggestedBy %></span>
-    <script>
-      var keywordsection = document.getElementById('keywordsection');
+<div class="row">
+  <div class="col-4">
+    <div class="card">
+      <div class="fas fa-fire card-header" style="background-color:darkred; color: black; text-align: center;"> Hot
+      </div>
+      <div class="card-body">
+        <%= for (key, idea) in ideasHot { %>
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title"><%= idea.Title %></h4>
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%=  idea.Description%></p>
+          </div>
+          <%= if (idea.DevComment != "") { %>
+          <div class="card-body">
+            <h5 class="card-title">Comment from the developers</h5>
+            <p><%= idea.DevComment %></p>
+          </div>
+          <% } %>
+          <div class="card-body" id="<%=idea.ID%>_keywordsection_hot">
+            <span class="badge badge-pill badge-info">Popularity:
+              <%= len(idea.UpvotedBy) - len(idea.DownvotedBy)%></span>
+            <span class="badge badge-pill badge-info">Suggested in Version <%= idea.VersionWhenSuggested %> by
+              <%= idea.SuggestedBy %></span>
+            <script>
+              var keywordsection = document.getElementById('<%=idea.ID%>_keywordsection_hot');
 
-      var keywordString = "<%= idea.Keywords %>";
-      var keywords = keywordString.split(";");
+              var keywordString = "<%= idea.Keywords %>";
+              var keywords = keywordString.split(";");
 
-      var keywordsHTML = ''
+              var keywordsHTML = ''
 
-      keywords.forEach(keyword => {
-        keywordsHTML += `<span class="badge badge-pill badge-primary" style="margin-right: 0.3vw">${keyword}</span>`
-      });
+              keywords.forEach(keyword => {
+                keywordsHTML += `<span class="badge badge-pill badge-primary" style="margin-right: 0.3vw">${keyword}</span>`
+              });
 
-      keywordsection.innerHTML += keywordsHTML
+              keywordsection.innerHTML += keywordsHTML
 
-    </script>
+            </script>
+          </div>
+          <div class="card-body">
+            <a class="btn fas fa-thumbs-up <%= if (!idea.UpvotedBy[current_user.Username]) { %> btn-outline-success <% } else { %> btn-success <% } %>"
+              id="upvotes_<%= idea.ID %>_hot" onclick="upvoteSuggestion('<%= idea.ID %>', '<%= authenticity_token %>')"
+              <%= if (!idea.UpvotedBy[current_user.Username]) { %> style="color: black;" <% } else { %>
+              style="color: white;" <% } %>>
+              <%= " " + len(idea.UpvotedBy) %>
+            </a>
+            <a class="btn fas fa-thumbs-down <%= if (!idea.DownvotedBy[current_user.Username]) { %> btn-outline-danger <% } else { %> btn-danger <% } %>"
+              id="downvotes_<%= idea.ID %>_hot"
+              onclick="downvoteSuggestion('<%= idea.ID %>', '<%= authenticity_token %>')"
+              <%= if (!idea.DownvotedBy[current_user.Username]) { %> style="color: black;" <% } else { %>
+              style="color: white;" <% } %>>
+              <%= " " + len(idea.DownvotedBy) %>
+            </a>
+            <%= if (current_user.Username == idea.SuggestedBy && len(idea.UpvotedBy) <= 0) { %>
+            <a class="btn btn-warning" href="<%= editIdeaPath({ idea_id: idea.ID }) %>" role="button">Edit</a>
+            <% } %>
+            <%= if (current_user.Username == idea.SuggestedBy && !idea.Picked && !idea.Fullfilled) { %>
+            <a class="btn btn-danger" href="<%= ideaPath({ idea_id: idea.ID }) %>" role="button" data-method="DELETE"
+              data-confirm="Are you sure?">Delete</a>
+            <% } else if (current_user.Username == idea.SuggestedBy) { %>
+            <a class="btn btn-danger disabled" href="<%= ideaPath({ idea_id: idea.ID }) %>" role="button"
+              data-method="DELETE" data-confirm="Are you sure?">Can't be
+              deleted</a>
+            <% } %>
+          </div>
+        </div>
+        <br>
+        <% } %>
+      </div>
+    </div>
   </div>
-  <div class="card-body">
-    <a class="btn fas fa-thumbs-up <%= if (!idea.UpvotedBy[current_user.Username]) { %> btn-outline-success <% } else { %> btn-success <% } %>"
-      id="upvotes_<%= idea.ID %>" onclick="upvoteSuggestion('<%= idea.ID %>', '<%= authenticity_token %>')"
-      <%= if (!idea.UpvotedBy[current_user.Username]) { %> style="color: black;" <% } else { %> style="color: white;"
-      <% } %>>
-      <%= " " + len(idea.UpvotedBy) %>
-    </a>
-    <a class="btn fas fa-thumbs-down <%= if (!idea.DownvotedBy[current_user.Username]) { %> btn-outline-danger <% } else { %> btn-danger <% } %>"
-      id="downvotes_<%= idea.ID %>" onclick="downvoteSuggestion('<%= idea.ID %>', '<%= authenticity_token %>')"
-      <%= if (!idea.DownvotedBy[current_user.Username]) { %> style="color: black;" <% } else { %> style="color: white;"
-      <% } %>>
-      <%= " " + len(idea.DownvotedBy) %>
-    </a>
-    <%= if (current_user.Username == idea.SuggestedBy && len(idea.UpvotedBy) <= 0) { %>
-    <a class="btn btn-warning" href="<%= editIdeaPath({ idea_id: idea.ID }) %>" role="button">Edit</a>
-    <% } %>
-    <%= if (current_user.Username == idea.SuggestedBy && !idea.Picked && !idea.Fullfilled) { %>
-    <a class="btn btn-danger" href="<%= ideaPath({ idea_id: idea.ID }) %>" role="button" data-method="DELETE"
-      data-confirm="Are you sure?">Delete</a>
-    <% } else if (current_user.Username == idea.SuggestedBy) { %>
-    <a class="btn btn-danger disabled" href="<%= ideaPath({ idea_id: idea.ID }) %>" role="button" data-method="DELETE"
-      data-confirm="Are you sure?">Can't be
-      deleted</a>
-    <% } %>
+  <div class="col-4">
+    <div class="card">
+      <div class="fas fa-air-freshener card-header"
+        style="background-color:greenyellow; color: black; text-align: center;"> New</div>
+      <div class="card-body">
+        <%= for (key, idea) in ideasNew { %>
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title"><%= idea.Title %></h4>
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%=  idea.Description%></p>
+          </div>
+          <%= if (idea.DevComment != "") { %>
+          <div class="card-body">
+            <h5 class="card-title">Comment from the developers</h5>
+            <p><%= idea.DevComment %></p>
+          </div>
+          <% } %>
+          <div class="card-body" id="<%=idea.ID%>_keywordsection_new">
+            <span class="badge badge-pill badge-info">Popularity:
+              <%= len(idea.UpvotedBy) - len(idea.DownvotedBy)%></span>
+            <span class="badge badge-pill badge-info">Suggested in Version <%= idea.VersionWhenSuggested %> by
+              <%= idea.SuggestedBy %></span>
+            <script>
+              var keywordsection = document.getElementById('<%=idea.ID%>_keywordsection_new');
+
+              var keywordString = "<%= idea.Keywords %>";
+              var keywords = keywordString.split(";");
+
+              var keywordsHTML = ''
+
+              keywords.forEach(keyword => {
+                keywordsHTML += `<span class="badge badge-pill badge-primary" style="margin-right: 0.3vw">${keyword}</span>`
+              });
+
+              keywordsection.innerHTML += keywordsHTML
+
+            </script>
+          </div>
+          <div class="card-body">
+            <a class="btn fas fa-thumbs-up <%= if (!idea.UpvotedBy[current_user.Username]) { %> btn-outline-success <% } else { %> btn-success <% } %>"
+              id="upvotes_<%= idea.ID %>_new" onclick="upvoteSuggestion('<%= idea.ID %>', '<%= authenticity_token %>')"
+              <%= if (!idea.UpvotedBy[current_user.Username]) { %> style="color: black;" <% } else { %>
+              style="color: white;" <% } %>>
+              <%= " " + len(idea.UpvotedBy) %>
+            </a>
+            <a class="btn fas fa-thumbs-down <%= if (!idea.DownvotedBy[current_user.Username]) { %> btn-outline-danger <% } else { %> btn-danger <% } %>"
+              id="downvotes_<%= idea.ID %>_new"
+              onclick="downvoteSuggestion('<%= idea.ID %>', '<%= authenticity_token %>')"
+              <%= if (!idea.DownvotedBy[current_user.Username]) { %> style="color: black;" <% } else { %>
+              style="color: white;" <% } %>>
+              <%= " " + len(idea.DownvotedBy) %>
+            </a>
+            <%= if (current_user.Username == idea.SuggestedBy && len(idea.UpvotedBy) <= 0) { %>
+            <a class="btn btn-warning" href="<%= editIdeaPath({ idea_id: idea.ID }) %>" role="button">Edit</a>
+            <% } %>
+            <%= if (current_user.Username == idea.SuggestedBy && !idea.Picked && !idea.Fullfilled) { %>
+            <a class="btn btn-danger" href="<%= ideaPath({ idea_id: idea.ID }) %>" role="button" data-method="DELETE"
+              data-confirm="Are you sure?">Delete</a>
+            <% } else if (current_user.Username == idea.SuggestedBy) { %>
+            <a class="btn btn-danger disabled" href="<%= ideaPath({ idea_id: idea.ID }) %>" role="button"
+              data-method="DELETE" data-confirm="Are you sure?">Can't be
+              deleted</a>
+            <% } %>
+          </div>
+        </div>
+        <br>
+        <% } %>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card">
+      <div class="fas fa-dice card-header" style="background-color:lightblue; color: black; text-align: center;"> Random
+      </div>
+      <div class="card-body">
+        <%= for (key, idea) in ideasRandom { %>
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title"><%= idea.Title %></h4>
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%=  idea.Description%></p>
+          </div>
+          <%= if (idea.DevComment != "") { %>
+          <div class="card-body">
+            <h5 class="card-title">Comment from the developers</h5>
+            <p><%= idea.DevComment %></p>
+          </div>
+          <% } %>
+          <div class="card-body" id="<%=idea.ID%>_keywordsection_random">
+            <span class="badge badge-pill badge-info">Popularity:
+              <%= len(idea.UpvotedBy) - len(idea.DownvotedBy)%></span>
+            <span class="badge badge-pill badge-info">Suggested in Version <%= idea.VersionWhenSuggested %> by
+              <%= idea.SuggestedBy %></span>
+            <script>
+              var keywordsection = document.getElementById('<%=idea.ID%>_keywordsection_random');
+
+              var keywordString = "<%= idea.Keywords %>";
+              var keywords = keywordString.split(";");
+
+              var keywordsHTML = ''
+
+              keywords.forEach(keyword => {
+                keywordsHTML += `<span class="badge badge-pill badge-primary" style="margin-right: 0.3vw">${keyword}</span>`
+              });
+
+              keywordsection.innerHTML += keywordsHTML
+
+            </script>
+          </div>
+          <div class="card-body">
+            <a class="btn fas fa-thumbs-up <%= if (!idea.UpvotedBy[current_user.Username]) { %> btn-outline-success <% } else { %> btn-success <% } %>"
+              id="upvotes_<%= idea.ID %>_random"
+              onclick="upvoteSuggestion('<%= idea.ID %>', '<%= authenticity_token %>')"
+              <%= if (!idea.UpvotedBy[current_user.Username]) { %> style="color: black;" <% } else { %>
+              style="color: white;" <% } %>>
+              <%= " " + len(idea.UpvotedBy) %>
+            </a>
+            <a class="btn fas fa-thumbs-down <%= if (!idea.DownvotedBy[current_user.Username]) { %> btn-outline-danger <% } else { %> btn-danger <% } %>"
+              id="downvotes_<%= idea.ID %>_random"
+              onclick="downvoteSuggestion('<%= idea.ID %>', '<%= authenticity_token %>')"
+              <%= if (!idea.DownvotedBy[current_user.Username]) { %> style="color: black;" <% } else { %>
+              style="color: white;" <% } %>>
+              <%= " " + len(idea.DownvotedBy) %>
+            </a>
+            <%= if (current_user.Username == idea.SuggestedBy && len(idea.UpvotedBy) <= 0) { %>
+            <a class="btn btn-warning" href="<%= editIdeaPath({ idea_id: idea.ID }) %>" role="button">Edit</a>
+            <% } %>
+            <%= if (current_user.Username == idea.SuggestedBy && !idea.Picked && !idea.Fullfilled) { %>
+            <a class="btn btn-danger" href="<%= ideaPath({ idea_id: idea.ID }) %>" role="button" data-method="DELETE"
+              data-confirm="Are you sure?">Delete</a>
+            <% } else if (current_user.Username == idea.SuggestedBy) { %>
+            <a class="btn btn-danger disabled" href="<%= ideaPath({ idea_id: idea.ID }) %>" role="button"
+              data-method="DELETE" data-confirm="Are you sure?">Can't be
+              deleted</a>
+            <% } %>
+          </div>
+        </div>
+        <br>
+        <% } %>
+      </div>
+    </div>
   </div>
 </div>
 <br>
-<% } %>
-
 <div class="text-center">
-  <%= paginator(pagination) %>
+  <%= paginator(paginationHot) %>
 </div>
 
 <script>
@@ -148,25 +295,31 @@
       }
     }).then(response => {
 
-      let upvotebutton = document.getElementById(`upvotes_${suggestion_uuid}`)
-      let downvotebutton = document.getElementById(`downvotes_${suggestion_uuid}`)
+      let upvotebuttons = [document.getElementById(`upvotes_${suggestion_uuid}_hot`), document.getElementById(`upvotes_${suggestion_uuid}_new`), document.getElementById(`upvotes_${suggestion_uuid}_random`)]
+      let downvotebuttons = [document.getElementById(`downvotes_${suggestion_uuid}_hot`), document.getElementById(`downvotes_${suggestion_uuid}_new`), document.getElementById(`downvotes_${suggestion_uuid}_random`)]
 
       if (response.status == 200) {
-        if (upvotebutton.classList.contains('btn-outline-success')) {
-          upvotebutton.classList.replace('btn-outline-success', 'btn-success')
-          upvotebutton.innerText = " " + (parseInt(upvotebutton.innerText) + 1).toString()
-          upvotebutton.style = "color: white;"
-          if (downvotebutton.classList.contains('btn-danger')) {
-            downvotebutton.classList.replace('btn-danger', 'btn-outline-danger')
-            downvotebutton.innerText = " " + (parseInt(downvotebutton.innerText) - 1).toString()
-            downvotebutton.style = "color: black;"
+        if (upvotebuttons[0].classList.contains('btn-outline-success') || upvotebuttons[1].classList.contains('btn-outline-success') || upvotebuttons[2].classList.contains('btn-outline-success')) {
+          upvotebuttons.forEach((upvotebutton) => {
+            upvotebutton.classList.replace('btn-outline-success', 'btn-success')
+            upvotebutton.innerText = " " + (parseInt(upvotebutton.innerText) + 1).toString()
+            upvotebutton.style = "color: white;"
+          })
+          if (downvotebuttons[0].classList.contains('btn-danger') || downvotebuttons[1].classList.contains('btn-danger') || downvotebuttons[2].classList.contains('btn-danger')) {
+            downvotebuttons.forEach((downvotebutton) => {
+              downvotebutton.classList.replace('btn-danger', 'btn-outline-danger')
+              downvotebutton.innerText = " " + (parseInt(downvotebutton.innerText) - 1).toString()
+              downvotebutton.style = "color: black;"
+            })
           }
         }
       } else if (response.status == 201) {
-        if (upvotebutton.classList.contains('btn-success')) {
-          upvotebutton.classList.replace('btn-success', 'btn-outline-success')
-          upvotebutton.innerText = " " + (parseInt(upvotebutton.innerText) - 1).toString()
-          upvotebutton.style = "color: black;"
+        if (upvotebuttons[0].classList.contains('btn-success') || upvotebuttons[1].classList.contains('btn-success') || upvotebuttons[2].classList.contains('btn-success')) {
+          upvotebuttons.forEach((upvotebutton) => {
+            upvotebutton.classList.replace('btn-success', 'btn-outline-success')
+            upvotebutton.innerText = " " + (parseInt(upvotebutton.innerText) - 1).toString()
+            upvotebutton.style = "color: black;"
+          })
         }
       }
     })
@@ -181,25 +334,31 @@
       }
     }).then(response => {
 
-      let upvotebutton = document.getElementById(`upvotes_${suggestion_uuid}`)
-      let downvotebutton = document.getElementById(`downvotes_${suggestion_uuid}`)
+      let upvotebuttons = [document.getElementById(`upvotes_${suggestion_uuid}_hot`), document.getElementById(`upvotes_${suggestion_uuid}_new`), document.getElementById(`upvotes_${suggestion_uuid}_random`)]
+      let downvotebuttons = [document.getElementById(`downvotes_${suggestion_uuid}_hot`), document.getElementById(`downvotes_${suggestion_uuid}_new`), document.getElementById(`downvotes_${suggestion_uuid}_random`)]
 
       if (response.status == 200) {
-        if (downvotebutton.classList.contains('btn-outline-danger')) {
-          downvotebutton.classList.replace('btn-outline-danger', 'btn-danger')
-          downvotebutton.innerText = " " + (parseInt(downvotebutton.innerText) + 1).toString()
-          downvotebutton.style = "color: white;"
-          if (upvotebutton.classList.contains('btn-success')) {
-            upvotebutton.classList.replace('btn-success', 'btn-outline-success')
-            upvotebutton.innerText = " " + (parseInt(upvotebutton.innerText) - 1).toString()
-            upvotebutton.style = "color: black;"
+        if (downvotebuttons[0].classList.contains('btn-outline-danger') || downvotebuttons[1].classList.contains('btn-outline-danger') || downvotebuttons[2].classList.contains('btn-outline-danger')) {
+          downvotebuttons.forEach((downvotebutton) => {
+            downvotebutton.classList.replace('btn-outline-danger', 'btn-danger')
+            downvotebutton.innerText = " " + (parseInt(downvotebutton.innerText) + 1).toString()
+            downvotebutton.style = "color: white;"
+          })
+          if (upvotebuttons[0].classList.contains('btn-success') || upvotebuttons[1].classList.contains('btn-success') || upvotebuttons[2].classList.contains('btn-success')) {
+            upvotebuttons.forEach((upvotebutton) => {
+              upvotebutton.classList.replace('btn-success', 'btn-outline-success')
+              upvotebutton.innerText = " " + (parseInt(upvotebutton.innerText) - 1).toString()
+              upvotebutton.style = "color: black;"
+            })
           }
         }
       } else if (response.status == 201) {
-        if (downvotebutton.classList.contains('btn-danger')) {
-          downvotebutton.classList.replace('btn-danger', 'btn-outline-danger')
-          downvotebutton.innerText = " " + (parseInt(downvotebutton.innerText) - 1).toString()
-          downvotebutton.style = "color: black;"
+        if (downvotebuttons[0].classList.contains('btn-danger') || downvotebuttons[1].classList.contains('btn-danger') || downvotebuttons[2].classList.contains('btn-danger')) {
+          downvotebuttons.forEach((downvotebutton) => {
+            downvotebutton.classList.replace('btn-danger', 'btn-outline-danger')
+            downvotebutton.innerText = " " + (parseInt(downvotebutton.innerText) - 1).toString()
+            downvotebutton.style = "color: black;"
+          })
         }
       }
     })
