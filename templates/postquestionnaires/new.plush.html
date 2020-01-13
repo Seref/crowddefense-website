@@ -1,8 +1,58 @@
-<div class="page-header">
-  <h1>New Postquestionnaire</h1>
+<div class="page-header" style="margin-top: 2vh; margin-bottom: 2vh;">
+  <h1>Could we just have a little of your time?</h1>
+
+  <p>
+    Hi! This is, as you probably know, a student project for a study on user driven game development.
+    As such, we need some data to quantify our findings.
+    It would greatly be appreciated if, after playing our game you could take this quick survey on the topic.
+    It should only take you 5-10 minutes!
+  </p>
+  <p>
+    Also, in case you are worried: This data is anonymous and only tied to your chosen username!
+    You can read more about this in <a href="#" data-toggle="modal" data-target="#dpiModal"> our data protection and data usage</a> aswell as <a href="#" data-toggle="modal" data-target="#glModal">the general legal information</a>
+  </p>
+
 </div>
 
 <%= formFor(postquestionnaire, {action: postquestionnairesPath(), method: "POST"}) { %>
   <%= partial("postquestionnaires/form.html") %>
   <%= linkTo(postquestionnairesPath(), {class: "btn btn-warning", "data-confirm": "Are you sure?", body: "Cancel"}) %>
 <% } %>
+
+<div class="modal fade" id="dpiModal" tabindex="-1" role="dialog" aria-labelledby="dpiModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="dpiModalLabel">Data protection and usage information</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= partial("legal/dataprotection.html") %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="glModal" tabindex="-1" role="dialog" aria-labelledby="glModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="glModalLabel">Contact/Legal information</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= partial("legal/contactinformation.html") %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
