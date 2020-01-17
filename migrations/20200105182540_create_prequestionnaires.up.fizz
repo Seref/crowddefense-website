@@ -1,6 +1,7 @@
 create_table("prequestionnaires") {
 	t.Column("id", "uuid", {primary: true})
 	t.Column("username", "string", {})
+	t.Column("nationality", "string", {})
 	t.Column("age", "string", {})
 	t.Column("gender", "string", {})
 	t.Column("job", "string", {})

@@ -12,6 +12,7 @@ import (
 type Postquestionnaire struct {
 	ID uuid.UUID `json:"id" db:"id"`
 	Username string `json:"username" db:"username"`
+	Nationality string `json:"nationality" db:"nationality"`
     PlayingWasFun int `json:"playing_was_fun" db:"playing_was_fun"`
     LikedPlaying int `json:"liked_playing" db:"liked_playing"`
     EnjoyedPlayingVeryMuch int `json:"enjoyed_playing_very_much" db:"enjoyed_playing_very_much"`
