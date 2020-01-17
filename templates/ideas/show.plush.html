@@ -6,7 +6,7 @@
   </li>
   <li class="list-inline-item">
     <%= if (current_user.Username == idea.SuggestedBy && len(idea.UpvotedBy) <= 0) { %>
-    <a class="btn btn-warning" href="<%= editIdeaPath({ idea_id: idea.ID }) %>" role="button">Edit</a>
+    <a id="editButton_<%= idea.ID %>" class="btn btn-warning" href="<%= editIdeaPath({ idea_id: idea.ID }) %>" role="button">Edit</a>
     <% } %>
   </li>
   <li class="list-inline-item">
@@ -92,12 +92,14 @@
 
       let upvotebutton = document.getElementById(`upvotes_${suggestion_uuid}`)
       let downvotebutton = document.getElementById(`downvotes_${suggestion_uuid}`)
+      let editbutton = document.getElementById(`editButton_${suggestion_uuid}`)
 
       if (response.status == 200) {
         if (upvotebutton.classList.contains('btn-outline-success')) {
           upvotebutton.classList.replace('btn-outline-success', 'btn-success')
           upvotebutton.innerText = " " + (parseInt(upvotebutton.innerText) + 1).toString()
           upvotebutton.style = "color: white;"
+          editbutton.setAttribute("hidden", "hidden")
           if (downvotebutton.classList.contains('btn-danger')) {
             downvotebutton.classList.replace('btn-danger', 'btn-outline-danger')
             downvotebutton.innerText = " " + (parseInt(downvotebutton.innerText) - 1).toString()
@@ -105,6 +107,7 @@
           }
         }
       } else if (response.status == 201) {
+        editbutton.removeAttribute("hidden")
         if (upvotebutton.classList.contains('btn-success')) {
           upvotebutton.classList.replace('btn-success', 'btn-outline-success')
           upvotebutton.innerText = " " + (parseInt(upvotebutton.innerText) - 1).toString()

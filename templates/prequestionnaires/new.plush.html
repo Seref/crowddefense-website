@@ -5,18 +5,21 @@
     Hi! This is, as you probably know, a student project for a study on user driven game development.
     As such, we need some data to quantify our findings.
     It would greatly be appreciated if, before playing our game you could take this quick survey on the topic.
-    It should only take you 5 minutes!
+    It should only take you 5 minutes!</p>
+  <p>
+    You can fully use the website once you have completed the survey.
   </p>
   <p>
     Also, in case you are worried: This data is anonymous and only tied to your chosen username!
-    You can read more about this in <a href="#" data-toggle="modal" data-target="#dpiModal"> our data protection and data usage</a> aswell as <a href="#" data-toggle="modal" data-target="#glModal">the general legal information</a>
+    You can read more about this in <a href="#" data-toggle="modal" data-target="#dpiModal"> our data protection and
+      data usage</a> aswell as <a href="#" data-toggle="modal" data-target="#glModal">the general legal information.</a>
   </p>
 
 </div>
 
 <%= formFor(prequestionnaire, {action: prequestionnairesPath(), method: "POST"}) { %>
-  <%= partial("prequestionnaires/form.html") %>
-  <%= linkTo(prequestionnairesPath(), {class: "btn btn-warning", "data-confirm": "Are you sure?", body: "Cancel"}) %>
+<%= partial("prequestionnaires/form.html") %>
+<%= linkTo(prequestionnairesPath(), {class: "btn btn-warning", "data-confirm": "Are you sure?", body: "Cancel"}) %>
 <% } %>
 
 <div class="modal fade" id="dpiModal" tabindex="-1" role="dialog" aria-labelledby="dpiModalLabel" aria-hidden="true">

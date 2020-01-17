@@ -20,11 +20,11 @@
   <div class="sign-form">
     <h1>Register</h1>
 
-    <p>Please choose a username that does not allow anyone to link back your account to your person.</p>
-    <p>Please choose a <a href="https://xkcd.com/936/" target="_blank">secure password</a>.</p>
-
     <%= form_for(user, {action: usersPath()}) { %>
     <%= f.InputTag("Username") %>
+    <p>Please choose a username that does not allow anyone to link back your account to your person.</p>
+    <p>Please choose a <a href="https://xkcd.com/936/" target="_blank">secure password</a>.</p>
+    <P>Please also make sure you don't forget your password. Forgetting your password means losing access to your account indefinitely, since we can not reset them.</P>
     <%= f.InputTag("Password", {type: "password"}) %>
     <%= f.InputTag("PasswordConfirmation", {type: "password"}) %>
 

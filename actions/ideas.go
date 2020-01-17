@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"strconv"
+	"strings"
 
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/pop"
@@ -30,10 +31,20 @@ type IdeasResource struct {
 // List gets all Ideas. This function is mapped to the path
 // GET /ideas
 func (v IdeasResource) List(c buffalo.Context) error {
+
 	// Get the DB connection from the context
 	tx, ok := c.Value("tx").(*pop.Connection)
 	if !ok {
 		return fmt.Errorf("no transaction found")
+	}
+
+	pq := &models.Prequestionnaire{}
+
+	err := tx.Where("username = ?", strings.ToLower(strings.TrimSpace(c.Value("current_user").(*models.User).Username))).First(pq)
+
+	if err != nil {
+		log.Print(err)
+		return c.Redirect(302, "/prequestionnaires/new")
 	}
 
 	for _, statement := range []string{"state-gameplay", "state-gamelooks", "state-voting", "state-website"} {
@@ -62,10 +73,24 @@ func (v IdeasResource) List(c buffalo.Context) error {
 	hot.Where("fullfilled != true")
 	new.Where("fullfilled != true")
 	random.Where("fullfilled != true")
-	
+
 	hot.Where("picked != true")
 	new.Where("picked != true")
 	random.Where("picked != true")
+
+	hot.Where("impossible != true")
+	new.Where("impossible != true")
+	random.Where("impossible != true")
+
+	hot.Where("duplicate != true")
+	new.Where("duplicate != true")
+	random.Where("duplicate != true")
+
+	curr_ver, err := redisClient.Get("game-currentversion").Result()
+	if err != nil {
+		log.Print(err)
+	}
+	new.Where(fmt.Sprintf("version_when_suggested = '%v'", curr_ver))
 
 	hot.Order("JSON_LENGTH(upvoted_by) - JSON_LENGTH(downvoted_by) DESC")
 	new.Order("created_at DESC")
@@ -260,14 +285,14 @@ func UpvoteIdea(c buffalo.Context) error {
 			// Render again the edit.html template that the user can
 			// correct the input.
 			// return c.Render(422, r.Auto(c, idea))
-			return c.Render(422, r.JSON(struct{success bool}{success: false}))
+			return c.Render(422, r.JSON(struct{ success bool }{success: false}))
 
 		}
 		// // If there are no errors set a success message
 		// c.Flash().Add("danger", "Upvote taken back")
 		// // and redirect to the ideas index page
 		// return c.Redirect(302, "/ideas")
-		return c.Render(201, r.JSON(struct{success bool}{success: true}))
+		return c.Render(201, r.JSON(struct{ success bool }{success: true}))
 	} else if alreadyDownvoted {
 		delete(idea.DownvotedBy, user.Username)
 		idea.UpvotedBy[user.Username] = user.Username
@@ -287,14 +312,14 @@ func UpvoteIdea(c buffalo.Context) error {
 		// Render again the edit.html template that the user can
 		// correct the input.
 		// return c.Render(422, r.Auto(c, idea))
-		return c.Render(422, r.JSON(struct{success bool}{success: false}))
+		return c.Render(422, r.JSON(struct{ success bool }{success: false}))
 	}
 
 	// // If there are no errors set a success message
 	// c.Flash().Add("success", "Idea successfully upvoted")
 	// // and redirect to the ideas index page
 	// return c.Redirect(302, "/ideas")
-	return c.Render(200, r.JSON(struct{success bool}{success: true}))
+	return c.Render(200, r.JSON(struct{ success bool }{success: true}))
 }
 
 func DownvoteIdea(c buffalo.Context) error {
@@ -333,9 +358,9 @@ func DownvoteIdea(c buffalo.Context) error {
 
 			// Render again the edit.html template that the user can
 			// correct the input.
-			return c.Render(422, r.JSON(struct{success bool}{success: false}))
+			return c.Render(422, r.JSON(struct{ success bool }{success: false}))
 		}
-		return c.Render(201, r.JSON(struct{success bool}{success: true}))
+		return c.Render(201, r.JSON(struct{ success bool }{success: true}))
 	} else {
 		idea.DownvotedBy[user.Username] = user.Username
 	}
@@ -351,9 +376,9 @@ func DownvoteIdea(c buffalo.Context) error {
 
 		// Render again the edit.html template that the user can
 		// correct the input.
-		return c.Render(422, r.JSON(struct{success bool}{success: false}))
+		return c.Render(422, r.JSON(struct{ success bool }{success: false}))
 	}
-	return c.Render(200, r.JSON(struct{success bool}{success: true}))
+	return c.Render(200, r.JSON(struct{ success bool }{success: true}))
 }
 
 // Destroy deletes a Idea from the DB. This function is mapped
