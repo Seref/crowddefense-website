@@ -12,6 +12,7 @@ import (
 type Prequestionnaire struct {
 	ID uuid.UUID `json:"id" db:"id"`
 	Username string `json:"username" db:"username"`
+	Nationality string `json:"nationality" db:"nationality"`
     Age string `json:"age" db:"age"`
     Gender string `json:"gender" db:"gender"`
     Job string `json:"job" db:"job"`
