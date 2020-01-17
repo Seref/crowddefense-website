@@ -1,34 +1,39 @@
 <div class="form-group<%= if (errors.Errors["age"]) { %> has-error <% } %>">
-    <label>Age</label>
+    <label>Age *</label>
     <select class="form-control<%= if (errors.Errors["age"]) { %> is-invalid <% } %>" id="prequestionnaire-Age"
         name="Age">
         <option disabled selected style="display: none;" value=""> -- select an option -- </option>
-        <option <%= if (params["Age"] == "< 18") { %> selected <% } %> value="< 18">
-            < 18</option> <option <%= if (params["Age"] == "18 - 26") { %> selected <% } %> value="18 - 26">18 - 26
-        </option>
-        <option <%= if (params["Age"] == "26 - 39") { %> selected <% } %> value="26 - 39">26 - 39</option>
-        <option <%= if (params["Age"] == "> 40") { %> selected <% } %> value="> 40">> 40</option>
+        <option <%= if (params["Age"] == "0 - 4") { %> selected <% } %> value="0 - 4">0 - 4</option>
+        <option <%= if (params["Age"] == "5 - 9") { %> selected <% } %> value="5 - 9">5 - 9</option>
+        <option <%= if (params["Age"] == "10 -14") { %> selected <% } %> value="10 - 14">10 -14</option>
+        <option <%= if (params["Age"] == "15 - 19") { %> selected <% } %> value="15 - 19">15 - 19</option>
+        <option <%= if (params["Age"] == "20 - 24") { %> selected <% } %> value="20 - 24">20 - 24</option>
+        <option <%= if (params["Age"] == "25+") { %> selected <% } %> value="25+">25+</option>
+        <option <%= if (params["Age"] == "I don't want to share this information") { %> selected <% } %> value="I don't want to share this information">I don't want to share this information</option>
     </select>
     <%= if (errors.Errors["age"]) { %>
     <div class="invalid-feedback help-block"><%= errors.Errors["age"] %></div>
     <% } %>
 </div>
 <div class="form-group<%= if (errors.Errors["gender"]) { %> has-error <% } %>">
-    <label>Gender</label>
+    <label>Gender *</label>
     <select class="form-control<%= if (errors.Errors["gender"]) { %> is-invalid <% } %>" id="prequestionnaire-Gender"
         name="Gender">
         <option disabled selected style="display: none;" value=""> -- select an option -- </option>
         <option <%= if (params["Gender"] == "female") { %> selected <% } %> value="female">female</option>
         <option <%= if (params["Gender"] == "male") { %> selected <% } %> value="male">male</option>
         <option <%= if (params["Gender"] == "other") { %> selected <% } %> value="other">other</option>
+        <option <%= if (params["Gender"] == "I don't want to share this information") { %> selected <% } %> value="I don't want to share this information">I don't want to share this information</option>
     </select>
     <%= if (errors.Errors["gender"]) { %>
     <div class="invalid-feedback help-block"><%= errors.Errors["gender"] %></div>
     <% } %>
 </div>
+<%= f.InputTag("Nationality") %>
+
 <%= f.InputTag("Job") %>
 <div class="form-group<%= if (errors.Errors["hours_at_p_c_per_week"]) { %> has-error <% } %>">
-    <label>Time in hours you use your PC per week</label>
+    <label>Time in hours you use your PC per week *</label>
     <select class="form-control<%= if (errors.Errors["hours_at_p_c_per_week"]) { %> is-invalid <% } %>"
         id="prequestionnaire-HoursAtPCPerWeek" name="HoursAtPCPerWeek">
         <option disabled selected style="display: none;" value=""> -- select an option -- </option>
@@ -44,7 +49,7 @@
     <% } %>
 </div>
 <div class="form-group<%= if (errors.Errors["hours_video_games_per_week"]) { %> has-error <% } %>">
-    <label>Time in hours you play video games per week</label>
+    <label>Time in hours you play video games per week *</label>
     <select class="form-control<%= if (errors.Errors["hours_video_games_per_week"]) { %> is-invalid <% } %>"
         id="prequestionnaire-HoursVideoGamesPerWeek" name="HoursVideoGamesPerWeek">
         <option disabled selected style="display: none;" value=""> -- select an option -- </option>
@@ -63,7 +68,7 @@
     <% } %>
 </div>
 <div class="form-group<%= if (errors.Errors["most_important_video_game_aspects"]) { %> has-error <% } %>">
-    <label>What are important aspects in a video game? (Select multiple by keeping CTRL pressed)</label>
+    <label>What are important aspects in a video game? *(Select multiple by keeping CTRL pressed)</label>
     <select size='8' onchange="selectMultipleHandler()" id="importantaspects" multiple
         class="form-control<%= if (errors.Errors["most_important_video_game_aspects"]) { %> is-invalid <% } %>">
         <option disabled selected style="display: none;" value=""> -- select an option -- </option>
@@ -94,7 +99,7 @@
         name="MostImportantVideoGameAspects" type="text" value=<%= params["MostImportantVideoGameAspects"]%>>
 </div>
 <div class="form-group<%= if (errors.Errors["most_important_video_game_aspect"]) { %> has-error <% } %>">
-    <label>What is THE most important aspect in a video game?</label>
+    <label>What is THE most important aspect in a video game? *</label>
     <select class="form-control<%= if (errors.Errors["most_important_video_game_aspect"]) { %> is-invalid <% } %>"
         id="prequestionnaire-MostImportantVideoGameAspect" name="MostImportantVideoGameAspect">
         <option disabled selected style="display: none;" value=""> -- select an option -- </option>
@@ -123,7 +128,7 @@
 <div class="form-group<%= if (errors.Errors["played_a_lot_of_tower_defense"]) { %> has-error <% } %>">
     <div class="row">
         <div class="col-6">
-            <label style="margin-right: 2vw;">I played a lot of tower defense games.</label>
+            <label style="margin-right: 2vw;">I played a lot of tower defense games. *</label>
         </div>
         <div class="col-6">
             <div class="form-check form-check-inline">
@@ -172,7 +177,7 @@
 <div class="form-group<%= if (errors.Errors["likes_tower_defense"]) { %> has-error <% } %>">
     <div class="row">
         <div class="col-6">
-            <label style="margin-right: 2vw;">I like tower defense games.</label>
+            <label style="margin-right: 2vw;">I like tower defense games. *</label>
         </div>
         <div class="col-6">
             <div class="form-check form-check-inline">
@@ -220,7 +225,7 @@
 <div class="form-group<%= if (errors.Errors["plays_more_tower_defense_than_other_games"]) { %> has-error <% } %>">
     <div class="row">
         <div class="col-6">
-            <label style="margin-right: 2vw;">I play more tower defense games than other game genres.</label>
+            <label style="margin-right: 2vw;">I play more tower defense games than other game genres. *</label>
         </div>
         <div class="col-6">
             <div class="form-check form-check-inline">
@@ -275,7 +280,7 @@
 </div>
 
 <div class="form-group<%= if (errors.Errors["has_designed_video_game"]) { %> has-error <% } %>">
-    <label>Have you ever designed a Videogame?</label>
+    <label>Have you ever designed a Videogame? *</label>
     <select class="form-control<%= if (errors.Errors["has_designed_video_game"]) { %> is-invalid <% } %>"
         id="prequestionnaire-HasDesignedVideoGame" name="HasDesignedVideoGame">
         <option disabled selected style="display: none;" value=""> -- select an option -- </option>
@@ -288,7 +293,7 @@
 </div>
 
 <div class="form-group<%= if (errors.Errors["has_designed_other_application"]) { %> has-error <% } %>">
-    <label>Have you ever designed an application? (except video games)</label>
+    <label>Have you ever designed an application? (except video games) *</label>
     <select class="form-control<%= if (errors.Errors["has_designed_other_application"]) { %> is-invalid <% } %>"
         id="prequestionnaire-HasDesignedOtherApplication" name="HasDesignedOtherApplication">
         <option disabled selected style="display: none;" value=""> -- select an option -- </option>
@@ -301,7 +306,7 @@
 </div>
 
 <div class="form-group<%= if (errors.Errors["wants_to_be_included"]) { %> has-error <% } %>">
-    <label>If you had the choice, do you want to be included in the design process of a video game?</label>
+    <label>If you had the choice, do you want to be included in the design process of a video game? *</label>
     <select onchange="let wtbi = document.getElementsByClassName('wtbi'); if (this.value == 'true') { for (let item of wtbi) {item.style = 'display: inline;'} }
         else { for (let item of wtbi) {item.style = 'display: none;'} }"
         class="form-control<%= if (errors.Errors["wants_to_be_included"]) { %> is-invalid <% } %>"
@@ -321,7 +326,7 @@
 
 <div class="form-group<%= if (errors.Errors["ever_watched_twitch_plays"]) { %> has-error <% } %>">
     <label>Have you ever watched a 'Twitch Plays' series (e.g. Twitch Plays Pokemon, Twitch Plays Darksouls, Twitch
-        Plays PUBG, etc.) on Twitch?</label>
+        Plays PUBG, etc.) on Twitch? *</label>
     <select onchange="let tp = document.getElementsByClassName('tp'); if (this.value == 'true') { for (let item of tp) {item.style = 'display: block;'} }
     else { for (let item of tp) {item.style = 'display: none;'} }"
         class="form-control<%= if (errors.Errors["ever_watched_twitch_plays"]) { %> is-invalid <% } %>"
@@ -337,7 +342,7 @@
 
 <div style="display: none;"
     class="tp form-group<%= if (errors.Errors["participated_twitch_plays"]) { %> has-error <% } %>">
-    <label>Did you actively participate in the Twitch Plays series?</label>
+    <label>Did you actively participate in the Twitch Plays series? *</label>
     <select class="form-control<%= if (errors.Errors["participated_twitch_plays"]) { %> is-invalid <% } %>"
         id="prequestionnaire-ParticipatedTwitchPlays" name="ParticipatedTwitchPlays">
         <option disabled selected style="display: none;" value=""> -- select an option -- </option>
@@ -352,7 +357,7 @@
 <div style="display: none;" class="tp form-group<%= if (errors.Errors["how_likes_twitch_plays"]) { %> has-error <% } %>">
     <div class="row">
         <div class="col-6">
-            <label style="margin-right: 2vw;">How did you like Twitch Plays?</label>
+            <label style="margin-right: 2vw;">How did you like Twitch Plays? *</label>
         </div>
         <div class="col-6">
 
@@ -401,7 +406,7 @@
 </div>
 
 <div class="form-group<%= if (errors.Errors["heard_of_please_be_nice"]) { %> has-error <% } %>">
-    <label>Have you heard of 'PleaseBeNice'?</label>
+    <label>Have you heard of 'PleaseBeNice'? *</label>
     <select onchange="let pbn = document.getElementsByClassName('pbn'); if (this.value == 'true') { for (let item of pbn) {item.style = 'display: block;'} }
     else { for (let item of pbn) {item.style = 'display: none;'} }"
         class="form-control<%= if (errors.Errors["heard_of_please_be_nice"]) { %> is-invalid <% } %>"
@@ -416,7 +421,7 @@
 </div>
 
 <div style="display: none;" class="pbn form-group<%= if (errors.Errors["played_please_be_nice"]) { %> has-error <% } %>">
-    <label>Did you play 'PleaseBeNice' yourself?</label>
+    <label>Did you play 'PleaseBeNice' yourself? *</label>
     <select class="form-control<%= if (errors.Errors["played_please_be_nice"]) { %> is-invalid <% } %>"
         id="prequestionnaire-PlayedPleaseBeNice" name="PlayedPleaseBeNice">
         <option disabled selected style="display: none;" value=""> -- select an option -- </option>
@@ -431,7 +436,7 @@
 <div style="display: none;" class="pbn form-group<%= if (errors.Errors["liked_please_be_nice"]) { %> has-error <% } %>">
     <div class="row">
         <div class="col-6">
-            <label style="margin-right: 2vw;">How did you like 'PleaseBeNice'?</label>
+            <label style="margin-right: 2vw;">How did you like 'PleaseBeNice'? *</label>
         </div>
         <div class="col-6">
             <div class="form-check form-check-inline">
@@ -479,7 +484,7 @@
 </div>
 
 <div style="display: none;" class="pbn form-group<%= if (errors.Errors["idea_implemented_please_be_nice"]) { %> has-error <% } %>">
-    <label>Did one of your ideas get implemented?</label>
+    <label>Did one of your ideas get implemented? *</label>
     <select class="form-control<%= if (errors.Errors["idea_implemented_please_be_nice"]) { %> is-invalid <% } %>"
         id="prequestionnaire-IdeaImplementedPleaseBeNice" name="IdeaImplementedPleaseBeNice">
         <option disabled selected style="display: none;" value=""> -- select an option -- </option>
@@ -492,7 +497,7 @@
 </div>
 
 <div class="form-group<%= if (errors.Errors["heard_of_crowdjump"]) { %> has-error <% } %>">
-    <label>Have you heard of 'Crowdjump'?</label>
+    <label>Have you heard of 'Crowdjump'? *</label>
     <select onchange="let cj = document.getElementsByClassName('cj'); if (this.value == 'true') { for (let item of cj) {item.style = 'display: block;'} }
     else { for (let item of cj) {item.style = 'display: none;'} }"
         class="form-control<%= if (errors.Errors["heard_of_crowdjump"]) { %> is-invalid <% } %>"
@@ -507,7 +512,7 @@
 </div>
 
 <div style="display: none;" class="cj form-group<%= if (errors.Errors["played_crowdjump"]) { %> has-error <% } %>">
-    <label>Did you play 'Crowdjump'?</label>
+    <label>Did you play 'Crowdjump'? *</label>
     <select class="form-control<%= if (errors.Errors["played_crowdjump"]) { %> is-invalid <% } %>"
         id="prequestionnaire-PlayedCrowdjump" name="PlayedCrowdjump">
         <option disabled selected style="display: none;" value=""> -- select an option -- </option>
@@ -522,7 +527,7 @@
 <div style="display: none;" class="cj form-group<%= if (errors.Errors["liked_crowdjump"]) { %> has-error <% } %>">
     <div class="row">
         <div class="col-6">
-            <label style="margin-right: 2vw;">How did you like 'Crowdjump'?</label>
+            <label style="margin-right: 2vw;">How did you like 'Crowdjump'? *</label>
         </div>
         <div class="col-6">
             <div class="form-check form-check-inline">
@@ -572,7 +577,7 @@
 </div>
 
 <div style="display: none;" class="cj form-group<%= if (errors.Errors["idea_implemented_crowdjump"]) { %> has-error <% } %>">
-    <label>Did one of your 'Crowdjump' ideas get implemented?</label>
+    <label>Did one of your 'Crowdjump' ideas get implemented? *</label>
     <select class="form-control<%= if (errors.Errors["idea_implemented_crowdjump"]) { %> is-invalid <% } %>"
         id="prequestionnaire-IdeaImplementedCrowdjump" name="IdeaImplementedCrowdjump">
         <option disabled selected style="display: none;" value=""> -- select an option -- </option>
@@ -586,7 +591,7 @@
 
 <button class="btn btn-success" onclick="selectMultipleHandler" role="submit">Save</button>
 
-<script>
+<script>        
     window.onload = selectMultipleHandler2()
 
     function selectMultipleHandler() {
