@@ -82,15 +82,7 @@ func AccountDeletionHandler(c buffalo.Context) error {
 
 	redisClient.SAdd("to_be_deleted", currentUser.Username)
 
-	// for _, statement := range []string{"state-gameplay", "state-gamelooks", "state-voting", "state-website"} {
-	// 	val, err := redisClient.Get(statement).Result()
-	// 	if err != nil {
-	// 		log.Print(err)
-	// 	}
-	// 	c.Set(statement, val)
-	// }
-
-	return c.Render(200, r.Plain("ok"))
+	return c.Render(200, r.String("ok"))
 }
 
 func AccountUndeletionHandler(c buffalo.Context) error {
@@ -99,13 +91,5 @@ func AccountUndeletionHandler(c buffalo.Context) error {
 
 	redisClient.SRem("to_be_deleted", currentUser.Username)
 
-	// for _, statement := range []string{"state-gameplay", "state-gamelooks", "state-voting", "state-website"} {
-	// 	val, err := redisClient.Get(statement).Result()
-	// 	if err != nil {
-	// 		log.Print(err)
-	// 	}
-	// 	c.Set(statement, val)
-	// }
-
-	return c.Render(200, r.Plain("ok"))
+	return c.Render(200, r.String("ok"))
 }

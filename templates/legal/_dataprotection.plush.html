@@ -9,7 +9,7 @@
         without giving reasons until the end of the data collection process by deleting your account
         <%= if (current_user) { %>
         <a href="#" data-toggle="modal" data-target="#deletionModal" onclick="
-                fetch(`/account/<%current_user.ID%>/delete`, {
+                fetch(`/account/<%=current_user.ID%>/delete`, {
                     method: 'DELETE',
                     headers: {
                         'x-csrf-token': '<%= authenticity_token %>'
