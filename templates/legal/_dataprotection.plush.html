@@ -6,10 +6,23 @@
 
     <p>Participation in the study is voluntary. The consent to participate in this study can be revoked at any time
         and
-        without giving reasons until the end of the data collection process by deleting your account <a
-            href="">here</a>. All incomplete data records will be
-        deleted
-        by us. After the end of data collection, the statutory rights of revocation, information, correction,
+        without giving reasons until the end of the data collection process by deleting your account
+        <%= if (current_user) { %>
+        <a href="#" data-toggle="modal" data-target="#deletionModal" onclick="
+                fetch(`/account/<%current_user.ID%>/delete`, {
+                    method: 'DELETE',
+                    headers: {
+                        'x-csrf-token': '<%= authenticity_token %>'
+                    },
+                    body: {}
+                }).then(response => {
+                    console.log(response)
+                })
+            ">here</a>
+        <% } else { %>logging in and coming back here<% } %>. This will put your anonymous username into a list, and
+        everyday shortly after 7 p.m., we delete all
+        data records belonging to the usernames in that list. After the end of data collection, the statutory rights of
+        revocation, information, correction,
         blocking
         and deletion can no longer be exercised because the data can no longer be attributed to the data subject, as
         long as the username is not disclosed to us.
@@ -70,3 +83,29 @@
         your
         personal data violates statutory data protection regulations.</p>
 </div>
+
+<%= if (current_user) { %>
+<div class="modal fade" id="deletionModal" tabindex="-1" role="dialog" aria-labelledby="deletionModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deletionModalLabel">Your account is ready for deletion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Your account name has been recoreded and is up for deletion.
+                Deletion takes place daily at shortly after 7 p.m. Central European Time.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal"
+                    onclick=" fetch(`/account/<%=current_user.ID%>/undelete`, { method: 'POST', headers: { 'x-csrf-token': '<%= authenticity_token %>' }, body: {} }).then(response => { console.log(response) }) ">No
+                    stop, I didn't mean it!</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<% } %>

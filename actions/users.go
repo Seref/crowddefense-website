@@ -74,3 +74,38 @@ func Authorize(next buffalo.Handler) buffalo.Handler {
 		return next(c)
 	}
 }
+
+// Delete User
+func AccountDeletionHandler(c buffalo.Context) error {
+
+	currentUser := c.Value("current_user").(*models.User)
+
+	redisClient.SAdd("to_be_deleted", currentUser.Username)
+
+	// for _, statement := range []string{"state-gameplay", "state-gamelooks", "state-voting", "state-website"} {
+	// 	val, err := redisClient.Get(statement).Result()
+	// 	if err != nil {
+	// 		log.Print(err)
+	// 	}
+	// 	c.Set(statement, val)
+	// }
+
+	return c.Render(200, r.Plain("ok"))
+}
+
+func AccountUndeletionHandler(c buffalo.Context) error {
+
+	currentUser := c.Value("current_user").(*models.User)
+
+	redisClient.SRem("to_be_deleted", currentUser.Username)
+
+	// for _, statement := range []string{"state-gameplay", "state-gamelooks", "state-voting", "state-website"} {
+	// 	val, err := redisClient.Get(statement).Result()
+	// 	if err != nil {
+	// 		log.Print(err)
+	// 	}
+	// 	c.Set(statement, val)
+	// }
+
+	return c.Render(200, r.Plain("ok"))
+}

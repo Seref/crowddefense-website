@@ -96,10 +96,13 @@ func App() *buffalo.App {
 		app.GET("/history", HistoryView)
 
 		app.Resource("/prequestionnaires", PrequestionnairesResource{})
-		app.Resource("/postquestionnaires", PostquestionnairesResource{})
+		// app.Resource("/postquestionnaires", PostquestionnairesResource{})
 
 		app.POST("/statistics", StatisticsHandler)
 		app.Middleware.Skip(csrf, StatisticsHandler)
+
+		app.DELETE("/account/{accountid}/delete", AccountDeletionHandler)
+		app.POST("/account/{accountid}/undelete", AccountUndeletionHandler)
 
 		auth.Middleware.Skip(Authorize, AuthLanding, AuthNew, AuthCreate)
 		

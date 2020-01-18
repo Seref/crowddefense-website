@@ -3,7 +3,31 @@ require("bootstrap/dist/js/bootstrap.bundle.js");
 require("datatables.net-bs4");
 
 $(() => {
-    
+    window.addEventListener('load', (event) => {
+        setTimeout(function () {
+            "use strict";
+
+            var reloadReminder = document.querySelector(".reloadreminder");
+            var reload = document.querySelector(".reload");
+
+            if (!reloadReminder) {
+                return;
+            }
+
+            reloadReminder.offsetHeight; // Force browser to trigger reflow (https://stackoverflow.com/a/39451131)
+
+            // Show the alert if we cant find the "reload" cookie
+            reloadReminder.classList.add("show");
+
+
+            // When clicking on the agree button, create a 1 year
+            // cookie to remember user's choice and close the banner
+            reload.addEventListener("click", function () {
+                location.reload()
+                reloadReminder.classList.remove("show");
+            });
+        }, 180000);
+    });
 });
 
 /*
@@ -18,7 +42,7 @@ $(() => {
     var acceptCookies = document.querySelector(".acceptcookies");
 
     if (!cookieAlert) {
-       return;
+        return;
     }
 
     cookieAlert.offsetHeight; // Force browser to trigger reflow (https://stackoverflow.com/a/39451131)

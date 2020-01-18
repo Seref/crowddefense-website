@@ -66,6 +66,12 @@ func (v IdeasResource) List(c buffalo.Context) error {
 
 	page, _ := strconv.Atoi(c.Param("page"))
 
+	pickedLast := tx.Order("updated_at DESC").Limit(2).Where("picked = true")
+
+	if err := pickedLast.All(ideas); err != nil {
+		return err
+	}
+
 	hot := tx.Paginate(page, 8)
 	new := tx.Paginate(page, 8)
 	random := tx.Paginate(page, 8)
@@ -108,6 +114,7 @@ func (v IdeasResource) List(c buffalo.Context) error {
 		return err
 	}
 
+	c.Set("ideas", ideas)
 	c.Set("ideasHot", ideasHot)
 	c.Set("ideasNew", ideasNew)
 	c.Set("ideasRandom", ideasRandom)
@@ -337,6 +344,11 @@ func DownvoteIdea(c buffalo.Context) error {
 
 	if err := tx.Find(idea, c.Param("idea_id")); err != nil {
 		return c.Error(404, err)
+	}
+
+	if idea.Picked || idea.Impossible || idea.Fullfilled || idea.Duplicate {
+		c.Flash().Add("danger", "Ideas that have already been picked, fulfilled or marked as duplicate/impossible can not be upvoted")
+		c.Redirect(200, "/ideas")
 	}
 
 	_, alreadyUpvoted := idea.UpvotedBy[user.Username]

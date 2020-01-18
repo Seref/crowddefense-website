@@ -3,6 +3,8 @@ package actions
 import (
 	"crowddefensewebsite/models"
 	"fmt"
+	"log"
+	"strings"
 
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/pop"
@@ -74,7 +76,25 @@ func (v PrequestionnairesResource) List(c buffalo.Context) error {
 // New renders the form for creating a new Prequestionnaire.
 // This function is mapped to the path GET /prequestionnaires/new
 func (v PrequestionnairesResource) New(c buffalo.Context) error {
-	return c.Render(200, r.Auto(c, &models.Prequestionnaire{}))
+
+	// Get the DB connection from the context
+	tx, ok := c.Value("tx").(*pop.Connection)
+	if !ok {
+		return fmt.Errorf("no transaction found")
+	}
+
+	pq := &models.Prequestionnaire{}
+
+	err := tx.Where("username = ?", strings.ToLower(strings.TrimSpace(c.Value("current_user").(*models.User).Username))).First(pq)
+
+	if err != nil {
+		log.Print(err)
+		return c.Render(200, r.Auto(c, &models.Prequestionnaire{}))
+	}
+
+	c.Flash().Add("danger", "You have already filled out a prequestionnaire!")
+
+	return c.Redirect(302, "/")
 }
 
 // Create adds a Prequestionnaire to the DB. This function is mapped to the
@@ -116,7 +136,7 @@ func (v PrequestionnairesResource) Create(c buffalo.Context) error {
 	c.Flash().Add("success", T.Translate(c, "prequestionnaire.created.success"))
 	// and redirect to the prequestionnaires index page
 	// return c.Render(201, r.Auto(c, prequestionnaire))
-	return c.Redirect(302, "/game")
+	return c.Redirect(302, "/ideas")
 }
 
 // Edit renders a edit form for a Prequestionnaire. This function is
@@ -141,43 +161,43 @@ func (v PrequestionnairesResource) Create(c buffalo.Context) error {
 // Update changes a Prequestionnaire in the DB. This function is mapped to
 // the path PUT /prequestionnaires/{prequestionnaire_id}
 // func (v PrequestionnairesResource) Update(c buffalo.Context) error {
-	// 	// Get the DB connection from the context
-	// 	tx, ok := c.Value("tx").(*pop.Connection)
-	// 	if !ok {
-	// 		return fmt.Errorf("no transaction found")
-	// 	}
+// 	// Get the DB connection from the context
+// 	tx, ok := c.Value("tx").(*pop.Connection)
+// 	if !ok {
+// 		return fmt.Errorf("no transaction found")
+// 	}
 
-	// 	// Allocate an empty Prequestionnaire
-	// 	prequestionnaire := &models.Prequestionnaire{}
+// 	// Allocate an empty Prequestionnaire
+// 	prequestionnaire := &models.Prequestionnaire{}
 
-	// 	if err := tx.Find(prequestionnaire, c.Param("prequestionnaire_id")); err != nil {
-	// 		return c.Error(404, err)
-	// 	}
+// 	if err := tx.Find(prequestionnaire, c.Param("prequestionnaire_id")); err != nil {
+// 		return c.Error(404, err)
+// 	}
 
-	// 	// Bind Prequestionnaire to the html form elements
-	// 	if err := c.Bind(prequestionnaire); err != nil {
-	// 		return err
-	// 	}
+// 	// Bind Prequestionnaire to the html form elements
+// 	if err := c.Bind(prequestionnaire); err != nil {
+// 		return err
+// 	}
 
-	// 	verrs, err := tx.ValidateAndUpdate(prequestionnaire)
-	// 	if err != nil {
-	// 		return err
-	// 	}
+// 	verrs, err := tx.ValidateAndUpdate(prequestionnaire)
+// 	if err != nil {
+// 		return err
+// 	}
 
-	// 	if verrs.HasAny() {
-	// 		// Make the errors available inside the html template
-	// 		c.Set("errors", verrs)
+// 	if verrs.HasAny() {
+// 		// Make the errors available inside the html template
+// 		c.Set("errors", verrs)
 
-	// 		// Render again the edit.html template that the user can
-	// 		// correct the input.
-	// 		return c.Render(422, r.Auto(c, prequestionnaire))
-	// 	}
+// 		// Render again the edit.html template that the user can
+// 		// correct the input.
+// 		return c.Render(422, r.Auto(c, prequestionnaire))
+// 	}
 
-	// 	// If there are no errors set a success message
-	// 	c.Flash().Add("success", T.Translate(c, "prequestionnaire.updated.success"))
-	// 	// and redirect to the prequestionnaires index page
-	// 	return c.Render(200, r.Auto(c, prequestionnaire))
-	// return c.Render(404, r.HTML("404.html"))
+// 	// If there are no errors set a success message
+// 	c.Flash().Add("success", T.Translate(c, "prequestionnaire.updated.success"))
+// 	// and redirect to the prequestionnaires index page
+// 	return c.Render(200, r.Auto(c, prequestionnaire))
+// return c.Render(404, r.HTML("404.html"))
 // }
 
 // Destroy deletes a Prequestionnaire from the DB. This function is mapped

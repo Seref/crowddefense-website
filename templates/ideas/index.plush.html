@@ -15,51 +15,97 @@
     submit your own
     ideas! In case you are looking for ones that have already been selected/fulfilled or just need to search all ideas
     for something specific, head over to the <a href="<%= allideasPath()%>">all ideas section</a>!</h1>
-    <hr class="my-4">
-    <ul class="list-unstyled list-inline">
-      <li>
-        <%= linkTo(newIdeasPath(), {class: "btn btn-primary"}) { %>
-        Post New Idea
-        <% } %>
-      </li>
-    </ul>
-    Next Features get chosen in:<p id="timer"></p>
-    <script>
-      var now = new Date()
-      var countDownDate = new Date('Jan 17, 2020 19:00')
-      if (now > countDownDate) {
-        if (new Date().getHours() > 18) {
-          countDownDate = new Date(`${now.getMonth() + 1}/${now.getDate() + 1}, ${now.getFullYear()} 19:00`).getTime();
-        } else {
-          countDownDate = new Date(`${now.getMonth() + 1}/${now.getDate()}, ${now.getFullYear()} 19:00`).getTime();
-        }
+  </span>
+  <ul style="margin-top: 2vh;" class="list-unstyled list-inline">
+    <li>
+      <%= linkTo(newIdeasPath(), {class: "btn btn-primary"}) { %>
+      Post New Idea
+      <% } %>
+    </li>
+  </ul>
+  <hr class="my-4">
+  <h1 class="lead">Next Features get chosen in:</h1>
+  <p id="timer"></p>
+  <script>
+    var now = new Date()
+    var countDownDate = new Date('Jan 17, 2020 19:00')
+    if (now > countDownDate) {
+      if (new Date().getHours() > 18) {
+        countDownDate = new Date(`${now.getMonth() + 1}/${now.getDate() + 1}, ${now.getFullYear()} 19:00`).getTime();
+      } else {
+        countDownDate = new Date(`${now.getMonth() + 1}/${now.getDate()}, ${now.getFullYear()} 19:00`).getTime();
       }
-      // Update the count down every 1 second
-      var x = setInterval(function () {
+    }
+    // Update the count down every 1 second
+    var x = setInterval(function () {
 
-        // Get today's date and time
-        var now = new Date().getTime();
+      // Get today's date and time
+      var now = new Date().getTime();
 
-        // Find the distance between now and the count down date
-        var distance = countDownDate - now;
+      // Find the distance between now and the count down date
+      var distance = countDownDate - now;
 
-        // Time calculations for days, hours, minutes and seconds
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      // Time calculations for days, hours, minutes and seconds
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // Display the result in the element with id="demo"
-        document.getElementById("timer").innerHTML = days + "d " + hours + "h "
-          + minutes + "m " + seconds + "s ";
+      // Display the result in the element with id="demo"
+      document.getElementById("timer").innerHTML = days + "d " + hours + "h "
+        + minutes + "m " + seconds + "s ";
 
-        // If the count down is finished, write some text
-        if (distance < 0) {
-          clearInterval(x);
-          document.getElementById("timer").innerHTML = "EXPIRED";
-        }
-      }, 1000);
-    </script>
+      // If the count down is finished, write some text
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("timer").innerHTML = "EXPIRED";
+      }
+    }, 1000);
+  </script>
+  <%= if (len(ideas) > 0) { %>
+  <hr class="my-4">
+  <h1 class="lead" style="margin-bottom: 2vh;">Last two ideas to get picked:</h1>
+  <% } %>
+  <div class="row" style="margin-bottom: 2vh;">
+    <%= for (key, idea) in ideas { %>
+    <div class="col-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"><%= idea.Title %></h4>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><%=  idea.Description%></p>
+        </div>
+        <%= if (idea.DevComment != "") { %>
+        <div class="card-body">
+          <h5 class="card-title">Comment from the developers</h5>
+          <p><%= idea.DevComment %></p>
+        </div>
+        <% } %>
+        <div class="card-body" id="<%=idea.ID%>_keywordsection_picked">
+          <span id="popularity_<%=idea.ID%>_picked" class="badge badge-pill badge-info">Popularity:
+            <%= len(idea.UpvotedBy) - len(idea.DownvotedBy)%></span>
+          <span class="badge badge-pill badge-info">Suggested in Version <%= idea.VersionWhenSuggested %> by
+            <%= idea.SuggestedBy %></span>
+          <script>
+            var keywordsection = document.getElementById('<%=idea.ID%>_keywordsection_picked');
+
+            var keywordString = "<%= idea.Keywords %>";
+            var keywords = keywordString.split(";");
+
+            var keywordsHTML = ''
+
+            keywords.forEach(keyword => {
+              keywordsHTML += `<span class="badge badge-pill badge-primary" style="margin-right: 0.3vw">${keyword}</span>`
+            });
+
+            keywordsection.innerHTML += keywordsHTML
+          </script>
+        </div>
+      </div>
+    </div>
+    <% } %>
+  </div>
 </div>
 
 <div class="row">
@@ -83,7 +129,7 @@
           </div>
           <% } %>
           <div class="card-body" id="<%=idea.ID%>_keywordsection_hot">
-            <span class="badge badge-pill badge-info">Popularity:
+            <span id="popularity_<%=idea.ID%>_hot" class="badge badge-pill badge-info">Popularity:
               <%= len(idea.UpvotedBy) - len(idea.DownvotedBy)%></span>
             <span class="badge badge-pill badge-info">Suggested in Version <%= idea.VersionWhenSuggested %> by
               <%= idea.SuggestedBy %></span>
@@ -156,7 +202,7 @@
           </div>
           <% } %>
           <div class="card-body" id="<%=idea.ID%>_keywordsection_new">
-            <span class="badge badge-pill badge-info">Popularity:
+            <span id="popularity_<%=idea.ID%>_new" class="badge badge-pill badge-info">Popularity:
               <%= len(idea.UpvotedBy) - len(idea.DownvotedBy)%></span>
             <span class="badge badge-pill badge-info">Suggested in Version <%= idea.VersionWhenSuggested %> by
               <%= idea.SuggestedBy %></span>
@@ -229,7 +275,7 @@
           </div>
           <% } %>
           <div class="card-body" id="<%=idea.ID%>_keywordsection_random">
-            <span class="badge badge-pill badge-info">Popularity:
+            <span id="popularity_<%=idea.ID%>_random" class="badge badge-pill badge-info">Popularity:
               <%= len(idea.UpvotedBy) - len(idea.DownvotedBy)%></span>
             <span class="badge badge-pill badge-info">Suggested in Version <%= idea.VersionWhenSuggested %> by
               <%= idea.SuggestedBy %></span>
@@ -289,6 +335,16 @@
   <%= paginator(paginationHot) %>
 </div>
 
+<div class="alert alert-dismissible text-center reloadreminder" role="alert">
+  <div class="cookiealert-container">
+    <b>Hey, you've been looking at this for a while...Maybe you want to reload to get the latest ideas from other
+      people?</b>
+    <button type="button" class="btn btn-primary btn-sm reload" aria-label="Close">
+      Reload
+    </button>
+  </div>
+</div>
+
 <script>
   function upvoteSuggestion(suggestion_uuid, auth_token) {
     fetch(`/ideas/${suggestion_uuid}/upvote`, {
@@ -302,6 +358,8 @@
       let upvotebuttons = [document.getElementById(`upvotes_${suggestion_uuid}_hot`), document.getElementById(`upvotes_${suggestion_uuid}_new`), document.getElementById(`upvotes_${suggestion_uuid}_random`)]
       let downvotebuttons = [document.getElementById(`downvotes_${suggestion_uuid}_hot`), document.getElementById(`downvotes_${suggestion_uuid}_new`), document.getElementById(`downvotes_${suggestion_uuid}_random`)]
       let editbuttons = [document.getElementById(`editButton_${suggestion_uuid}_hot`), document.getElementById(`editButton_${suggestion_uuid}_new`), document.getElementById(`editButton_${suggestion_uuid}_random`)]
+      let popularity_pills = [document.getElementById(`popularity_${suggestion_uuid}_hot`), document.getElementById(`popularity_${suggestion_uuid}_new`), document.getElementById(`popularity_${suggestion_uuid}_random`)]
+
 
       console.log(editbuttons)
 
@@ -319,12 +377,22 @@
               upvotebutton.style = "color: white;"
             }
           })
+          popularity_pills.forEach((popularity_pill) => {
+            if (popularity_pill !== null) {
+              popularity_pill.innerText = "Popularity: " + (parseInt(popularity_pill.innerText.replace('Popularity: ', '')) + 1).toString()
+            }
+          })
           if (downvotebuttons[0].classList.contains('btn-danger') || downvotebuttons[1].classList.contains('btn-danger') || downvotebuttons[2].classList.contains('btn-danger')) {
             downvotebuttons.forEach((downvotebutton) => {
               if (downvotebutton !== null) {
                 downvotebutton.classList.replace('btn-danger', 'btn-outline-danger')
                 downvotebutton.innerText = " " + (parseInt(downvotebutton.innerText) - 1).toString()
                 downvotebutton.style = "color: black;"
+              }
+            })
+            popularity_pills.forEach((popularity_pill) => {
+              if (popularity_pill !== null) {
+                popularity_pill.innerText = "Popularity: " + (parseInt(popularity_pill.innerText.replace('Popularity: ', '')) + 1).toString()
               }
             })
           }
@@ -343,6 +411,11 @@
               upvotebutton.style = "color: black;"
             }
           })
+          popularity_pills.forEach((popularity_pill) => {
+            if (popularity_pill !== null) {
+              popularity_pill.innerText = "Popularity: " + (parseInt(popularity_pill.innerText.replace('Popularity: ', '')) - 1).toString()
+            }
+          })
         }
       }
     })
@@ -359,6 +432,7 @@
 
       let upvotebuttons = [document.getElementById(`upvotes_${suggestion_uuid}_hot`), document.getElementById(`upvotes_${suggestion_uuid}_new`), document.getElementById(`upvotes_${suggestion_uuid}_random`)]
       let downvotebuttons = [document.getElementById(`downvotes_${suggestion_uuid}_hot`), document.getElementById(`downvotes_${suggestion_uuid}_new`), document.getElementById(`downvotes_${suggestion_uuid}_random`)]
+      let popularity_pills = [document.getElementById(`popularity_${suggestion_uuid}_hot`), document.getElementById(`popularity_${suggestion_uuid}_new`), document.getElementById(`popularity_${suggestion_uuid}_random`)]
 
       if (response.status == 200) {
         if (downvotebuttons[0].classList.contains('btn-outline-danger') || downvotebuttons[1].classList.contains('btn-outline-danger') || downvotebuttons[2].classList.contains('btn-outline-danger')) {
@@ -369,12 +443,22 @@
               downvotebutton.style = "color: white;"
             }
           })
+          popularity_pills.forEach((popularity_pill) => {
+            if (popularity_pill !== null) {
+              popularity_pill.innerText = "Popularity: " + (parseInt(popularity_pill.innerText.replace('Popularity: ', '')) - 1).toString()
+            }
+          })
           if (upvotebuttons[0].classList.contains('btn-success') || upvotebuttons[1].classList.contains('btn-success') || upvotebuttons[2].classList.contains('btn-success')) {
             upvotebuttons.forEach((upvotebutton) => {
               if (upvotebutton !== null) {
                 upvotebutton.classList.replace('btn-success', 'btn-outline-success')
                 upvotebutton.innerText = " " + (parseInt(upvotebutton.innerText) - 1).toString()
                 upvotebutton.style = "color: black;"
+              }
+            })
+            popularity_pills.forEach((popularity_pill) => {
+              if (popularity_pill !== null) {
+                popularity_pill.innerText = "Popularity: " + (parseInt(popularity_pill.innerText.replace('Popularity: ', '')) - 1).toString()
               }
             })
           }
@@ -386,6 +470,11 @@
               downvotebutton.classList.replace('btn-danger', 'btn-outline-danger')
               downvotebutton.innerText = " " + (parseInt(downvotebutton.innerText) - 1).toString()
               downvotebutton.style = "color: black;"
+            }
+          })
+          popularity_pills.forEach((popularity_pill) => {
+            if (popularity_pill !== null) {
+              popularity_pill.innerText = "Popularity: " + (parseInt(popularity_pill.innerText.replace('Popularity: ', '')) + 1).toString()
             }
           })
         }
