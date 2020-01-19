@@ -42,14 +42,15 @@ func App() *buffalo.App {
 		})
 
 		// Automatically redirect to SSL
-		app.Use(forceSSL())
+		// app.Use(forceSSL())
 
 		// Log request parameters (filters apply).
 		app.Use(paramlogger.ParameterLogger)
 
 		// Protect against CSRF attacks. https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)
 		// Remove to disable this.
-		app.Use(csrf.New)
+		csrf := csrf.New
+		app.Use(csrf)
 
 		// Wraps each request in a transaction.
 		//  c.Value("tx").(*pop.Connection)
@@ -61,7 +62,7 @@ func App() *buffalo.App {
 
 		app.GET("/", HomeHandler)
 
-		app.Middleware.Skip(Authorize, HomeHandler, LegalDataProtection, LegalContactInformation)
+		app.Middleware.Skip(Authorize, HomeHandler, LegalDataProtection, LegalContactInformation, StatisticsHandler)
 
 		//AuthMiddlewares
 		app.Use(SetCurrentUser)
@@ -95,8 +96,15 @@ func App() *buffalo.App {
 		app.GET("/history", HistoryView)
 
 		app.Resource("/prequestionnaires", PrequestionnairesResource{})
+		// app.Resource("/postquestionnaires", PostquestionnairesResource{})
 
-		auth.Middleware.Skip(Authorize, AuthLanding, AuthNew, AuthCreate, HomeHandler)
+		app.POST("/statistics", StatisticsHandler)
+		app.Middleware.Skip(csrf, StatisticsHandler)
+
+		app.DELETE("/account/{accountid}/delete", AccountDeletionHandler)
+		app.POST("/account/{accountid}/undelete", AccountUndeletionHandler)
+
+		auth.Middleware.Skip(Authorize, AuthLanding, AuthNew, AuthCreate)
 		
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}

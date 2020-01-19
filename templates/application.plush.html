@@ -35,16 +35,7 @@
         <li class="nav-item">
           <a class="nav-link <%= if (!current_user) { %> disabled <% } %>" href=" <%= historyPath()%>">Game History</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Questionaires
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href=" <%=  %>">Pre-Questionaire</a>
-            <a class="dropdown-item" href=" <%=  %>">Post-Questionaire</a>
-          </div>
-        </li>
+        <%= if (!current_user) { %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
@@ -55,6 +46,7 @@
             <a class="dropdown-item" href="<%= newUsersPath() %>">Sign Up</a>
           </div>
         </li>
+        <% } %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">

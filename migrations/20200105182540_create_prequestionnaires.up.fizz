@@ -1,5 +1,7 @@
 create_table("prequestionnaires") {
 	t.Column("id", "uuid", {primary: true})
+	t.Column("username", "string", {})
+	t.Column("nationality", "string", {})
 	t.Column("age", "string", {})
 	t.Column("gender", "string", {})
 	t.Column("job", "string", {})
@@ -7,7 +9,7 @@ create_table("prequestionnaires") {
 	t.Column("hours_video_games_per_week", "string", {})
 	t.Column("most_important_video_game_aspects", "string", {})
 	t.Column("most_important_video_game_aspect", "string", {})
-	t.Column("played_alot_of_platformers", "integer", {})
+	t.Column("played_alot_of_tower_defense", "integer", {})
 	t.Column("likes_tower_defense", "integer", {})
 	t.Column("plays_more_tower_defense_than_other_games", "integer", {})
 	t.Column("has_designed_video_game", "bool", {})

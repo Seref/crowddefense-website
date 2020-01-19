@@ -2,13 +2,48 @@
 development:
   dialect: "mysql"
   database: "crowddefensewebsite_development"
-  host: "beemo.at"
+  host: "wailord"
   port: "3307"
   user: "crowddefense_dev"
   password: "x5nZf%J9wFAnB*#zZEFh%bkabbAQ^FQir^6xidyM*x^JW54e54czVZ*hpAXih^5t"
 
 test:
-  url: {{envOr "TEST_DATABASE_URL" "mysql://mysql:mysql@127.0.0.1:5432/crowddefensewebsite_test?sslmode=disable"}}
+  dialect: "mysql"
+  #
+  # You can use a single URL string for the same configuration:
+  #
+  #url: "mysql://root:root@(localhost:3306)/crowddefensewebsite_test?parseTime=true&multiStatements=true&readTimeout=3s"
+  #
+  # Note that if you use `url`, other configurations are silently ignored.
+  # In this case, the URL must contain all required connection parameters.
+  #
+  database: "crowddefensewebsite_test"
+  host: "wailord"
+  port: "3308"
+  user: "crowddefense_dev"
+  password: "x5nZf%J9wFAnB*#zZEFh%bkabbAQ^FQir^6xidyM*x^JW54e54czVZ*hpAXih^5t"
 
 production:
-  url: {{envOr "DATABASE_URL" "mysql://mysql:mysql@127.0.0.1:5432/crowddefensewebsite_production?sslmode=disable"}}
+  #
+  # You can also use environmental variables to override values in this config.
+  #
+  #url: {{envOr "DATABASE_URL" "mysql://root:root@(localhost:3306)/crowddefensewebsite_production?parseTime=true&multiStatements=true&readTimeout=3s"}}
+  #
+  dialect: "mysql"
+  database: "crowddefense_prod"
+  host: {{envOr "DATABASE_HOST" "localhost"}}
+  port: {{envOr "DATABASE_PORT" "3306"}}
+  user: {{envOr "DATABASE_USER" "crowddefense_prod"}}
+  password: {{envOr "DATABASE_PASSWORD" ""}}
+  #
+  # And you can also override connection parameters by setting it under options.
+  #
+  #options:
+  #  parseTime: true
+  #  multiStatements: true
+  #  readTimeout: 3s
+  #  collation: "utf8mb4_general_ci"
+  #
+  # CAUTION!
+  #   `parseTime` and` multiStatements` must be set to `true` to work properly.
+  #   If you are not sure, do not change (or set) these values.

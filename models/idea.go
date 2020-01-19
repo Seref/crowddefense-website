@@ -24,6 +24,8 @@ type Idea struct {
     Fullfilled bool `json:"fullfilled" db:"fullfilled"`
     SuggestedBy string `json:"suggested_by" db:"suggested_by"`
     Picked bool `json:"picked" db:"picked"`
+    Impossible bool `json:"impossible" db:"impossible"`
+    Duplicate bool `json:"duplicate" db:"duplicate"`
     CreatedAt time.Time `json:"created_at" db:"created_at"`
     UpdatedAt time.Time `json:"updated_at" db:"updated_at"`
 }

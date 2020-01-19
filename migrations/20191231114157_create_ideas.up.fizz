@@ -10,6 +10,8 @@ create_table("ideas") {
 	t.Column("keywords", "string", {null: true})
 	t.Column("fullfilled", "bool", {})
 	t.Column("picked", "bool", {})
+	t.Column("impossible", "bool", {})
+	t.Column("duplicate", "bool", {})
 	t.Column("suggested_by", "string", {})
 	t.Timestamps()
 }

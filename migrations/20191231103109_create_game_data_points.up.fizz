@@ -1,0 +1,12 @@
+create_table("game_data_points"){
+    t.Column("id", "uuid", {"primary": true})
+    t.Column("username", "string", {})
+    t.Column("version", "string", {})
+	t.Column("score", "int", {})
+	t.Column("wave_survived", "int", {})
+	t.Column("seconds_survived", "int", {})
+	t.Column("win", "bool", {})
+	t.Column("restarted_round", "bool", {})
+	t.Column("tutorial_pressed", "int", {})
+	t.Column("additional", "json", {})
+}

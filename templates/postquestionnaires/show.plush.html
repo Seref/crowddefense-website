@@ -1,0 +1,228 @@
+<div class="page-header">
+  <h1>Postquestionnaire#Show</h1>
+</div>
+
+<ul class="list-unstyled list-inline">
+  <li class="list-inline-item">
+    <%= linkTo(postquestionnairesPath(), {class: "btn btn-info"}) { %>
+      Back to all Postquestionnaires
+    <% } %>
+  </li>
+  <li class="list-inline-item">
+    <%= linkTo(editPostquestionnairePath({ postquestionnaire_id: postquestionnaire.ID }), {class: "btn btn-warning", body: "Edit"}) %>
+  </li>
+  <li class="list-inline-item">
+    <%= linkTo(postquestionnairePath({ postquestionnaire_id: postquestionnaire.ID }), {class: "btn btn-danger", "data-method": "DELETE", "data-confirm": "Are you sure?", body: "Destroy"}) %>
+  </li>
+</ul>
+
+<p>
+  <strong>PlayingWasFun</strong>: <%= postquestionnaire.PlayingWasFun %>
+</p>
+<p>
+  <strong>LikedPlaying</strong>: <%= postquestionnaire.LikedPlaying %>
+</p>
+<p>
+  <strong>EnjoyedPlayingVeryMuch</strong>: <%= postquestionnaire.EnjoyedPlayingVeryMuch %>
+</p>
+<p>
+  <strong>GameExperienceWasPleasurable</strong>: <%= postquestionnaire.GameExperienceWasPleasurable %>
+</p>
+<p>
+  <strong>PlayingIsEntertaining</strong>: <%= postquestionnaire.PlayingIsEntertaining %>
+</p>
+<p>
+  <strong>WouldPlayForOwnSake</strong>: <%= postquestionnaire.WouldPlayForOwnSake %>
+</p>
+<p>
+  <strong>PlayingMadeMeForgetWhereIAm</strong>: <%= postquestionnaire.PlayingMadeMeForgetWhereIAm %>
+</p>
+<p>
+  <strong>PlayingMadeMeForgetSurroundings</strong>: <%= postquestionnaire.PlayingMadeMeForgetSurroundings %>
+</p>
+<p>
+  <strong>PlayingFeltLikeJourney</strong>: <%= postquestionnaire.PlayingFeltLikeJourney %>
+</p>
+<p>
+  <strong>PlayingGotMeAwayFromItAll</strong>: <%= postquestionnaire.PlayingGotMeAwayFromItAll %>
+</p>
+<p>
+  <strong>WhilePlayingCompletelyOblivious</strong>: <%= postquestionnaire.WhilePlayingCompletelyOblivious %>
+</p>
+<p>
+  <strong>WhilePlayingLostTrackOfTime</strong>: <%= postquestionnaire.WhilePlayingLostTrackOfTime %>
+</p>
+<p>
+  <strong>PlayingSparkedImagination</strong>: <%= postquestionnaire.PlayingSparkedImagination %>
+</p>
+<p>
+  <strong>WhilePlayingFeltCreative</strong>: <%= postquestionnaire.WhilePlayingFeltCreative %>
+</p>
+<p>
+  <strong>WhilePlayingFeltExplorative</strong>: <%= postquestionnaire.WhilePlayingFeltExplorative %>
+</p>
+<p>
+  <strong>WhilePlayingFeltAdventurous</strong>: <%= postquestionnaire.WhilePlayingFeltAdventurous %>
+</p>
+<p>
+  <strong>WhilePlayingFeltActivated</strong>: <%= postquestionnaire.WhilePlayingFeltActivated %>
+</p>
+<p>
+  <strong>WhilePlayingFeltJittery</strong>: <%= postquestionnaire.WhilePlayingFeltJittery %>
+</p>
+<p>
+  <strong>WhilePlayingFeltFrenzied</strong>: <%= postquestionnaire.WhilePlayingFeltFrenzied %>
+</p>
+<p>
+  <strong>WhilePlayingFeltExcited</strong>: <%= postquestionnaire.WhilePlayingFeltExcited %>
+</p>
+<p>
+  <strong>WhilePlayingFeltUpset</strong>: <%= postquestionnaire.WhilePlayingFeltUpset %>
+</p>
+<p>
+  <strong>WhilePlayingFeltHostile</strong>: <%= postquestionnaire.WhilePlayingFeltHostile %>
+</p>
+<p>
+  <strong>WhilePlayingFeltFrustrated</strong>: <%= postquestionnaire.WhilePlayingFeltFrustrated %>
+</p>
+<p>
+  <strong>WhilePlayingFeltInCharge</strong>: <%= postquestionnaire.WhilePlayingFeltInCharge %>
+</p>
+<p>
+  <strong>WhilePlayingFeltInfluential</strong>: <%= postquestionnaire.WhilePlayingFeltInfluential %>
+</p>
+<p>
+  <strong>WhilePlayingFeltAutonomous</strong>: <%= postquestionnaire.WhilePlayingFeltAutonomous %>
+</p>
+<p>
+  <strong>WhilePlayingFeltConfident</strong>: <%= postquestionnaire.WhilePlayingFeltConfident %>
+</p>
+<p>
+  <strong>EnjoyedPlayingCrowdDefenseVeryMuch</strong>: <%= postquestionnaire.EnjoyedPlayingCrowdDefenseVeryMuch %>
+</p>
+<p>
+  <strong>PlayingWasFunToDo</strong>: <%= postquestionnaire.PlayingWasFunToDo %>
+</p>
+<p>
+  <strong>WasBoringActivity</strong>: <%= postquestionnaire.WasBoringActivity %>
+</p>
+<p>
+  <strong>DidNotHoldMyAttention</strong>: <%= postquestionnaire.DidNotHoldMyAttention %>
+</p>
+<p>
+  <strong>WouldDescribeAsInteresting</strong>: <%= postquestionnaire.WouldDescribeAsInteresting %>
+</p>
+<p>
+  <strong>ThoughtWasEnjoyable</strong>: <%= postquestionnaire.ThoughtWasEnjoyable %>
+</p>
+<p>
+  <strong>ThoughtWasEnjoyableWhilePlaying</strong>: <%= postquestionnaire.ThoughtWasEnjoyableWhilePlaying %>
+</p>
+<p>
+  <strong>DidWell</strong>: <%= postquestionnaire.DidWell %>
+</p>
+<p>
+  <strong>DidWellInComparisonToOthers</strong>: <%= postquestionnaire.DidWellInComparisonToOthers %>
+</p>
+<p>
+  <strong>FeltCompetentAfterAWhile</strong>: <%= postquestionnaire.FeltCompetentAfterAWhile %>
+</p>
+<p>
+  <strong>SatisfiedWithPerformance</strong>: <%= postquestionnaire.SatisfiedWithPerformance %>
+</p>
+<p>
+  <strong>WasPrettySkilled</strong>: <%= postquestionnaire.WasPrettySkilled %>
+</p>
+<p>
+  <strong>CouldntDoVeryWell</strong>: <%= postquestionnaire.CouldntDoVeryWell %>
+</p>
+<p>
+  <strong>DidntFeelNervousPlaying</strong>: <%= postquestionnaire.DidntFeelNervousPlaying %>
+</p>
+<p>
+  <strong>FeltTenseWhilePlaying</strong>: <%= postquestionnaire.FeltTenseWhilePlaying %>
+</p>
+<p>
+  <strong>FeltRelaxedWhilePlaying</strong>: <%= postquestionnaire.FeltRelaxedWhilePlaying %>
+</p>
+<p>
+  <strong>WasAnxiousWhilePlaying</strong>: <%= postquestionnaire.WasAnxiousWhilePlaying %>
+</p>
+<p>
+  <strong>FeltPressuredWhilePlaying</strong>: <%= postquestionnaire.FeltPressuredWhilePlaying %>
+</p>
+<p>
+  <strong>BelievedHadChoiceAboutPlaying</strong>: <%= postquestionnaire.BelievedHadChoiceAboutPlaying %>
+</p>
+<p>
+  <strong>FeltLikeNotMyChoiceToPlay</strong>: <%= postquestionnaire.FeltLikeNotMyChoiceToPlay %>
+</p>
+<p>
+  <strong>DidntHaveChoiceAboutPlaying</strong>: <%= postquestionnaire.DidntHaveChoiceAboutPlaying %>
+</p>
+<p>
+  <strong>FeltLikeHadToPlay</strong>: <%= postquestionnaire.FeltLikeHadToPlay %>
+</p>
+<p>
+  <strong>PlayedBecauseNoChoice</strong>: <%= postquestionnaire.PlayedBecauseNoChoice %>
+</p>
+<p>
+  <strong>PlayedBecauseWantedTo</strong>: <%= postquestionnaire.PlayedBecauseWantedTo %>
+</p>
+<p>
+  <strong>PlayedBecauseHadTo</strong>: <%= postquestionnaire.PlayedBecauseHadTo %>
+</p>
+<p>
+  <strong>FeltDistantToOthers</strong>: <%= postquestionnaire.FeltDistantToOthers %>
+</p>
+<p>
+  <strong>DoubtFriendshipWithOthers</strong>: <%= postquestionnaire.DoubtFriendshipWithOthers %>
+</p>
+<p>
+  <strong>FeltLikeCouldTrustOthers</strong>: <%= postquestionnaire.FeltLikeCouldTrustOthers %>
+</p>
+<p>
+  <strong>WantMorePlayerInteraction</strong>: <%= postquestionnaire.WantMorePlayerInteraction %>
+</p>
+<p>
+  <strong>PreferNoInteraction</strong>: <%= postquestionnaire.PreferNoInteraction %>
+</p>
+<p>
+  <strong>FeltLikeCouldntTrustOthers</strong>: <%= postquestionnaire.FeltLikeCouldntTrustOthers %>
+</p>
+<p>
+  <strong>CouldSeeFriendship</strong>: <%= postquestionnaire.CouldSeeFriendship %>
+</p>
+<p>
+  <strong>FeelsCloseToOtherPlayers</strong>: <%= postquestionnaire.FeelsCloseToOtherPlayers %>
+</p>
+<p>
+  <strong>WouldLikeToUseFrequently</strong>: <%= postquestionnaire.WouldLikeToUseFrequently %>
+</p>
+<p>
+  <strong>FoundUnnecessaryComplex</strong>: <%= postquestionnaire.FoundUnnecessaryComplex %>
+</p>
+<p>
+  <strong>FoundEasyToUse</strong>: <%= postquestionnaire.FoundEasyToUse %>
+</p>
+<p>
+  <strong>WouldNeedAssistanceFromTechnicalPerson</strong>: <%= postquestionnaire.WouldNeedAssistanceFromTechnicalPerson %>
+</p>
+<p>
+  <strong>FunctionsWereWellIntegrated</strong>: <%= postquestionnaire.FunctionsWereWellIntegrated %>
+</p>
+<p>
+  <strong>TooMuchInconsistency</strong>: <%= postquestionnaire.TooMuchInconsistency %>
+</p>
+<p>
+  <strong>WouldImagineFlatLearningCurve</strong>: <%= postquestionnaire.WouldImagineFlatLearningCurve %>
+</p>
+<p>
+  <strong>SystemWasCumbersome</strong>: <%= postquestionnaire.SystemWasCumbersome %>
+</p>
+<p>
+  <strong>FeltConfidentUsing</strong>: <%= postquestionnaire.FeltConfidentUsing %>
+</p>
+<p>
+  <strong>SteepLearningCurve</strong>: <%= postquestionnaire.SteepLearningCurve %>
+</p>

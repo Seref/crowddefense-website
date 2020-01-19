@@ -85,7 +85,7 @@ func (u *User) Validate(tx *pop.Connection) (*validate.Errors, error) {
 func (u *User) ValidateCreate(tx *pop.Connection) (*validate.Errors, error) {
 	var err error
 	return validate.Validate(
-		&validators.StringLengthInRange{Field: u.Password, Name: "Password", Min: 12, Message: "Password must be at least 12 characters long"},
+		&validators.StringLengthInRange{Field: u.Password, Name: "Password", Min: 8, Message: "Password must be at least 8 characters long"},
 		&validators.StringIsPresent{Field: u.Password, Name: "Password"},
 		&validators.StringsMatch{Name: "Password", Field: u.Password, Field2: u.PasswordConfirmation, Message: "Password does not match confirmation"},
 	), err

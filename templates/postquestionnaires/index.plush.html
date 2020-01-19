@@ -1,0 +1,173 @@
+<div class="page-header">
+  <h1>Postquestionnaires</h1>
+</div>
+<ul class="list-unstyled list-inline">
+  <li>
+    <%= linkTo(newPostquestionnairesPath(), {class: "btn btn-primary"}) { %>
+      Create New Postquestionnaire
+    <% } %>
+  </li>
+</ul>
+
+<table class="table table-striped">
+  <thead>
+  <th>PlayingWasFun</th>
+    <th>LikedPlaying</th>
+    <th>EnjoyedPlayingVeryMuch</th>
+    <th>GameExperienceWasPleasurable</th>
+    <th>PlayingIsEntertaining</th>
+    <th>WouldPlayForOwnSake</th>
+    <th>PlayingMadeMeForgetWhereIAm</th>
+    <th>PlayingMadeMeForgetSurroundings</th>
+    <th>PlayingFeltLikeJourney</th>
+    <th>PlayingGotMeAwayFromItAll</th>
+    <th>WhilePlayingCompletelyOblivious</th>
+    <th>WhilePlayingLostTrackOfTime</th>
+    <th>PlayingSparkedImagination</th>
+    <th>WhilePlayingFeltCreative</th>
+    <th>WhilePlayingFeltExplorative</th>
+    <th>WhilePlayingFeltAdventurous</th>
+    <th>WhilePlayingFeltActivated</th>
+    <th>WhilePlayingFeltJittery</th>
+    <th>WhilePlayingFeltFrenzied</th>
+    <th>WhilePlayingFeltExcited</th>
+    <th>WhilePlayingFeltUpset</th>
+    <th>WhilePlayingFeltHostile</th>
+    <th>WhilePlayingFeltFrustrated</th>
+    <th>WhilePlayingFeltInCharge</th>
+    <th>WhilePlayingFeltInfluential</th>
+    <th>WhilePlayingFeltAutonomous</th>
+    <th>WhilePlayingFeltConfident</th>
+    <th>EnjoyedPlayingCrowdDefenseVeryMuch</th>
+    <th>PlayingWasFunToDo</th>
+    <th>WasBoringActivity</th>
+    <th>DidNotHoldMyAttention</th>
+    <th>WouldDescribeAsInteresting</th>
+    <th>ThoughtWasEnjoyable</th>
+    <th>ThoughtWasEnjoyableWhilePlaying</th>
+    <th>DidWell</th>
+    <th>DidWellInComparisonToOthers</th>
+    <th>FeltCompetentAfterAWhile</th>
+    <th>SatisfiedWithPerformance</th>
+    <th>WasPrettySkilled</th>
+    <th>CouldntDoVeryWell</th>
+    <th>DidntFeelNervousPlaying</th>
+    <th>FeltTenseWhilePlaying</th>
+    <th>FeltRelaxedWhilePlaying</th>
+    <th>WasAnxiousWhilePlaying</th>
+    <th>FeltPressuredWhilePlaying</th>
+    <th>BelievedHadChoiceAboutPlaying</th>
+    <th>FeltLikeNotMyChoiceToPlay</th>
+    <th>DidntHaveChoiceAboutPlaying</th>
+    <th>FeltLikeHadToPlay</th>
+    <th>PlayedBecauseNoChoice</th>
+    <th>PlayedBecauseWantedTo</th>
+    <th>PlayedBecauseHadTo</th>
+    <th>FeltDistantToOthers</th>
+    <th>DoubtFriendshipWithOthers</th>
+    <th>FeltLikeCouldTrustOthers</th>
+    <th>WantMorePlayerInteraction</th>
+    <th>PreferNoInteraction</th>
+    <th>FeltLikeCouldntTrustOthers</th>
+    <th>CouldSeeFriendship</th>
+    <th>FeelsCloseToOtherPlayers</th>
+    <th>WouldLikeToUseFrequently</th>
+    <th>FoundUnnecessaryComplex</th>
+    <th>FoundEasyToUse</th>
+    <th>WouldNeedAssistanceFromTechnicalPerson</th>
+    <th>FunctionsWereWellIntegrated</th>
+    <th>TooMuchInconsistency</th>
+    <th>WouldImagineFlatLearningCurve</th>
+    <th>SystemWasCumbersome</th>
+    <th>FeltConfidentUsing</th>
+    <th>SteepLearningCurve</th>
+    <th>&nbsp;</th>
+  </thead>
+  <tbody>
+    <%= for (postquestionnaire) in postquestionnaires { %>
+      <tr>
+      <td><%= postquestionnaire.PlayingWasFun %></td>
+        <td><%= postquestionnaire.LikedPlaying %></td>
+        <td><%= postquestionnaire.EnjoyedPlayingVeryMuch %></td>
+        <td><%= postquestionnaire.GameExperienceWasPleasurable %></td>
+        <td><%= postquestionnaire.PlayingIsEntertaining %></td>
+        <td><%= postquestionnaire.WouldPlayForOwnSake %></td>
+        <td><%= postquestionnaire.PlayingMadeMeForgetWhereIAm %></td>
+        <td><%= postquestionnaire.PlayingMadeMeForgetSurroundings %></td>
+        <td><%= postquestionnaire.PlayingFeltLikeJourney %></td>
+        <td><%= postquestionnaire.PlayingGotMeAwayFromItAll %></td>
+        <td><%= postquestionnaire.WhilePlayingCompletelyOblivious %></td>
+        <td><%= postquestionnaire.WhilePlayingLostTrackOfTime %></td>
+        <td><%= postquestionnaire.PlayingSparkedImagination %></td>
+        <td><%= postquestionnaire.WhilePlayingFeltCreative %></td>
+        <td><%= postquestionnaire.WhilePlayingFeltExplorative %></td>
+        <td><%= postquestionnaire.WhilePlayingFeltAdventurous %></td>
+        <td><%= postquestionnaire.WhilePlayingFeltActivated %></td>
+        <td><%= postquestionnaire.WhilePlayingFeltJittery %></td>
+        <td><%= postquestionnaire.WhilePlayingFeltFrenzied %></td>
+        <td><%= postquestionnaire.WhilePlayingFeltExcited %></td>
+        <td><%= postquestionnaire.WhilePlayingFeltUpset %></td>
+        <td><%= postquestionnaire.WhilePlayingFeltHostile %></td>
+        <td><%= postquestionnaire.WhilePlayingFeltFrustrated %></td>
+        <td><%= postquestionnaire.WhilePlayingFeltInCharge %></td>
+        <td><%= postquestionnaire.WhilePlayingFeltInfluential %></td>
+        <td><%= postquestionnaire.WhilePlayingFeltAutonomous %></td>
+        <td><%= postquestionnaire.WhilePlayingFeltConfident %></td>
+        <td><%= postquestionnaire.EnjoyedPlayingCrowdDefenseVeryMuch %></td>
+        <td><%= postquestionnaire.PlayingWasFunToDo %></td>
+        <td><%= postquestionnaire.WasBoringActivity %></td>
+        <td><%= postquestionnaire.DidNotHoldMyAttention %></td>
+        <td><%= postquestionnaire.WouldDescribeAsInteresting %></td>
+        <td><%= postquestionnaire.ThoughtWasEnjoyable %></td>
+        <td><%= postquestionnaire.ThoughtWasEnjoyableWhilePlaying %></td>
+        <td><%= postquestionnaire.DidWell %></td>
+        <td><%= postquestionnaire.DidWellInComparisonToOthers %></td>
+        <td><%= postquestionnaire.FeltCompetentAfterAWhile %></td>
+        <td><%= postquestionnaire.SatisfiedWithPerformance %></td>
+        <td><%= postquestionnaire.WasPrettySkilled %></td>
+        <td><%= postquestionnaire.CouldntDoVeryWell %></td>
+        <td><%= postquestionnaire.DidntFeelNervousPlaying %></td>
+        <td><%= postquestionnaire.FeltTenseWhilePlaying %></td>
+        <td><%= postquestionnaire.FeltRelaxedWhilePlaying %></td>
+        <td><%= postquestionnaire.WasAnxiousWhilePlaying %></td>
+        <td><%= postquestionnaire.FeltPressuredWhilePlaying %></td>
+        <td><%= postquestionnaire.BelievedHadChoiceAboutPlaying %></td>
+        <td><%= postquestionnaire.FeltLikeNotMyChoiceToPlay %></td>
+        <td><%= postquestionnaire.DidntHaveChoiceAboutPlaying %></td>
+        <td><%= postquestionnaire.FeltLikeHadToPlay %></td>
+        <td><%= postquestionnaire.PlayedBecauseNoChoice %></td>
+        <td><%= postquestionnaire.PlayedBecauseWantedTo %></td>
+        <td><%= postquestionnaire.PlayedBecauseHadTo %></td>
+        <td><%= postquestionnaire.FeltDistantToOthers %></td>
+        <td><%= postquestionnaire.DoubtFriendshipWithOthers %></td>
+        <td><%= postquestionnaire.FeltLikeCouldTrustOthers %></td>
+        <td><%= postquestionnaire.WantMorePlayerInteraction %></td>
+        <td><%= postquestionnaire.PreferNoInteraction %></td>
+        <td><%= postquestionnaire.FeltLikeCouldntTrustOthers %></td>
+        <td><%= postquestionnaire.CouldSeeFriendship %></td>
+        <td><%= postquestionnaire.FeelsCloseToOtherPlayers %></td>
+        <td><%= postquestionnaire.WouldLikeToUseFrequently %></td>
+        <td><%= postquestionnaire.FoundUnnecessaryComplex %></td>
+        <td><%= postquestionnaire.FoundEasyToUse %></td>
+        <td><%= postquestionnaire.WouldNeedAssistanceFromTechnicalPerson %></td>
+        <td><%= postquestionnaire.FunctionsWereWellIntegrated %></td>
+        <td><%= postquestionnaire.TooMuchInconsistency %></td>
+        <td><%= postquestionnaire.WouldImagineFlatLearningCurve %></td>
+        <td><%= postquestionnaire.SystemWasCumbersome %></td>
+        <td><%= postquestionnaire.FeltConfidentUsing %></td>
+        <td><%= postquestionnaire.SteepLearningCurve %></td>
+        <td>
+          <div class="pull-right">
+            <%= linkTo(postquestionnairePath({ postquestionnaire_id: postquestionnaire.ID }), {class: "btn btn-info", body: "View"}) %>
+            <%= linkTo(editPostquestionnairePath({ postquestionnaire_id: postquestionnaire.ID }), {class: "btn btn-warning", body: "Edit"}) %>
+            <%= linkTo(postquestionnairePath({ postquestionnaire_id: postquestionnaire.ID }), {class: "btn btn-danger", "data-method": "DELETE", "data-confirm": "Are you sure?", body: "Destroy"}) %>
+          </div>
+        </td>
+      </tr>
+    <% } %>
+  </tbody>
+</table>
+
+<div class="text-center">
+  <%= paginator(pagination) %>
+</div>

@@ -2,7 +2,15 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <style>
+        .custom-select {
+            -webkit-appearance: none
+        }
+        td { cursor: pointer; }
+    </style>
 </head>
+<p style="margin-top: 3vh;"> <b>If you have found a suggestion you'd like to take a closer look at, just click anywhere in
+    its row in the table!</b></p>
 <div style="margin-top: 3vh;">
     <table id="all_ideas" class="table table-striped table-bordered" style="width:100%;">
         <thead>
@@ -12,12 +20,15 @@
                 <th>Popularity</th>
                 <th>Upvotes</th>
                 <th>Downvotes</th>
+                <th>Developer comment</th>
                 <th>Version When Suggested</th>
                 <th>Suggested by</th>
                 <th>Suggested on</th>
                 <th>Keywords</th>
                 <th>Fullfilled</th>
                 <th>Picked</th>
+                <th>Duplicate</th>
+                <th>Possible</th>
             </tr>
         </thead>
         <tbody>
@@ -29,10 +40,13 @@
                 <td><%= len(idea.UpvotedBy) - len(idea.DownvotedBy) %></td>
                 <td><%= len(idea.UpvotedBy) %></td>
                 <td><%= len(idea.DownvotedBy) %></td>
+                <td style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:1px;">
+                    <%= idea.DevComment %></td>
                 <td><%= idea.VersionWhenSuggested %></td>
                 <td><%= idea.SuggestedBy %></td>
                 <td><%= idea.CreatedAt %> </td>
-                <td style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:1px;"><%= idea.Keywords %> </td>
+                <td style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:1px;">
+                    <%= idea.Keywords %> </td>
                 <td><%= if (idea.Fullfilled) { %>
                     Fullfilled
                     <% } else { %>
@@ -42,6 +56,16 @@
                     Picked
                     <% } else { %>
                     Not Picked
+                    <% } %></td>
+                <td><%= if (idea.Duplicate) { %>
+                    Duplicate
+                    <% } else { %>
+                    Original
+                    <% } %></td>
+                <td><%= if (idea.Impossible) { %>
+                    No
+                    <% } else { %>
+                    Yes
                     <% } %></td>
             </tr>
             <% } %>
@@ -54,3 +78,13 @@
         $('#all_ideas').DataTable();
     });
 </script>
+
+<div class="alert alert-dismissible text-center reloadreminder" role="alert">
+    <div class="cookiealert-container">
+        <b>Hey, you've been looking at this for a while...Maybe you want to reload to get the latest ideas from other
+            people?</b>
+        <button type="button" class="btn btn-primary btn-sm reload" aria-label="Close">
+            Reload
+        </button>
+    </div>
+</div>
