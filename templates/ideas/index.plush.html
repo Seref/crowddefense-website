@@ -360,8 +360,13 @@
       let editbuttons = [document.getElementById(`editButton_${suggestion_uuid}_hot`), document.getElementById(`editButton_${suggestion_uuid}_new`), document.getElementById(`editButton_${suggestion_uuid}_random`)]
       let popularity_pills = [document.getElementById(`popularity_${suggestion_uuid}_hot`), document.getElementById(`popularity_${suggestion_uuid}_new`), document.getElementById(`popularity_${suggestion_uuid}_random`)]
 
+      let upvotebuttons_contains_0 = false;
+      let upvotebuttons_contains_1 = false;
+      let upvotebuttons_contains_2 = false;
 
-      console.log(editbuttons)
+      let downvotebuttons_contains_0 = false;
+      let downvotebuttons_contains_1 = false;
+      let downvotebuttons_contains_2 = false;
 
       if (response.status == 200) {
         editbuttons.forEach((editbutton) => {
@@ -369,7 +374,10 @@
             editbutton.setAttribute("hidden", "hidden")
           }
         })
-        if (upvotebuttons[0].classList.contains('btn-outline-success') || upvotebuttons[1].classList.contains('btn-outline-success') || upvotebuttons[2].classList.contains('btn-outline-success')) {
+        if (upvotebuttons[0] !== null) { upvotebuttons_contains_0 = upvotebuttons[0].classList.contains('btn-outline-success') }
+        if (upvotebuttons[1] !== null) { upvotebuttons_contains_1 = upvotebuttons[1].classList.contains('btn-outline-success') }
+        if (upvotebuttons[2] !== null) { upvotebuttons_contains_2 = upvotebuttons[2].classList.contains('btn-outline-success') }
+        if (upvotebuttons_contains_0 || upvotebuttons_contains_1 || upvotebuttons_contains_2) {
           upvotebuttons.forEach((upvotebutton) => {
             if (upvotebutton !== null) {
               upvotebutton.classList.replace('btn-outline-success', 'btn-success')
@@ -382,7 +390,10 @@
               popularity_pill.innerText = "Popularity: " + (parseInt(popularity_pill.innerText.replace('Popularity: ', '')) + 1).toString()
             }
           })
-          if (downvotebuttons[0].classList.contains('btn-danger') || downvotebuttons[1].classList.contains('btn-danger') || downvotebuttons[2].classList.contains('btn-danger')) {
+          if (downvotebuttons[0] !== null) { downvotebuttons_contains_0 = downvotebuttons[0].classList.contains('btn-danger') }
+          if (downvotebuttons[1] !== null) { downvotebuttons_contains_1 = downvotebuttons[1].classList.contains('btn-danger') }
+          if (downvotebuttons[2] !== null) { downvotebuttons_contains_2 = downvotebuttons[2].classList.contains('btn-danger') }
+          if (downvotebuttons_contains_0 || downvotebuttons_contains_1 || downvotebuttons_contains_2) {
             downvotebuttons.forEach((downvotebutton) => {
               if (downvotebutton !== null) {
                 downvotebutton.classList.replace('btn-danger', 'btn-outline-danger')
@@ -403,7 +414,10 @@
             editbutton.removeAttribute("hidden")
           }
         })
-        if (upvotebuttons[0].classList.contains('btn-success') || upvotebuttons[1].classList.contains('btn-success') || upvotebuttons[2].classList.contains('btn-success')) {
+        if (upvotebuttons[0] !== null) { upvotebuttons_contains_0 = upvotebuttons[0].classList.contains('btn-success') }
+        if (upvotebuttons[1] !== null) { upvotebuttons_contains_1 = upvotebuttons[1].classList.contains('btn-success') }
+        if (upvotebuttons[2] !== null) { upvotebuttons_contains_2 = upvotebuttons[2].classList.contains('btn-success') }
+        if (upvotebuttons_contains_0 || upvotebuttons_contains_1 || upvotebuttons_contains_2) {
           upvotebuttons.forEach((upvotebutton) => {
             if (upvotebutton !== null) {
               upvotebutton.classList.replace('btn-success', 'btn-outline-success')
@@ -434,8 +448,19 @@
       let downvotebuttons = [document.getElementById(`downvotes_${suggestion_uuid}_hot`), document.getElementById(`downvotes_${suggestion_uuid}_new`), document.getElementById(`downvotes_${suggestion_uuid}_random`)]
       let popularity_pills = [document.getElementById(`popularity_${suggestion_uuid}_hot`), document.getElementById(`popularity_${suggestion_uuid}_new`), document.getElementById(`popularity_${suggestion_uuid}_random`)]
 
+      let upvotebuttons_contains_0 = false;
+      let upvotebuttons_contains_1 = false;
+      let upvotebuttons_contains_2 = false;
+
+      let downvotebuttons_contains_0 = false;
+      let downvotebuttons_contains_1 = false;
+      let downvotebuttons_contains_2 = false;
+
       if (response.status == 200) {
-        if (downvotebuttons[0].classList.contains('btn-outline-danger') || downvotebuttons[1].classList.contains('btn-outline-danger') || downvotebuttons[2].classList.contains('btn-outline-danger')) {
+        if (downvotebuttons[0] !== null) { downvotebuttons_contains_0 = downvotebuttons[0].classList.contains('btn-outline-danger') }
+        if (downvotebuttons[1] !== null) { downvotebuttons_contains_1 = downvotebuttons[1].classList.contains('btn-outline-danger') }
+        if (downvotebuttons[2] !== null) { downvotebuttons_contains_2 = downvotebuttons[2].classList.contains('btn-outline-danger') }
+        if (downvotebuttons_contains_0 || downvotebuttons_contains_1 || downvotebuttons_contains_2) {
           downvotebuttons.forEach((downvotebutton) => {
             if (downvotebutton !== null) {
               downvotebutton.classList.replace('btn-outline-danger', 'btn-danger')
@@ -448,7 +473,10 @@
               popularity_pill.innerText = "Popularity: " + (parseInt(popularity_pill.innerText.replace('Popularity: ', '')) - 1).toString()
             }
           })
-          if (upvotebuttons[0].classList.contains('btn-success') || upvotebuttons[1].classList.contains('btn-success') || upvotebuttons[2].classList.contains('btn-success')) {
+          if (upvotebuttons[0] !== null) { upvotebuttons_contains_0 = upvotebuttons[0].classList.contains('btn-success') }
+          if (upvotebuttons[1] !== null) { upvotebuttons_contains_1 = upvotebuttons[1].classList.contains('btn-success') }
+          if (upvotebuttons[2] !== null) { upvotebuttons_contains_2 = upvotebuttons[2].classList.contains('btn-success') }
+          if (upvotebuttons_contains_0 || upvotebuttons_contains_1 || upvotebuttons_contains_2) {
             upvotebuttons.forEach((upvotebutton) => {
               if (upvotebutton !== null) {
                 upvotebutton.classList.replace('btn-success', 'btn-outline-success')
@@ -464,7 +492,10 @@
           }
         }
       } else if (response.status == 201) {
-        if (downvotebuttons[0].classList.contains('btn-danger') || downvotebuttons[1].classList.contains('btn-danger') || downvotebuttons[2].classList.contains('btn-danger')) {
+        if (downvotebuttons[0] !== null) { downvotebuttons_contains_0 = downvotebuttons[0].classList.contains('btn-danger') }
+        if (downvotebuttons[1] !== null) { downvotebuttons_contains_1 = downvotebuttons[1].classList.contains('btn-danger') }
+        if (downvotebuttons[2] !== null) { downvotebuttons_contains_2 = downvotebuttons[2].classList.contains('btn-danger') }
+        if (downvotebuttons_contains_0 || downvotebuttons_contains_1 || downvotebuttons_contains_2) {
           downvotebuttons.forEach((downvotebutton) => {
             if (downvotebutton !== null) {
               downvotebutton.classList.replace('btn-danger', 'btn-outline-danger')
