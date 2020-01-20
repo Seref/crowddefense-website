@@ -17,15 +17,13 @@
       <div class="card card-body" style="justify-content: center;">
         <img style="height: 36vh; width: 64vh;" src="/assets/images/version_0.1.0.png" alt="Version 0.1.0">
         <h5>Game</h5>
-        Just a very simple tower defense game. You could request more game related features! <br><br><br>
+        <p>Just a very simple tower defense game. You could request more game related features!</p>
         <h5>Website</h5>
-        There is not much on the website. If you have ideas to alter the website, submit them! <br><br><br>
+        <p>There is not much on the website. If you have ideas to alter the website, submit them!</p>
         <h5>Suggestions</h5>
-        You can vote for an idea to be implemented! If you want another way of selecting the features, submit it!
-        <br><br><br>
+        <p>You can vote for an idea to be implemented! If you want another way of selecting the features, submit it!</p>
         <h5>Graphics</h5>
-        The game has just a very limited set of colors, and no cool graphics. Maybe design requests would help!
-        <br><br><br>
+        <p>The game has just a very limited set of colors, and no cool graphics. Maybe design requests would help!</p>
       </div>
     </div>
   </div>
@@ -37,20 +35,58 @@
       <div class="card card-body">
         <img style="height: 36vh; width: 64vh;" src="/assets/images/version_0.2.0.png" alt="Version 0.2.0">
         <h5>Changelog</h5>
-        The game now features white towers that aim better and shoot more often, but they have an increased cooldown
-        time! <br>
-        There is now an options menu to increase or decrease the sound of the game! <br><br><br>
+        <p>The game now features white towers that aim better and shoot more often, but they have an increased cooldown
+          time! It also has an option to adjust the sound.</p>
+        <h5>Ideas implemented in this version</h5>
+        <%= for (key, idea) in ideasdone { %>
+        <%= if (idea.ID.String() == "b9af72ba-8295-46ae-9d44-c149debc7c64" || idea.ID.String() == "43e022e4-f9d9-47c1-870c-87758ab062af") { %>
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title"><%= idea.Title %></h4>
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%=  idea.Description%></p>
+          </div>
+          <%= if (idea.DevComment != "") { %>
+          <div class="card-body">
+            <h5 class="card-title">Comment from the developers</h5>
+            <p><%= idea.DevComment %></p>
+          </div>
+          <% } %>
+          <div class="card-body" id="<%=idea.ID%>_keywordsection">
+            <span id="popularity_<%=idea.ID%>_random" class="badge badge-pill badge-info">Popularity:
+              <%= len(idea.UpvotedBy) - len(idea.DownvotedBy)%></span>
+            <span class="badge badge-pill badge-info">Suggested in Version <%= idea.VersionWhenSuggested %> by
+              <%= idea.SuggestedBy %></span>
+            <script>
+              var keywordsection = document.getElementById('<%=idea.ID%>_keywordsection');
+
+              var keywordString = "<%= idea.Keywords %>";
+              var keywords = keywordString.split(";");
+
+              var keywordsHTML = ''
+
+              keywords.forEach(keyword => {
+                keywordsHTML += `<span class="badge badge-pill badge-primary" style="margin-right: 0.3vw">${keyword}</span>`
+              });
+
+              keywordsection.innerHTML += keywordsHTML
+
+            </script>
+          </div>
+        </div>
+        <br>
+        <% } %>
+        <% } %>
         <h5>Game</h5>
-        Just a very simple tower defense game. You could request more game related features! With the last version we
-        added a new tower type, and an option to adjust the volume! <br><br><br>
+        <P>Just a very simple tower defense game. You could request more game related features! With the last version we
+          added a new tower type, and an option to adjust the volume!</p>
         <h5>Website</h5>
-        There is not much on the website. If you have ideas to alter the website, submit them! <br><br><br>
+        <P>There is not much on the website. If you have ideas to alter the website, submit them!</p>
         <h5>Suggestions</h5>
-        You can vote for an idea to be implemented! If you want another way of selecting the features, submit it!
-        <br><br><br>
+        <P>You can vote for an idea to be implemented! If you want another way of selecting the features, submit it!</p>
         <h5>Graphics</h5>
-        The game has just a very limited set of colors, and no cool graphics. Maybe design requests would help!
-        <br><br><br>
+        <P>The game has just a very limited set of colors, and no cool graphics. Maybe design requests would help!</p>
       </div>
     </div>
   </div>
@@ -62,19 +98,59 @@
       <div class="card card-body" style="justify-content: center;">
         <img style="height: 36vh; width: 64vh;" src="/assets/images/version_0.3.0.png" alt="Version 0.3.0">
         <h5>Changelog</h5>
-        The towers are now more intelligent and hit almost every enemy!<br>The map now shows you where excactly you can
-        place your towers! <br><br><br>
+        <p>The towers are now more intelligent and hit almost every enemy! The map now shows you where excactly you can
+          place your towers! </p>
+        <h5>Ideas implemented in this version</h5>
+        <%= for (key, idea) in ideasdone { %>
+        <%= if ( idea.ID.String() == "e2f15d65-1f7c-4898-9c23-8a0fb78a7c1b" || idea.ID.String() == "f2208f4a-dd1e-4d3f-b4c1-65de713b1aa0" ) { %>
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title"><%= idea.Title %></h4>
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%=  idea.Description%></p>
+          </div>
+          <%= if (idea.DevComment != "") { %>
+          <div class="card-body">
+            <h5 class="card-title">Comment from the developers</h5>
+            <p><%= idea.DevComment %></p>
+          </div>
+          <% } %>
+          <div class="card-body" id="<%=idea.ID%>_keywordsection">
+            <span id="popularity_<%=idea.ID%>_random" class="badge badge-pill badge-info">Popularity:
+              <%= len(idea.UpvotedBy) - len(idea.DownvotedBy)%></span>
+            <span class="badge badge-pill badge-info">Suggested in Version <%= idea.VersionWhenSuggested %> by
+              <%= idea.SuggestedBy %></span>
+            <script>
+              var keywordsection = document.getElementById('<%=idea.ID%>_keywordsection');
+
+              var keywordString = "<%= idea.Keywords %>";
+              var keywords = keywordString.split(";");
+
+              var keywordsHTML = ''
+
+              keywords.forEach(keyword => {
+                keywordsHTML += `<span class="badge badge-pill badge-primary" style="margin-right: 0.3vw">${keyword}</span>`
+              });
+
+              keywordsection.innerHTML += keywordsHTML
+
+            </script>
+          </div>
+        </div>
+        <br>
+        <% } %>
+        <% } %>
         <h5>Game</h5>
-        Quite a simple tower defense game, but now it has more towers with better AI! You can request more game related
-        features! <br><br><br>
+        <p>Quite a simple tower defense game, but now it has more towers with better AI! It also has options to adjust
+          the sound and a new way to see where you can place towers. You can request more game
+          related features!</p>
         <h5>Website</h5>
-        There is not much on the website. If you have ideas to alter the website, submit them! <br><br><br>
+        <p>There is not much on the website. If you have ideas to alter the website, submit them!</p>
         <h5>Suggestions</h5>
-        You can vote for an idea to be implemented! If you want another way of selecting the features, submit it!
-        <br><br><br>
+        <p>You can vote for an idea to be implemented! If you want another way of selecting the features, submit it!</p>
         <h5>Graphics</h5>
-        The game has just a very limited set of colors, and no cool graphics. Maybe design requests would help!
-        <br><br><br>
+        <p>The game has just a very limited set of colors, and no cool graphics. Maybe design requests would help!</p>
       </div>
     </div>
   </div>
