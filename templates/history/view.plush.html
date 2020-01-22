@@ -207,7 +207,7 @@
         <% } %>
         <h5>Game</h5>
         <p>Quite a simple tower defense game, but now it has more towers with better AI that will indicate their range!
-          You'll need these to fight the dark enemies, since they require two hits to dispatch! It also has options to
+          You'll need these to fight the dark enemies, since they require five hits to dispatch! It also has options to
           adjust
           the sound and a new way to see where you can place towers. You can request more game
           related features!</p>
@@ -217,6 +217,72 @@
         <p>You can vote for an idea to be implemented! If you want another way of selecting the features, submit it!</p>
         <h5>Graphics</h5>
         <p>The game has just a very limited set of colors, and no cool graphics. Maybe design requests would help!</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Version 0.5.0 -->
+<div class="row">
+  <div class="col">
+    <div class="collapse multi-collapse" id="v050">
+      <div class="card card-body" style="justify-content: center;">
+        <img style="height: 36vh; width: 64vh;" src="/assets/images/version_0.5.0.png" alt="Version 0.5.0">
+        <h5>Changelog</h5>
+        <p>Enemies now look and sound like Shrok, a not so friendly ogre from a deep swamp in kinda-far-away.
+          You can now use the right mouse button to aim with the red tower.</p>
+        <h5>Ideas implemented in this version</h5>
+        <%= for (key, idea) in ideasdone { %>
+        <%= if ( idea.ID.String() == "1666a57b-69a1-46b3-93a5-c3ab205a3544" || idea.ID.String() == "65f36a17-2fc0-497e-a411-28808f58c2d2" ) { %>
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title"><%= idea.Title %></h4>
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%=  idea.Description%></p>
+          </div>
+          <%= if (idea.DevComment != "") { %>
+          <div class="card-body">
+            <h5 class="card-title">Comment from the developers</h5>
+            <p><%= idea.DevComment %></p>
+          </div>
+          <% } %>
+          <div class="card-body" id="<%=idea.ID%>_keywordsection">
+            <span id="popularity_<%=idea.ID%>_random" class="badge badge-pill badge-info">Popularity:
+              <%= len(idea.UpvotedBy) - len(idea.DownvotedBy)%></span>
+            <span class="badge badge-pill badge-info">Suggested in Version <%= idea.VersionWhenSuggested %> by
+              <%= idea.SuggestedBy %></span>
+            <script>
+              var keywordsection = document.getElementById('<%=idea.ID%>_keywordsection');
+
+              var keywordString = "<%= idea.Keywords %>";
+              var keywords = keywordString.split(";");
+
+              var keywordsHTML = ''
+
+              keywords.forEach(keyword => {
+                keywordsHTML += `<span class="badge badge-pill badge-primary" style="margin-right: 0.3vw">${keyword}</span>`
+              });
+
+              keywordsection.innerHTML += keywordsHTML
+
+            </script>
+          </div>
+        </div>
+        <br>
+        <% } %>
+        <% } %>
+        <h5>Game</h5>
+        <p>Quite a simple tower defense game, but now it has more towers with better AI that will indicate their range!
+          You'll need these to fight the dark enemies, since they require five hits to dispatch! It also has options to
+          adjust
+          the sound and a new way to see where you can place towers. You can request more game
+          related features!</p>
+        <h5>Website</h5>
+        <p>There is not much on the website. If you have ideas to alter the website, submit them!</p>
+        <h5>Suggestions</h5>
+        <p>You can vote for an idea to be implemented! If you want another way of selecting the features, submit it!</p>
+        <h5>Graphics</h5>
+        <p>Enemies now look and sound like Shrok. The game has quite a very limited set of colors, and few graphics. Maybe design requests would help!</p>
       </div>
     </div>
   </div>
