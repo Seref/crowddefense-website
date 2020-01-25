@@ -66,7 +66,7 @@ func (v IdeasResource) List(c buffalo.Context) error {
 
 	page, _ := strconv.Atoi(c.Param("page"))
 
-	pickedLast := tx.Order("updated_at DESC").Limit(2).Where("picked = true").Where("fulfilled != true")
+	pickedLast := tx.Order("updated_at DESC").Limit(2).Where("picked = true").Where("fullfilled != true")
 
 	if err := pickedLast.All(ideas); err != nil {
 		return err
