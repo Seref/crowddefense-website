@@ -18,6 +18,8 @@
     aria-controls="v070">Version: 0.7.0</button>
   <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#v110" aria-expanded="false"
     aria-controls="v110">Version: 1.1.0</button>
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#v120" aria-expanded="false"
+    aria-controls="v120">Version: 1.2.0</button>
 </p>
 <!-- Version 0.1.0 -->
 <div class="row">
@@ -495,6 +497,75 @@
         <h5>Graphics</h5>
         <p>Enemies now look and sound like Shrok. Most objects in the game now have a unique design. There is also a
           background image but still no music. When you win the game you are greeted with a victory animation!
+          Maybe design requests would help!</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Version 1.2.0 -->
+<div class="row">
+  <div class="col">
+    <div class="collapse multi-collapse" id="v120">
+      <div class="card card-body" style="justify-content: center;">
+        <img style="height: 36vh; width: 64vh;" src="/assets/images/version_1.2.0.png" alt="Version 1.2.0">
+        <h5>Changelog</h5>
+        <p> You can now use the buttons "1" and "2" as shortcuts for selecting towers! Autonomous towers are now insvisible while empty and increase their opacity while reloading!
+        </p>
+        <h5>Ideas implemented in this version</h5>
+        <%= for (key, idea) in ideasdone { %>
+        <%= if ( idea.ID.String() == "c1ebe2c9-1b29-42c3-a322-52302f3d2bc2" || idea.ID.String() == "fb8305d8-7075-422b-9786-fba2d80c6187" ) { %>
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title"><%= idea.Title %></h4>
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%=  idea.Description%></p>
+          </div>
+          <%= if (idea.DevComment != "") { %>
+          <div class="card-body">
+            <h5 class="card-title">Comment from the developers</h5>
+            <p><%= idea.DevComment %></p>
+          </div>
+          <% } %>
+          <div class="card-body" id="<%=idea.ID%>_keywordsection">
+            <span id="popularity_<%=idea.ID%>_random" class="badge badge-pill badge-info">Popularity:
+              <%= len(idea.UpvotedBy) - len(idea.DownvotedBy)%></span>
+            <span class="badge badge-pill badge-info">Suggested in Version <%= idea.VersionWhenSuggested %> by
+              <%= idea.SuggestedBy %></span>
+            <script>
+              var keywordsection = document.getElementById('<%=idea.ID%>_keywordsection');
+
+              var keywordString = "<%= idea.Keywords %>";
+              var keywords = keywordString.split(";");
+
+              var keywordsHTML = ''
+
+              keywords.forEach(keyword => {
+                keywordsHTML += `<span class="badge badge-pill badge-primary" style="margin-right: 0.3vw">${keyword}</span>`
+              });
+
+              keywordsection.innerHTML += keywordsHTML
+
+            </script>
+          </div>
+        </div>
+        <br>
+        <% } %>
+        <% } %>
+        <h5>Game</h5>
+        <p>Quite a simple tower defense game, but now it has more towers with better AI that will indicate their range!
+          Now you have to purchase the towers, but you can also upgrade them.
+          You'll need these to fight the shroks! Each wave features harder and harder Shroks, but winning will earn you
+          30$! It also has options to
+          adjust the sound and a new way to see where you can place towers. Towers can now be selected with keyboard shortcuts! You can request more game
+          related features!</p>
+        <h5>Website</h5>
+        <p>There is not much on the website. If you have ideas to alter the website, submit them!</p>
+        <h5>Suggestions</h5>
+        <p>You can vote for an idea to be implemented! If you want another way of selecting the features, submit it!</p>
+        <h5>Graphics</h5>
+        <p>Enemies now look and sound like Shrok. Most objects in the game now have a unique design. There is also a
+          background image but still no music. When you win the game you are greeted with a victory animation! Towers now have a small animation to indicate that they are reloading!
           Maybe design requests would help!</p>
       </div>
     </div>
