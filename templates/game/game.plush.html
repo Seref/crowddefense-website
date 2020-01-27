@@ -13,6 +13,9 @@
 	function OnAppReady() {
 		unityInstance.SendMessage('GameManager', 'SetClientID', "<%= current_user.Username%>");
 	}
+	window.addEventListener('beforeunload', function (e) {
+	         unityInstance.SendMessage("GameManager", "OnApplicationQuit");	  
+	});
 </script>
 
 
