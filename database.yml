@@ -2,7 +2,7 @@
 development:
   dialect: "mysql"
   database: "crowddefensewebsite_development"
-  host: "wailord"
+  host: "beemo.at"
   port: "3307"
   user: "crowddefense_dev"
   password: "x5nZf%J9wFAnB*#zZEFh%bkabbAQ^FQir^6xidyM*x^JW54e54czVZ*hpAXih^5t"

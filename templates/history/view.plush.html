@@ -2,68 +2,642 @@
 
 <p>Here you can see past versions of the game through its development phase!<br><br></p>
 <p>
-  <a class="btn btn-primary" data-toggle="collapse" href="#v010" role="button" aria-expanded="false" aria-controls="v010">Version: 0.1.0</a>
-  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#v020" aria-expanded="false" aria-controls="v020">Version: 0.2.0</button>
-  <!--<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#v030" aria-expanded="false" aria-controls="v030">Version: 0.3.0</button>-->
-
-
+  <a class="btn btn-primary" data-toggle="collapse" href="#v010" role="button" aria-expanded="false"
+    aria-controls="v010">Version: 0.1.0</a>
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#v020" aria-expanded="false"
+    aria-controls="v020">Version: 0.2.0</button>
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#v030" aria-expanded="false"
+    aria-controls="v030">Version: 0.3.0</button>
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#v040" aria-expanded="false"
+    aria-controls="v040">Version: 0.4.0</button>
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#v050" aria-expanded="false"
+    aria-controls="v050">Version: 0.5.0</button>
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#v060" aria-expanded="false"
+    aria-controls="v060">Version: 0.6.0</button>
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#v070" aria-expanded="false"
+    aria-controls="v070">Version: 0.7.0</button>
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#v110" aria-expanded="false"
+    aria-controls="v110">Version: 1.1.0</button>
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#v120" aria-expanded="false"
+    aria-controls="v120">Version: 1.2.0</button>
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#v130" aria-expanded="false"
+    aria-controls="v130">Version: 1.3.0</button>
 </p>
 <!-- Version 0.1.0 -->
 <div class="row">
   <div class="col">
     <div class="collapse multi-collapse" id="v010">
       <div class="card card-body" style="justify-content: center;">
-      <img style="height: 36vh; width: 64vh;" src="/assets/images/version_0.1.0.png" alt="Version 0.1.0">
-      <h5>Game</h5>
-      Just a very simple tower defense game. You could request more game related features! <br><br><br>
-      <h5>Website</h5>
-      There is not much on the website. If you have ideas to alter the website, submit them! <br><br><br>
-      <h5>Suggestions</h5>
-      You can vote for an idea to be implemented! If you want another way of selecting the features, submit it! <br><br><br>
-      <h5>Graphics</h5>
-      The game has just a very limited set of colors, and no cool graphics. Maybe design requests would help! <br><br><br>
-      </div>
-    </div>
-  </div>
- </div>
- <!-- Version 0.2.0 -->
- <div class="row">
-  <div class="col">
-    <div class="collapse multi-collapse" id="v020">
-      <div class="card card-body">
-      <img style="height: 36vh; width: 64vh;" src="/assets/images/version_0.2.0.png" alt="Version 0.2.0">
-      <h5>Changelog</h5>
-      The game now features white towers that aim better and shoot more often, but they have an increased cooldown time! <br>
-      There is now an options menu to increase or decrease the sound of the game! <br><br><br>
-      <h5>Game</h5>
-      Just a very simple tower defense game. You could request more game related features! With the last version we added a new tower type, and an option to adjust the volume! <br><br><br>
-      <h5>Website</h5>
-      There is not much on the website. If you have ideas to alter the website, submit them! <br><br><br>
-      <h5>Suggestions</h5>
-      You can vote for an idea to be implemented! If you want another way of selecting the features, submit it! <br><br><br>
-      <h5>Graphics</h5>
-      The game has just a very limited set of colors, and no cool graphics. Maybe design requests would help! <br><br><br>
+        <img style="height: 36vh; width: 64vh;" src="/assets/images/version_0.1.0.png" alt="Version 0.1.0">
+        <h5>Game</h5>
+        <p>Just a very simple tower defense game. You could request more game related features!</p>
+        <h5>Website</h5>
+        <p>There is not much on the website. If you have ideas to alter the website, submit them!</p>
+        <h5>Suggestions</h5>
+        <p>You can vote for an idea to be implemented! If you want another way of selecting the features, submit it!</p>
+        <h5>Graphics</h5>
+        <p>The game has just a very limited set of colors, and no cool graphics. Maybe design requests would help!</p>
       </div>
     </div>
   </div>
 </div>
-<!-- Version 0.3.0
+<!-- Version 0.2.0 -->
+<div class="row">
+  <div class="col">
+    <div class="collapse multi-collapse" id="v020">
+      <div class="card card-body">
+        <img style="height: 36vh; width: 64vh;" src="/assets/images/version_0.2.0.png" alt="Version 0.2.0">
+        <h5>Changelog</h5>
+        <p>The game now features white towers that aim better and shoot more often, but they have an increased cooldown
+          time! It also has an option to adjust the sound.</p>
+        <h5>Ideas implemented in this version</h5>
+        <%= for (key, idea) in ideasdone { %>
+        <%= if (idea.ID.String() == "b9af72ba-8295-46ae-9d44-c149debc7c64" || idea.ID.String() == "43e022e4-f9d9-47c1-870c-87758ab062af") { %>
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title"><%= idea.Title %></h4>
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%=  idea.Description%></p>
+          </div>
+          <%= if (idea.DevComment != "") { %>
+          <div class="card-body">
+            <h5 class="card-title">Comment from the developers</h5>
+            <p><%= idea.DevComment %></p>
+          </div>
+          <% } %>
+          <div class="card-body" id="<%=idea.ID%>_keywordsection">
+            <span id="popularity_<%=idea.ID%>_random" class="badge badge-pill badge-info">Popularity:
+              <%= len(idea.UpvotedBy) - len(idea.DownvotedBy)%></span>
+            <span class="badge badge-pill badge-info">Suggested in Version <%= idea.VersionWhenSuggested %> by
+              <%= idea.SuggestedBy %></span>
+            <script>
+              var keywordsection = document.getElementById('<%=idea.ID%>_keywordsection');
+
+              var keywordString = "<%= idea.Keywords %>";
+              var keywords = keywordString.split(";");
+
+              var keywordsHTML = ''
+
+              keywords.forEach(keyword => {
+                keywordsHTML += `<span class="badge badge-pill badge-primary" style="margin-right: 0.3vw">${keyword}</span>`
+              });
+
+              keywordsection.innerHTML += keywordsHTML
+
+            </script>
+          </div>
+        </div>
+        <br>
+        <% } %>
+        <% } %>
+        <h5>Game</h5>
+        <P>Just a very simple tower defense game. You could request more game related features! With the last version we
+          added a new tower type, and an option to adjust the volume!</p>
+        <h5>Website</h5>
+        <P>There is not much on the website. If you have ideas to alter the website, submit them!</p>
+        <h5>Suggestions</h5>
+        <P>You can vote for an idea to be implemented! If you want another way of selecting the features, submit it!</p>
+        <h5>Graphics</h5>
+        <P>The game has just a very limited set of colors, and no cool graphics. Maybe design requests would help!</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Version 0.3.0 -->
 <div class="row">
   <div class="col">
     <div class="collapse multi-collapse" id="v030">
       <div class="card card-body" style="justify-content: center;">
-      <img style="height: 36vh; width: 64vh;" src="/assets/images/version_0.3.0.png" alt="Version 0.3.0">
-      <h5>Game</h5>
-      Just a very simple tower defense game. You could request more game related features! <br><br><br>
-      <h5>Website</h5>
-      There is not much on the website. If you have ideas to alter the website, submit them! <br><br><br>
-      <h5>Suggestions</h5>
-      You can vote for an idea to be implemented! If you want another way of selecting the features, submit it! <br><br><br>
-      <h5>Graphics</h5>
-      The game has just a very limited set of colors, and no cool graphics. Maybe design requests would help! <br><br><br>
+        <img style="height: 36vh; width: 64vh;" src="/assets/images/version_0.3.0.png" alt="Version 0.3.0">
+        <h5>Changelog</h5>
+        <p>The towers are now more intelligent and hit almost every enemy! The map now shows you where excactly you can
+          place your towers! </p>
+        <h5>Ideas implemented in this version</h5>
+        <%= for (key, idea) in ideasdone { %>
+        <%= if ( idea.ID.String() == "e2f15d65-1f7c-4898-9c23-8a0fb78a7c1b" || idea.ID.String() == "f2208f4a-dd1e-4d3f-b4c1-65de713b1aa0" ) { %>
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title"><%= idea.Title %></h4>
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%=  idea.Description%></p>
+          </div>
+          <%= if (idea.DevComment != "") { %>
+          <div class="card-body">
+            <h5 class="card-title">Comment from the developers</h5>
+            <p><%= idea.DevComment %></p>
+          </div>
+          <% } %>
+          <div class="card-body" id="<%=idea.ID%>_keywordsection">
+            <span id="popularity_<%=idea.ID%>_random" class="badge badge-pill badge-info">Popularity:
+              <%= len(idea.UpvotedBy) - len(idea.DownvotedBy)%></span>
+            <span class="badge badge-pill badge-info">Suggested in Version <%= idea.VersionWhenSuggested %> by
+              <%= idea.SuggestedBy %></span>
+            <script>
+              var keywordsection = document.getElementById('<%=idea.ID%>_keywordsection');
+
+              var keywordString = "<%= idea.Keywords %>";
+              var keywords = keywordString.split(";");
+
+              var keywordsHTML = ''
+
+              keywords.forEach(keyword => {
+                keywordsHTML += `<span class="badge badge-pill badge-primary" style="margin-right: 0.3vw">${keyword}</span>`
+              });
+
+              keywordsection.innerHTML += keywordsHTML
+
+            </script>
+          </div>
+        </div>
+        <br>
+        <% } %>
+        <% } %>
+        <h5>Game</h5>
+        <p>Quite a simple tower defense game, but now it has more towers with better AI! It also has options to adjust
+          the sound and a new way to see where you can place towers. You can request more game
+          related features!</p>
+        <h5>Website</h5>
+        <p>There is not much on the website. If you have ideas to alter the website, submit them!</p>
+        <h5>Suggestions</h5>
+        <p>You can vote for an idea to be implemented! If you want another way of selecting the features, submit it!</p>
+        <h5>Graphics</h5>
+        <p>The game has just a very limited set of colors, and no cool graphics. Maybe design requests would help!</p>
       </div>
     </div>
   </div>
+</div>
+<!-- Version 0.4.0 -->
+<div class="row">
+  <div class="col">
+    <div class="collapse multi-collapse" id="v040">
+      <div class="card card-body" style="justify-content: center;">
+        <img style="height: 36vh; width: 64vh;" src="/assets/images/version_0.4.0.png" alt="Version 0.4.0">
+        <h5>Changelog</h5>
+        <p>Towers now have a range indicator! Dark enemies were added. They require five hits to die! </p>
+        <h5>Ideas implemented in this version</h5>
+        <%= for (key, idea) in ideasdone { %>
+        <%= if ( idea.ID.String() == "2a753d43-dd9a-474c-953c-b62eced49ba6" || idea.ID.String() == "ac3997c6-8f80-4e98-aace-c302e96bea24" ) { %>
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title"><%= idea.Title %></h4>
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%=  idea.Description%></p>
+          </div>
+          <%= if (idea.DevComment != "") { %>
+          <div class="card-body">
+            <h5 class="card-title">Comment from the developers</h5>
+            <p><%= idea.DevComment %></p>
+          </div>
+          <% } %>
+          <div class="card-body" id="<%=idea.ID%>_keywordsection">
+            <span id="popularity_<%=idea.ID%>_random" class="badge badge-pill badge-info">Popularity:
+              <%= len(idea.UpvotedBy) - len(idea.DownvotedBy)%></span>
+            <span class="badge badge-pill badge-info">Suggested in Version <%= idea.VersionWhenSuggested %> by
+              <%= idea.SuggestedBy %></span>
+            <script>
+              var keywordsection = document.getElementById('<%=idea.ID%>_keywordsection');
 
- </div>
- -->
+              var keywordString = "<%= idea.Keywords %>";
+              var keywords = keywordString.split(";");
+
+              var keywordsHTML = ''
+
+              keywords.forEach(keyword => {
+                keywordsHTML += `<span class="badge badge-pill badge-primary" style="margin-right: 0.3vw">${keyword}</span>`
+              });
+
+              keywordsection.innerHTML += keywordsHTML
+
+            </script>
+          </div>
+        </div>
+        <br>
+        <% } %>
+        <% } %>
+        <h5>Game</h5>
+        <p>Quite a simple tower defense game, but now it has more towers with better AI that will indicate their range!
+          You'll need these to fight the dark enemies, since they require five hits to dispatch! It also has options to
+          adjust
+          the sound and a new way to see where you can place towers. You can request more game
+          related features!</p>
+        <h5>Website</h5>
+        <p>There is not much on the website. If you have ideas to alter the website, submit them!</p>
+        <h5>Suggestions</h5>
+        <p>You can vote for an idea to be implemented! If you want another way of selecting the features, submit it!</p>
+        <h5>Graphics</h5>
+        <p>The game has just a very limited set of colors, and no cool graphics. Maybe design requests would help!</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Version 0.5.0 -->
+<div class="row">
+  <div class="col">
+    <div class="collapse multi-collapse" id="v050">
+      <div class="card card-body" style="justify-content: center;">
+        <img style="height: 36vh; width: 64vh;" src="/assets/images/version_0.5.0.png" alt="Version 0.5.0">
+        <h5>Changelog</h5>
+        <p>Enemies now look and sound like Shrok, a not so friendly ogre from a deep swamp in kinda-far-away.
+          You can now use the right mouse button to aim with the red tower.</p>
+        <h5>Ideas implemented in this version</h5>
+        <%= for (key, idea) in ideasdone { %>
+        <%= if ( idea.ID.String() == "1666a57b-69a1-46b3-93a5-c3ab205a3544" || idea.ID.String() == "65f36a17-2fc0-497e-a411-28808f58c2d2" ) { %>
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title"><%= idea.Title %></h4>
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%=  idea.Description%></p>
+          </div>
+          <%= if (idea.DevComment != "") { %>
+          <div class="card-body">
+            <h5 class="card-title">Comment from the developers</h5>
+            <p><%= idea.DevComment %></p>
+          </div>
+          <% } %>
+          <div class="card-body" id="<%=idea.ID%>_keywordsection">
+            <span id="popularity_<%=idea.ID%>_random" class="badge badge-pill badge-info">Popularity:
+              <%= len(idea.UpvotedBy) - len(idea.DownvotedBy)%></span>
+            <span class="badge badge-pill badge-info">Suggested in Version <%= idea.VersionWhenSuggested %> by
+              <%= idea.SuggestedBy %></span>
+            <script>
+              var keywordsection = document.getElementById('<%=idea.ID%>_keywordsection');
+
+              var keywordString = "<%= idea.Keywords %>";
+              var keywords = keywordString.split(";");
+
+              var keywordsHTML = ''
+
+              keywords.forEach(keyword => {
+                keywordsHTML += `<span class="badge badge-pill badge-primary" style="margin-right: 0.3vw">${keyword}</span>`
+              });
+
+              keywordsection.innerHTML += keywordsHTML
+
+            </script>
+          </div>
+        </div>
+        <br>
+        <% } %>
+        <% } %>
+        <h5>Game</h5>
+        <p>Quite a simple tower defense game, but now it has more towers with better AI that will indicate their range!
+          You'll need these to fight the red shroks, since they require five hits to dispatch! It also has options to
+          adjust
+          the sound and a new way to see where you can place towers. You can request more game
+          related features!</p>
+        <h5>Website</h5>
+        <p>There is not much on the website. If you have ideas to alter the website, submit them!</p>
+        <h5>Suggestions</h5>
+        <p>You can vote for an idea to be implemented! If you want another way of selecting the features, submit it!</p>
+        <h5>Graphics</h5>
+        <p>Enemies now look and sound like Shrok. The game has quite a very limited set of colors, and few graphics.
+          Maybe design requests would help!</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Version 0.6.0 -->
+<div class="row">
+  <div class="col">
+    <div class="collapse multi-collapse" id="v060">
+      <div class="card card-body" style="justify-content: center;">
+        <img style="height: 36vh; width: 64vh;" src="/assets/images/version_0.6.0.png" alt="Version 0.6.0">
+        <h5>Changelog</h5>
+        <p>Towers now need to be purchased with money. You start the game with 100$.
+          After a short amount of time you can upgrade your placed towers. This can be done repeatedly.</p>
+        <h5>Ideas implemented in this version</h5>
+        <%= for (key, idea) in ideasdone { %>
+        <%= if ( idea.ID.String() == "2b00524c-bfa4-4dc6-aabf-f73860a359e0" || idea.ID.String() == "5636c9f6-c745-4c92-ac9c-36350996b353" ) { %>
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title"><%= idea.Title %></h4>
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%=  idea.Description%></p>
+          </div>
+          <%= if (idea.DevComment != "") { %>
+          <div class="card-body">
+            <h5 class="card-title">Comment from the developers</h5>
+            <p><%= idea.DevComment %></p>
+          </div>
+          <% } %>
+          <div class="card-body" id="<%=idea.ID%>_keywordsection">
+            <span id="popularity_<%=idea.ID%>_random" class="badge badge-pill badge-info">Popularity:
+              <%= len(idea.UpvotedBy) - len(idea.DownvotedBy)%></span>
+            <span class="badge badge-pill badge-info">Suggested in Version <%= idea.VersionWhenSuggested %> by
+              <%= idea.SuggestedBy %></span>
+            <script>
+              var keywordsection = document.getElementById('<%=idea.ID%>_keywordsection');
+
+              var keywordString = "<%= idea.Keywords %>";
+              var keywords = keywordString.split(";");
+
+              var keywordsHTML = ''
+
+              keywords.forEach(keyword => {
+                keywordsHTML += `<span class="badge badge-pill badge-primary" style="margin-right: 0.3vw">${keyword}</span>`
+              });
+
+              keywordsection.innerHTML += keywordsHTML
+
+            </script>
+          </div>
+        </div>
+        <br>
+        <% } %>
+        <% } %>
+        <h5>Game</h5>
+        <p>Quite a simple tower defense game, but now it has more towers with better AI that will indicate their range!
+          Now you have to purchase the towers, but you can also upgrade them.
+          You'll need these to fight the red shroks, since they require five hits to dispatch! It also has options to
+          adjust the sound and a new way to see where you can place towers. You can request more game
+          related features!</p>
+        <h5>Website</h5>
+        <p>There is not much on the website. If you have ideas to alter the website, submit them!</p>
+        <h5>Suggestions</h5>
+        <p>You can vote for an idea to be implemented! If you want another way of selecting the features, submit it!</p>
+        <h5>Graphics</h5>
+        <p>Enemies now look and sound like Shrok. The game has quite a very limited set of colors, and few graphics.
+          Maybe design requests would help!</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Version 0.7.0 -->
+<div class="row">
+  <div class="col">
+    <div class="collapse multi-collapse" id="v070">
+      <div class="card card-body" style="justify-content: center;">
+        <img style="height: 36vh; width: 64vh;" src="/assets/images/version_0.7.0.png" alt="Version 0.7.0">
+        <h5>Changelog</h5>
+        <p>The game received a complete graphic overhaul. There are now more enemies in each wave and their health
+          increases with each incoming wave.</p>
+        <h5>Ideas implemented in this version</h5>
+        <%= for (key, idea) in ideasdone { %>
+        <%= if ( idea.ID.String() == "98d3844d-b9d4-48fd-87b2-3c3ec316c193" || idea.ID.String() == "24d6bc1c-03e7-4f13-9d33-19692a25030b" ) { %>
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title"><%= idea.Title %></h4>
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%=  idea.Description%></p>
+          </div>
+          <%= if (idea.DevComment != "") { %>
+          <div class="card-body">
+            <h5 class="card-title">Comment from the developers</h5>
+            <p><%= idea.DevComment %></p>
+          </div>
+          <% } %>
+          <div class="card-body" id="<%=idea.ID%>_keywordsection">
+            <span id="popularity_<%=idea.ID%>_random" class="badge badge-pill badge-info">Popularity:
+              <%= len(idea.UpvotedBy) - len(idea.DownvotedBy)%></span>
+            <span class="badge badge-pill badge-info">Suggested in Version <%= idea.VersionWhenSuggested %> by
+              <%= idea.SuggestedBy %></span>
+            <script>
+              var keywordsection = document.getElementById('<%=idea.ID%>_keywordsection');
+
+              var keywordString = "<%= idea.Keywords %>";
+              var keywords = keywordString.split(";");
+
+              var keywordsHTML = ''
+
+              keywords.forEach(keyword => {
+                keywordsHTML += `<span class="badge badge-pill badge-primary" style="margin-right: 0.3vw">${keyword}</span>`
+              });
+
+              keywordsection.innerHTML += keywordsHTML
+
+            </script>
+          </div>
+        </div>
+        <br>
+        <% } %>
+        <% } %>
+        <h5>Game</h5>
+        <p>Quite a simple tower defense game, but now it has more towers with better AI that will indicate their range!
+          Now you have to purchase the towers, but you can also upgrade them.
+          You'll need these to fight the shroks! Each wave features harder and harder Shroks! It also has options to
+          adjust the sound and a new way to see where you can place towers. You can request more game
+          related features!</p>
+        <h5>Website</h5>
+        <p>There is not much on the website. If you have ideas to alter the website, submit them!</p>
+        <h5>Suggestions</h5>
+        <p>You can vote for an idea to be implemented! If you want another way of selecting the features, submit it!</p>
+        <h5>Graphics</h5>
+        <p>Enemies now look and sound like Shrok. Most objects in the game now have a unique design. There is also a
+          background image.
+          Maybe design requests would help!</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Version 1.1.0 -->
+<div class="row">
+  <div class="col">
+    <div class="collapse multi-collapse" id="v110">
+      <div class="card card-body" style="justify-content: center;">
+        <img style="height: 36vh; width: 64vh;" src="/assets/images/version_1.1.0.png" alt="Version 1.1.0">
+        <h5>Changelog</h5>
+        <p>When you win the game, you are greeted with a small victory animation! You now earn 30$ for defeating a wave!
+        </p>
+        <h5>Ideas implemented in this version</h5>
+        <%= for (key, idea) in ideasdone { %>
+        <%= if ( idea.ID.String() == "165ca6fd-5d13-49ba-8cde-0ac283fea956" || idea.ID.String() == "f0759570-8d3c-4125-826a-ac09ce7dfddb" ) { %>
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title"><%= idea.Title %></h4>
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%=  idea.Description%></p>
+          </div>
+          <%= if (idea.DevComment != "") { %>
+          <div class="card-body">
+            <h5 class="card-title">Comment from the developers</h5>
+            <p><%= idea.DevComment %></p>
+          </div>
+          <% } %>
+          <div class="card-body" id="<%=idea.ID%>_keywordsection">
+            <span id="popularity_<%=idea.ID%>_random" class="badge badge-pill badge-info">Popularity:
+              <%= len(idea.UpvotedBy) - len(idea.DownvotedBy)%></span>
+            <span class="badge badge-pill badge-info">Suggested in Version <%= idea.VersionWhenSuggested %> by
+              <%= idea.SuggestedBy %></span>
+            <script>
+              var keywordsection = document.getElementById('<%=idea.ID%>_keywordsection');
+
+              var keywordString = "<%= idea.Keywords %>";
+              var keywords = keywordString.split(";");
+
+              var keywordsHTML = ''
+
+              keywords.forEach(keyword => {
+                keywordsHTML += `<span class="badge badge-pill badge-primary" style="margin-right: 0.3vw">${keyword}</span>`
+              });
+
+              keywordsection.innerHTML += keywordsHTML
+
+            </script>
+          </div>
+        </div>
+        <br>
+        <% } %>
+        <% } %>
+        <h5>Game</h5>
+        <p>Quite a simple tower defense game, but now it has more towers with better AI that will indicate their range!
+          Now you have to purchase the towers, but you can also upgrade them.
+          You'll need these to fight the shroks! Each wave features harder and harder Shroks, but winning will earn you
+          30$! It also has options to
+          adjust the sound and a new way to see where you can place towers. You can request more game
+          related features!</p>
+        <h5>Website</h5>
+        <p>There is not much on the website. If you have ideas to alter the website, submit them!</p>
+        <h5>Suggestions</h5>
+        <p>You can vote for an idea to be implemented! If you want another way of selecting the features, submit it!</p>
+        <h5>Graphics</h5>
+        <p>Enemies now look and sound like Shrok. Most objects in the game now have a unique design. There is also a
+          background image. When you win the game you are greeted with a victory animation!
+          Maybe design requests would help!</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Version 1.2.0 -->
+<div class="row">
+  <div class="col">
+    <div class="collapse multi-collapse" id="v120">
+      <div class="card card-body" style="justify-content: center;">
+        <img style="height: 36vh; width: 64vh;" src="/assets/images/version_1.2.0.png" alt="Version 1.2.0">
+        <h5>Changelog</h5>
+        <p> You can now use the buttons "1" and "2" as shortcuts for selecting towers! Autonomous towers are now insvisible while empty and increase their opacity while reloading!
+        </p>
+        <h5>Ideas implemented in this version</h5>
+        <%= for (key, idea) in ideasdone { %>
+        <%= if ( idea.ID.String() == "c1ebe2c9-1b29-42c3-a322-52302f3d2bc2" || idea.ID.String() == "fb8305d8-7075-422b-9786-fba2d80c6187" ) { %>
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title"><%= idea.Title %></h4>
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%=  idea.Description%></p>
+          </div>
+          <%= if (idea.DevComment != "") { %>
+          <div class="card-body">
+            <h5 class="card-title">Comment from the developers</h5>
+            <p><%= idea.DevComment %></p>
+          </div>
+          <% } %>
+          <div class="card-body" id="<%=idea.ID%>_keywordsection">
+            <span id="popularity_<%=idea.ID%>_random" class="badge badge-pill badge-info">Popularity:
+              <%= len(idea.UpvotedBy) - len(idea.DownvotedBy)%></span>
+            <span class="badge badge-pill badge-info">Suggested in Version <%= idea.VersionWhenSuggested %> by
+              <%= idea.SuggestedBy %></span>
+            <script>
+              var keywordsection = document.getElementById('<%=idea.ID%>_keywordsection');
+
+              var keywordString = "<%= idea.Keywords %>";
+              var keywords = keywordString.split(";");
+
+              var keywordsHTML = ''
+
+              keywords.forEach(keyword => {
+                keywordsHTML += `<span class="badge badge-pill badge-primary" style="margin-right: 0.3vw">${keyword}</span>`
+              });
+
+              keywordsection.innerHTML += keywordsHTML
+
+            </script>
+          </div>
+        </div>
+        <br>
+        <% } %>
+        <% } %>
+        <h5>Game</h5>
+        <p>Quite a simple tower defense game, but now it has more towers with better AI that will indicate their range!
+          Now you have to purchase the towers, but you can also upgrade them.
+          You'll need these to fight the shroks! Each wave features harder and harder Shroks, but winning will earn you
+          30$! It also has options to
+          adjust the sound and a new way to see where you can place towers. Towers can now be selected with keyboard shortcuts! You can request more game
+          related features!</p>
+        <h5>Website</h5>
+        <p>There is not much on the website. If you have ideas to alter the website, submit them!</p>
+        <h5>Suggestions</h5>
+        <p>You can vote for an idea to be implemented! If you want another way of selecting the features, submit it!</p>
+        <h5>Graphics</h5>
+        <p>Enemies now look and sound like Shrok. Most objects in the game now have a unique design. There is also a
+          background image. When you win the game you are greeted with a victory animation! Towers now have a small animation to indicate that they are reloading!
+          Maybe design requests would help!</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Version 1.3.0 -->
+<div class="row">
+  <div class="col">
+    <div class="collapse multi-collapse" id="v130">
+      <div class="card card-body" style="justify-content: center;">
+        <img style="height: 36vh; width: 64vh;" src="/assets/images/version_1.3.0.png" alt="Version 1.3.0">
+        <h5>Changelog</h5>
+        <p> There is now an inifinite amount of enemy waves. After each wave you have ten seconds to prepare for the next wave.
+        </p>
+        <h5>Ideas implemented in this version</h5>
+        <%= for (key, idea) in ideasdone { %>
+        <%= if ( idea.ID.String() == "dfaa0f07-7876-4f96-bf27-d38f498efb66" || idea.ID.String() == "7e928c19-27e5-4fb3-b57f-e16a24fd1206" ) { %>
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title"><%= idea.Title %></h4>
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%=  idea.Description%></p>
+          </div>
+          <%= if (idea.DevComment != "") { %>
+          <div class="card-body">
+            <h5 class="card-title">Comment from the developers</h5>
+            <p><%= idea.DevComment %></p>
+          </div>
+          <% } %>
+          <div class="card-body" id="<%=idea.ID%>_keywordsection">
+            <span id="popularity_<%=idea.ID%>_random" class="badge badge-pill badge-info">Popularity:
+              <%= len(idea.UpvotedBy) - len(idea.DownvotedBy)%></span>
+            <span class="badge badge-pill badge-info">Suggested in Version <%= idea.VersionWhenSuggested %> by
+              <%= idea.SuggestedBy %></span>
+            <script>
+              var keywordsection = document.getElementById('<%=idea.ID%>_keywordsection');
+
+              var keywordString = "<%= idea.Keywords %>";
+              var keywords = keywordString.split(";");
+
+              var keywordsHTML = ''
+
+              keywords.forEach(keyword => {
+                keywordsHTML += `<span class="badge badge-pill badge-primary" style="margin-right: 0.3vw">${keyword}</span>`
+              });
+
+              keywordsection.innerHTML += keywordsHTML
+
+            </script>
+          </div>
+        </div>
+        <br>
+        <% } %>
+        <% } %>
+        <h5>Game</h5>
+        <p>Quite a simple tower defense game, but now it has more towers with better AI that will indicate their range!
+          Now you have to purchase the towers, but you can also upgrade them.
+          You'll need these to fight the shroks! You have to face neverending waves of harder and harder Shroks, but defeating a wave will earn you
+          30$! Before each wave you have ten seconds to prepare. It also has options to adjust the sound and a new way to see where you can place towers. Towers can now be selected with keyboard shortcuts! You can request more game
+          related features!</p>
+        <h5>Website</h5>
+        <p>There is not much on the website. If you have ideas to alter the website, submit them!</p>
+        <h5>Suggestions</h5>
+        <p>You can vote for an idea to be implemented! If you want another way of selecting the features, submit it!</p>
+        <h5>Graphics</h5>
+        <p>Enemies now look and sound like Shrok. Most objects in the game now have a unique design. There is also a
+          background image. When you win the game you are greeted with a victory animation! Towers now have a small animation to indicate that they are reloading!
+          Maybe design requests would help!</p>
+      </div>
+    </div>
+  </div>
+</div>
