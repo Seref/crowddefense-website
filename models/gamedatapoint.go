@@ -24,6 +24,7 @@ type GameDataPoint struct {
 	TutorialPressed int        `json:"tutorial_pressed" db:"tutorial_pressed"`
 	MoneyEarned     int        `json:"money_earned" db:"money_earned"`
 	MoneySpent      int        `json:"money_spent" db:"money_spent"`
+	ForceQuit       bool       `json:"force_quit" db:"force_quit"`
 	Additional      slices.Map `json:"additional" db:"additional"`
 }
 
